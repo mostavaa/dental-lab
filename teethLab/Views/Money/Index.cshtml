@@ -1,0 +1,171 @@
+﻿@{
+    ViewBag.Title = "المدفوعات";
+}
+
+<h2>المدفوعات</h2>
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+        <label>اليوم</label>
+            <input class="form-control" type="date" id="day" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+        <br />
+        @{
+            int credit = (int)ViewData["credit"];
+        }
+        <label>الرصيد</label><h1 id="credit">@credit</h1><!--<input class="form-control" type="text" id="credit" value="@credit" />-->
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-1 col-md-5">
+        <h1>واردات</h1>
+        <label>المبلغ</label><input type="text" id="cost" class="form-control" />
+        <br />
+        <label>دكتور</label>
+        @{
+
+            var doctors = (List<teethLab.doctor>)ViewData["doctors"];
+        }
+        <select id="doctor" class="form-control">
+            <option value=""></option>
+            @{
+                foreach (teethLab.doctor doc in doctors)
+                {
+                    <option value="@doc.id">@doc.name</option>
+                }
+            }
+        </select>
+        <br />
+        <input type="text" placeholder="المصدر" id="source" name="source" class="form-control"/>
+        <br />
+        <input type="button" id="import" value="اضافة" />
+    </div>
+    <div class="col-md-5">
+        <h1>صادرات</h1>
+        <label>المبلغ</label><input type="text" id="costEx" class="form-control" />
+        <br />
+        <label>موظف</label>
+        @{
+
+            var emps = (List<teethLab.employee>)ViewData["emps"];
+        }
+        <select id="emp" class="form-control">
+            <option value="0"></option>
+            @{
+                foreach (teethLab.employee emp in emps)
+                {
+                    <option value="@emp.id">@emp.name</option>
+                }
+            }
+        </select>
+        <br />
+        <label>شركة</label>
+        @{
+
+            var companies = (List<teethLab.company>)ViewData["companies"];
+        }
+        <select id="company" class="form-control">
+            <option value="0"></option>
+
+            @{
+                foreach (teethLab.company comp in companies)
+                {
+                    <option value="@comp.id">@comp.name</option>
+                }
+            }
+        </select>
+        <br />
+        <label>الصادر</label>
+        <input type="text" id="productName" class="form-control" />
+        <input type="button" id="export" value="اضافة" />
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#import").click(function () {
+                cost = $("#cost").val();
+                doctorId = $("#doctor").val();
+                source = $("#source").val();
+                day = $("#day").val();
+                if (day == 0 || day == null || day == "") {
+                    alert("يجب اختيار يوم");
+                    return;
+                }
+                if (cost == "" || cost == null || isNaN(cost)) {
+                    alert("يجب اضافة مبلغ");
+                    return; 
+                }
+
+                if ((source == "" || source == null) && (doctorId == null || doctorId == "")) {
+                    alert("يجب اختيار دكتور او كتابة مصدر");
+                    return;
+                }
+                
+                $.post('@Url.Action("import" , "Money")', "&cost=" + cost
+                    + "&doctorId=" + doctorId
+                    + "&source=" + source
+                    + "&day=" + day
+                    , function (res) {
+                        if (res == "success") {
+                            alert("تمت الاضافة");
+                            window.location.href = "@Url.Action("Index", "Money")";
+                        }
+                    }
+                    );
+            });
+
+            $("#export").click(function () {
+
+
+                costEx = $("#costEx").val();
+                empId = $("#emp").val();
+                companyId = $("#company").val();
+                productName = $("#productName").val();
+                day = $("#day").val();
+                if (day == 0 || day == null || day == "") {
+                    alert("يجب اختيار يوم");
+                    return;
+                }
+
+                if (costEx == "" || costEx == null || isNaN(costEx)) {
+                    alert("يجب اضافة مبلغ");
+                    return;
+                }
+
+
+                if ((productName == null || productName == "" || productName == 0)) {
+                    alert("يجب كتابة مصدر");
+                    return;
+                }
+
+
+                $.post('@Url.Action("export" , "Money")', "&cost=" + costEx
+    + "&empId=" + empId
+    + "&companyId=" + companyId
+    + "&productName=" + productName
+    + "&day=" + day
+    , function (res) {
+        if (res == "success") {
+            alert("تمت الاضافة");
+
+            window.location.href = "@Url.Action("Index", "Money")";
+        }
+    }
+    );
+            });
+
+            $("#day").change(function () {
+                $.post("@Url.Action("getDateCredit", "Money") ", "day=" + $(this).val(), function (res) {
+                    if (res != null && res != "") {
+                        $("#credit").html(res);
+                    } else {
+                        $("#credit").html(0);
+                    }
+                });
+            });
+
+
+        });
+
+    </script>
+}

@@ -1,0 +1,44 @@
+﻿@model teethLab.employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>employee</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+</fieldset>
+<div>
+    <h1>Money To This Employee</h1>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (teethLab.money mon in Model.moneys.OrderByDescending(o=>o.id))
+            {
+                <tr>
+                    <td>@mon.moneyDay.day.ToString("yyyy-MM-dd")</td>
+                    <td>@mon.value</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

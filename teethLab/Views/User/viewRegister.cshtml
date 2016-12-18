@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "viewRegister";
+}
+
+<div class="container">
+
+    <h2>viewRegister</h2>
+    @{
+        string error = (string)ViewData["error"];
+        if (error != null && error != "")
+        {
+            <h2>@error</h2>
+        }
+    }
+    <form method="post" action="@Url.Action("register" , "User" )">
+        <label>الاسم</label>
+        <input class="form-control" type="text" name="name" placeholder="الاسم" />
+        <br />
+        <label>الرقم السري</label>
+        <input class="form-control" type="password" name="password" placeholder="الرقم السري" />
+        <br />
+        <label>تأكيد الرقم السري</label>
+        <input class="form-control" type="password" name="confirmPassword" placeholder="تأكيد الرقم السري" />
+        <br />
+        <input type="submit" value="تسجيل"/>
+        <br />
+    </form>
+</div>

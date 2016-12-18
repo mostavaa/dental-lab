@@ -1,0 +1,60 @@
+﻿<style>
+    .cContainer {
+        text-align: center;
+        background-color: #99c2e1;
+        width: 100%;
+        height: 100%;
+    }
+
+    .textBox {
+        background: url("../../Content/images/controls/TextBox.png");
+        border: none;
+        border-radius: 20px;
+        height: 39px;
+        
+  padding: 8px 12px;
+  font-size: 15px;
+  
+  line-height: 1.42857143;
+  
+  
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    }
+    .textBox:focus {
+  outline: 0;
+}
+</style>
+<div class="cContainer">
+    <div class="row" style="">
+        <h1><img class="" src="~/Content/images/controls/Case-Out.png" /></h1>
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <br />
+            <h1><img class="" src="~/Content/images/controls/Delivery.png" /></h1>
+            <br /><br />
+            <input type="text" class="textBox caseInProvaCaseNumber"  />
+            <br /><br /><br />
+            <a href="#" id="nextCaseOut" data-statu="outCase"><img class="" src="~/Content/images/controls/NextBtn.png" /></a>
+        </div>
+        <div class="col-md-2" style="">
+            <br />
+            <img  src="~/Content/images/controls/HrLine.png"/>
+        </div>
+        <div class="col-md-5">
+
+            <br />
+            <h1><img class="" src="~/Content/images/controls/ProvaTxt.png" /></h1>
+            <br /><br />
+            <input type="text" class="textBox caseInProvaCaseNumber"  />
+            <br /><br /><br />
+            <a href="#" id="nextCaseOutProva" data-statu="outProva"><img class="" src="~/Content/images/controls/NextBtn.png" /></a>
+        </div>
+    </div>
+
+</div>

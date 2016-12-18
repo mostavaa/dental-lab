@@ -1,0 +1,2513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="d285b71e-3914-4c0b-9921-636703de60cb"
+  name="teethLab"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="dbc4b695-ec29-4412-9149-58aa8e3e2199"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DteethLab"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="a60ea0b7-1735-4dca-8496-42804009e4c3">
+      <profileInstance
+        Id="2946c588-7ba8-48e3-86e8-48ccdde2bfb0"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="ed078ccf-22c0-48a1-958a-a05062a8aae1"
+        LastKnownName="Controllers"
+        LastKnownLocation="Package1_1905.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="bb50f52b-696c-4ccb-8ee6-66a0eb80e15d"
+        name="employee"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="087f46e8-5768-4841-90a9-98e3cce7f4ef"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3Demployee"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="234edbf8-a788-4627-80bb-530323b06797"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="07b875ee-cb27-4673-8c12-670ef98a70d9">
+                <propertyInstance
+                  Id="b42eec9a-384b-44aa-a705-7cc69f249668"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6f23cfdd-602f-4655-998a-e6be38d4bf23">
+                <propertyInstance
+                  Id="7ca4785a-5dd3-42f7-98f3-25e5e2702763"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e54a59c0-e495-4eae-90a9-28972d436d36">
+                <propertyInstance
+                  Id="7ba44819-40eb-4bb3-8e3d-b1fda09956f3"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2a00f9cb-b742-4641-b2ec-b5c1f4c81866">
+                <propertyInstance
+                  Id="d6114a8c-475e-4328-a99f-6ed5a39a279f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="64cc9eb2-082c-425c-9b26-046f20e62c44">
+                <propertyInstance
+                  Id="a4ac4f86-2725-49e1-8609-a584e225241a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a370d341-b67b-40bf-8444-83baa4b160e3"
+        name="company"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="52620469-8d67-48e4-89b8-1ae81b3a7b80"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3Dcompany"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="598be453-ec6c-41b4-8d0b-89f77ffb2d1f"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b500c719-21ab-421a-89c7-aab5948bd944">
+                <propertyInstance
+                  Id="5ca14689-00c0-4f12-8895-e86048bca9d7"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e9be0f1b-0a1f-4011-82c1-b5bac5a634d6">
+                <propertyInstance
+                  Id="94db1387-cf5f-434a-ad6c-ec7a11603d37"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="94d745d9-f50c-4cb5-9cac-6b1b7212891b">
+                <propertyInstance
+                  Id="e9a3a520-52aa-4452-b319-1c33dc53eb4c"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="64b22fe6-b365-4d71-b6db-dad7fbe1b0f9">
+                <propertyInstance
+                  Id="493591ef-520b-4ac3-8493-652cad3b9303"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e4ebe55c-9d47-4c4c-9b37-f4b16815a5a4">
+                <propertyInstance
+                  Id="8ce1dc9b-4f43-45cd-83d4-feb3c95b6305"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f32efb59-3230-426a-8a27-76c92310947f"
+        name="doctor"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="df42c5a6-f51e-4768-b843-317fe0aff6a7"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3Ddoctor"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="559d4009-1154-40e5-903c-665a465ddec9"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7f28ac1c-35bc-4e05-b127-01c044414395">
+                <propertyInstance
+                  Id="f3aedd3e-22a3-4bf4-a689-4e34f5655693"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7cf12913-fdf0-45cb-a4d2-7bc9e2acbd4d">
+                <propertyInstance
+                  Id="9c76d1a3-2c06-4c99-bf61-928398dba171"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="71ed27a3-af3f-43ec-bbc7-73fc4c9301f0">
+                <propertyInstance
+                  Id="618a7210-b68b-41f3-828e-6aa6eca9b968"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f2368cf0-4d9a-4866-a55a-f6352917cf05">
+                <propertyInstance
+                  Id="cf427a35-00ae-498a-bdc0-3d295be8386f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="29fff722-4542-49ea-8adb-3a7a78c44817">
+                <propertyInstance
+                  Id="9d9b415e-e91f-474a-8a9d-5cabbbd5021c"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="330117b7-1920-4ff0-ad24-efd02d18be8f"
+        name="moneyDay"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="d18c11a5-68fa-47a0-b3ab-081734e8200e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DmoneyDay"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="d1b5fa3a-f965-4405-bbb9-d2a8a8feab39"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f06bf951-ff02-41f3-9b7c-b9bffb5dd633">
+                <propertyInstance
+                  Id="c49985a7-8010-44c5-8eb5-2207b917455c"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="63694648-1ff3-43fb-9d09-a0799f3af020">
+                <propertyInstance
+                  Id="22c0489f-6946-43d1-a2fd-3a76e629086f"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e9c911b7-1d6c-46d9-b84c-0201f0693025">
+                <propertyInstance
+                  Id="34914fda-997d-4d7f-827a-a1933adf4c82"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5c2b3b88-fe80-4202-9cde-c39ddf2f07e8">
+                <propertyInstance
+                  Id="efd49ce5-4326-47f1-b365-e722c01f4a8b"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c4c49600-f5cf-43ee-83f0-bfae54981afb">
+                <propertyInstance
+                  Id="50c228a3-314f-41a5-b9b9-569734042c74"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="be7cacd2-3fc8-495b-b996-c94bccd3457b"
+        name="caseDoctorPrice"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="4480a262-2d42-48a1-a0c3-82d1066bd4a3"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DcaseDoctorPrice"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="6bcc5d7e-6605-4589-b2c9-9cbd6bed3456"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4098b39b-0776-46e0-9b0a-29bea597ce4c">
+                <propertyInstance
+                  Id="0e156aca-0903-4ab6-86f3-cd393d3fa2c0"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="62eff104-d297-45db-9cae-ae7392be406b">
+                <propertyInstance
+                  Id="bc9cfdaf-8ce7-43a7-a87a-a10f27eff4d5"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ab6fb6a6-dae8-4ee0-a7a6-97440bb0348b">
+                <propertyInstance
+                  Id="850d90a1-945a-4546-8319-c08c3c38265c"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d7f40c3a-edb8-4ab3-b73b-b51b725579e8">
+                <propertyInstance
+                  Id="1dbec70e-f2f3-45d9-b66d-a9ade693c9fa"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8720a9fd-30e3-44f1-9e76-a3ff4167a58c">
+                <propertyInstance
+                  Id="3f17cf7e-f51b-4bb0-ab45-cad19f86cc46"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="1c8919cd-d1df-41f3-966b-b06497950271"
+        name="doctorPhone"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="5a3c5851-ffd3-48c8-9576-8782d2b56f39"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DdoctorPhone"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="2051bdba-f2cb-48b2-b152-5f6e3bdec126"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="65b906a2-9a14-4984-a8bf-478ffdde6d7f">
+                <propertyInstance
+                  Id="738fb975-a404-4a33-885a-a149ac321fc1"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b20c4875-2c7f-4fed-aa3a-65ac4e7862fe">
+                <propertyInstance
+                  Id="63a63a73-40f7-4546-bd7f-072175e2bc49"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f20620a3-82fd-46fc-a43a-9be62a444e3c">
+                <propertyInstance
+                  Id="c779fc55-80aa-41e7-a2e1-2df2930f7dac"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b43eda5f-e47f-4ee9-9bf7-a92464757ad6">
+                <propertyInstance
+                  Id="895e191b-81ae-4f21-ab07-39df254d97a2"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f558cf47-5dfc-46f0-8e15-e62867ca77c3">
+                <propertyInstance
+                  Id="077a72b8-867c-4f25-8b51-d4a3a2f6a173"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="be0ac7f5-a141-4966-a4a0-2679fe4a9e59"
+        name="case"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="6f82bc33-2489-4592-95cc-710c921a8550"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3Dcase"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="1706e453-08d6-4904-967b-c283dae21d65"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ce60a553-d0de-477e-819f-5434f715ecf0">
+                <propertyInstance
+                  Id="1c11fa9b-7132-4c3d-8006-e4d4468ded9f"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e36ac047-72e3-4e03-885b-9a4db2d96660">
+                <propertyInstance
+                  Id="422c1f73-8542-45ef-97e2-c3fd9ef6dfb3"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c9934b8c-4f76-4d71-93b5-b0114fb47991">
+                <propertyInstance
+                  Id="f86c49dd-a4bd-49bf-b867-f87e4f7f0e93"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="929a9839-7e16-4276-8442-575ff432468f">
+                <propertyInstance
+                  Id="44eaaadc-b6be-48d9-bdb4-c443d0f22d96"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cf443e88-5123-4776-8efe-45bbbb1a74e4">
+                <propertyInstance
+                  Id="a32966f2-357f-46b7-9667-e007c3ea491b"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="580272a8-6664-4ed4-866b-95245770921b"
+        name="teethLabEntities"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="5dd9da76-9d61-4995-ae42-43ff8299faeb"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DteethLabEntities"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="55a27d5e-cf34-45c2-9dc6-f7311041830e"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="41e22732-ae7f-4f00-85cb-3f0833928855">
+                <propertyInstance
+                  Id="8d63dfd8-5d1c-4cd3-9fbc-82d10ac062a2"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6c8a74ba-cbc1-4ffa-a520-2ae9c82afe8f">
+                <propertyInstance
+                  Id="358df4c5-826e-4b60-841d-852da68bd9a7"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="15de3c48-4dcf-459b-84d8-6d113922eea3">
+                <propertyInstance
+                  Id="c4176c79-f697-4439-b2f5-5ba119bd1af6"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="268834c7-cf08-4d9e-b83e-648ee53ef1f2">
+                <propertyInstance
+                  Id="8df0658f-6fde-483a-addf-14c26517f73f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="73d3dcc0-a0a6-4785-bf76-67b448fffa2b">
+                <propertyInstance
+                  Id="aaaf86fa-4ef6-4a93-9111-55db248d5633"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="51762070-4956-4597-a161-9be7c81a7922"
+        name="tools"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="763887cd-bc5c-4fc8-bf8a-3b552affabc5"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3Dtools"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="0eae2c81-795e-4100-a125-2e19a9a8b9e7"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ddd2f7e9-729f-4781-954d-6efb0f52828e">
+                <propertyInstance
+                  Id="163ea228-294d-4e43-82cb-e46294c8bb4e"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="99cd28f5-12a4-44d5-ba51-35f8b306cd11">
+                <propertyInstance
+                  Id="8e013015-6f5b-4720-92ce-5faa53b91204"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="560fef50-454a-4358-bbcd-1684b574eaea">
+                <propertyInstance
+                  Id="23baa89b-9fe2-4ef7-ba25-a2c752fd4ee9"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ca0b70dc-d1a9-4708-9f7a-ca3b63e163a0">
+                <propertyInstance
+                  Id="d1a04a6a-1fbc-4ebd-8d1d-9b8f96bd5a6a"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="84d14f39-107f-4ddf-94ac-01529990b5fa">
+                <propertyInstance
+                  Id="4956ad31-29e5-487f-b5ec-3858b70b8df8"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="9c843b94-650b-472a-82f7-b3518b58d2dd"
+            name="tools"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="d606856c-d72a-4914-900a-0a8e2dc3b7d3"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3Dtools Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="32014efa-a2f6-4951-abbe-86dd6e36f2b5"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fe97eb9b-b702-42de-a95d-c243583f4ad6">
+                    <propertyInstance
+                      Id="ce418400-80c5-441d-92e1-3531cd9c1f84"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="42e73cb9-ffd3-479e-9dd0-df33cfe8593f">
+                    <propertyInstance
+                      Id="00f42053-9f6a-4e77-be0a-bc155039dff7"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="726aacc8-bf99-4345-bf75-44204b8a5936">
+                    <propertyInstance
+                      Id="daf09538-557c-407e-9786-d290dd325cb4"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0ad8d9a9-c937-47cd-891c-16d6ef8de353">
+                    <propertyInstance
+                      Id="83d8ca1f-881f-456a-9608-801fd58d21cc"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e2fd4ab4-d05c-4646-b585-828e30f788b8">
+                    <propertyInstance
+                      Id="82da09a0-4ef4-4de8-9afd-1518f3e95f56"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a65540cd-200b-4917-bb0c-a9b326e8b81c">
+                    <propertyInstance
+                      Id="f1066ce4-f136-45a7-a025-4ca127ffd376"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="1cc32528-bd84-436f-ae91-37d83c9c8bd4"
+            name="removeSpaces"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="8fc0e804-762b-468e-8ade-9bdee4509471"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3Dtools Member%3D(Name%3DremoveSpaces OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="13496d87-36c5-4d63-8e03-fb22049df52f"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1bf08e79-a822-409f-8b9d-4cfc034f63f4">
+                    <propertyInstance
+                      Id="729b5d69-40a8-464f-888a-091a6d5141d4"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5b05e773-d7dd-4f3a-97de-23a575932d9f">
+                    <propertyInstance
+                      Id="3249f12f-eb05-4bc0-b1d4-f3b9ec0ee208"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e9901b4f-4a57-4743-a042-d05af672b1b8">
+                    <propertyInstance
+                      Id="a7fb4ac4-750c-4e64-9caa-83a2640f600b"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5cb68df7-57ce-4ceb-8c9e-e644e8076535">
+                    <propertyInstance
+                      Id="e6d427fa-cdf5-4988-9405-d84cd31c5dff"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b5a311aa-17bc-45f1-8292-997fcc09e756">
+                    <propertyInstance
+                      Id="05bf52c1-58ff-4854-a524-a12f43145b02"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="68bc8c52-dbbe-4aaa-9a5f-712f8c3cb3e4">
+                    <propertyInstance
+                      Id="4902956b-36ec-45e2-b771-12544cf03ad2"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8809f020-7e57-4fa2-b5c4-9d090d35d6a8"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f1f754f6-b064-4fe7-bdf7-9c424f00ce12"
+                  name="input"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="1635e692-c7d2-42bc-92c5-4fe2040ef199"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3Dtools Member%3D(Name%3DremoveSpaces OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dinput"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="4bc36ede-0aaf-440f-94b0-bd5254b21644"
+            name="trimMoreThanOneSpace"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="25ee0ddb-b5f3-40fd-81b6-d70c1845a8ee"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3Dtools Member%3D(Name%3DtrimMoreThanOneSpace OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c156ef4d-6b8d-4911-9123-03a4a0c5d1aa"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b599dc95-1842-4524-8b9e-05510997152f">
+                    <propertyInstance
+                      Id="77b6ddfe-e6af-4dd8-884f-5e318d3897a8"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="16f60c09-9d1c-4ac6-bcf8-374df3f54e05">
+                    <propertyInstance
+                      Id="2008d8bb-1fad-4ea3-9c39-6d7c21587821"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1496cf2a-14ee-46c3-94ac-f8966a66a9dd">
+                    <propertyInstance
+                      Id="f4fe1bdf-9d64-40bf-9199-fdbdccd8e644"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8285d564-ecd8-4e05-8ca6-7d7c7b111896">
+                    <propertyInstance
+                      Id="ac040da2-8009-4d9b-b575-8731068ae2b1"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9ab60206-0131-4b58-87c9-e753d492e952">
+                    <propertyInstance
+                      Id="4767416d-90f3-410d-b15d-133c2cbea67d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="876d906c-596a-4300-a259-ce5ca232f1bb">
+                    <propertyInstance
+                      Id="1fad038a-ecf4-45aa-9d03-f2ddb71af21e"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="91efe594-2ab2-4d3b-92f3-51b64b9b85d0"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8f8051e3-0eaa-403f-99f1-852c293bc19f"
+                  name="input"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="96f030e2-7be5-43ff-931f-a122f8517ba6"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3Dtools Member%3D(Name%3DtrimMoreThanOneSpace OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dinput"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ad89f421-14e7-4bc7-91f2-9b99f641b574"
+            name="isAdminLogged"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="5cfd8644-6389-463e-beab-cfec5e586ab8"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3Dtools Member%3DisAdminLogged"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="d65bec38-5bbb-45fa-a6cc-76434f576eb8"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c03ec4c9-39a0-4f19-a490-4b44ecede51b">
+                    <propertyInstance
+                      Id="40cd3752-0303-4cfc-ac72-605804c2e89c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="911bf5f5-83ad-4558-85fe-24737c6e902d">
+                    <propertyInstance
+                      Id="59ee55d5-457f-4e9c-a2d5-e11899649bbf"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="57d28a32-8b1c-432b-a1bb-87cfecae83b2">
+                    <propertyInstance
+                      Id="d577f513-c043-401b-8558-641a9f8dcb27"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6d85fd33-e58d-4119-9b98-4a9f33020efd">
+                    <propertyInstance
+                      Id="39b040c8-d74a-45cd-8163-209b078284f8"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="aa597741-6704-4eaf-aff9-e5fd060f4a29">
+                    <propertyInstance
+                      Id="08dbc7bc-6c43-4e5f-b9de-e35324e66761"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f116f0ab-9a0d-404b-af52-e49df40f562e">
+                    <propertyInstance
+                      Id="ce47d1a6-5d69-4318-b7e6-7845ccd7fe45"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6cc0b108-651f-4996-83ab-91e44f9f40c4"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="e0dc8f25-f3c2-4582-a358-b9adaf5fdbaf"
+            name="isUserLogged"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="4856eff3-797f-46b6-9302-ac84b2b41cb4"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3Dtools Member%3DisUserLogged"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="dff4d795-5cef-47bb-9c29-bd9561fd5cf3"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="59b3832b-f565-450e-b549-38f00fd135fa">
+                    <propertyInstance
+                      Id="f75d5809-d95a-46ad-b7a4-0b695f922a5c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d9e8cb6e-2f55-4dd7-9366-5dc4941a8253">
+                    <propertyInstance
+                      Id="aeb37310-02f5-4a68-aea0-d75b0dc9a495"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0b8c899c-d3be-4fb8-ba91-90556bf7e0b0">
+                    <propertyInstance
+                      Id="51f73de5-5e1b-4d0b-8605-aeac24f30355"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="443110c8-ae5c-45ac-8422-ce0e74d55435">
+                    <propertyInstance
+                      Id="9173480a-982d-40d6-b58b-59adef00846d"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bf52aee2-6564-425f-8f2c-420be2c28d77">
+                    <propertyInstance
+                      Id="8f7a7d35-d39d-47a4-9b4b-9e175c7dc365"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a404d989-95da-43e2-a750-7c2a030ad8d3">
+                    <propertyInstance
+                      Id="5a4517f9-7586-47c5-bed5-613dd93bc468"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ef741692-765f-4e21-98eb-abf00acb4e0f"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9f6e496f-30c7-4e4b-b023-213b9d300bdc"
+        name="Validation"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="41f9754e-405d-4c8b-9c1c-98523e2dcd36"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DValidation"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c97b4764-d6dd-4de6-9bf2-2385f1e5eeda"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ff97289e-c885-454a-9bb8-e7dbba199bf0">
+                <propertyInstance
+                  Id="3c364782-967f-4a75-ac5f-2466505a5540"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a14bddd9-d81a-4e62-bcb0-2f63bf89fc7d">
+                <propertyInstance
+                  Id="ed7bac94-2059-40b9-823d-2c392aa23998"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="025067b7-5b68-4dcd-9df3-2297b57a79cf">
+                <propertyInstance
+                  Id="c1ab6f80-7484-4908-a1c1-bb9de4506883"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7359ea94-24c7-4148-a402-11942c782250">
+                <propertyInstance
+                  Id="426e1b76-370b-4d74-885a-4b5c72587cb5"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4af1cae4-a84e-466e-b125-19498447cf56">
+                <propertyInstance
+                  Id="aa32a936-abe1-4950-9876-ac581e70427f"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="f66f3aa0-6952-4055-a33a-d190765150d7"
+            name="Validation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="8c4de9be-4207-49e1-aa5c-d724e0ba70bf"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DValidation Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="d548b1a0-b5d2-4695-9023-1c519fff75a4"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a3657ee3-4bbe-4787-b0e6-7e3016d12251">
+                    <propertyInstance
+                      Id="a45960c7-a356-48ee-9761-a170dfa1af24"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="30ded661-4899-49bf-b1fc-a29ecc2c533c">
+                    <propertyInstance
+                      Id="15180a07-dc3b-4d42-9423-563363a87b63"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="856e55b9-12fb-4ae3-a4ac-592cab5bda07">
+                    <propertyInstance
+                      Id="92cb4d4c-3f84-4895-b06d-7585270ea5ce"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="96af508e-ccde-4253-8d5e-79f1a7c68582">
+                    <propertyInstance
+                      Id="e7ce976c-f016-4600-8c46-641984cd2e8a"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="98512be9-f34e-4341-be1e-662094c4c932">
+                    <propertyInstance
+                      Id="af1aec4e-b6d9-4120-a3ff-8f124029d95a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="23315208-0624-49df-88d6-8345bb6f14ed">
+                    <propertyInstance
+                      Id="0ba68a22-1f68-4e93-a24c-f447d05a3908"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="902077a1-20fe-406b-b9c8-e2b0cd0dd3cc"
+            name="isAlpha"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="8931d910-82bd-432b-bd73-820be576a13a"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DValidation Member%3D(Name%3DisAlpha OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="da23c203-3354-4d37-8661-dfb7d55acc8e"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cda37624-6e70-498a-b952-c413f4d23581">
+                    <propertyInstance
+                      Id="28ff6aa4-250f-410c-8bc2-04001e41f76c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c4aa6342-e36f-4adf-b08a-c7cc459b43f3">
+                    <propertyInstance
+                      Id="a4624ab4-a3a1-4a3a-bda6-7db6fd4ff1cf"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d65b536b-eb32-4713-b9a2-403ee4ea0335">
+                    <propertyInstance
+                      Id="8d6593fd-1553-4810-bc6d-826293ffa50f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cde80d63-2c31-4193-9b35-05f0f5b04cc2">
+                    <propertyInstance
+                      Id="78292c9a-03ce-4d07-9e2a-f5550f49ec88"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c209734a-9fcb-4054-87d6-375a564cc665">
+                    <propertyInstance
+                      Id="ff9ba2b6-967a-4967-ba56-e2c604e1d412"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="823adee0-f702-4256-9966-6a81f5f47874">
+                    <propertyInstance
+                      Id="5d999efe-e6d9-49c6-93a6-8a939e585c1e"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="10e8af77-2816-4ad4-a589-9c22a6533caa"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="0f591335-458c-42df-9159-47e1b451639f"
+                  name="input"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="c020b7bc-a1c7-4e63-82de-b17811ddfa2c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DValidation Member%3D(Name%3DisAlpha OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dinput"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ae24ccb4-c3a3-409c-b52a-19ac70ed3085"
+            name="isAlphaNumeric"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="7dc5d8be-e79b-4f81-84ee-6b041b1baf2d"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DValidation Member%3D(Name%3DisAlphaNumeric OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="078988b9-0895-4837-848e-57cbb653f0c2"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="85aa58c6-57d2-4f79-8124-ed3c782c0c21">
+                    <propertyInstance
+                      Id="25fc0088-d486-438f-a145-7ad16f3fde63"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="42eeb008-9f38-4a5f-9720-c0926f66c527">
+                    <propertyInstance
+                      Id="5a09fb9d-b914-4278-8ffd-aba369d415ba"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="318adab0-b9d5-456f-b478-4b66cbe5888d">
+                    <propertyInstance
+                      Id="33fed56c-6d5e-43f5-99af-0aa2798d5eff"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2b43195e-be78-4635-92d0-9e247a3f1283">
+                    <propertyInstance
+                      Id="94157da1-7ba3-401a-944e-a00c8e051aa5"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="215d2d47-3697-4020-ac40-bfb364e6cbc9">
+                    <propertyInstance
+                      Id="d63e23f4-fd85-4f00-9bb6-14e54b68df87"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4feba20b-f5c3-4075-9055-fde34361f067">
+                    <propertyInstance
+                      Id="dfab99e3-3ae8-4829-871d-bd6623d556b4"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="31aba0ef-20c4-4f0d-befd-042bfc19252d"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="246d6c44-9d28-45ca-8d53-4244c22eb735"
+                  name="input"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="1f50dbd0-6aa0-4703-a314-e3a7556ff5f2"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DValidation Member%3D(Name%3DisAlphaNumeric OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dinput"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="af8ca23a-a2eb-44b3-badf-02e5ddaa804d"
+            name="isAlphaNumericSomeSpecial"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="b46ba42a-0c89-4431-bd56-433872fd86df"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DValidation Member%3D(Name%3DisAlphaNumericSomeSpecial OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="fb19986e-b078-407d-8f77-99d4f241854f"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e1d25056-4643-4294-b374-658a193cbc11">
+                    <propertyInstance
+                      Id="ae8e996b-2dce-464d-ad11-bc287a1a067e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d756e2eb-5116-4a45-9ff3-d4518ce837ef">
+                    <propertyInstance
+                      Id="ea066630-a9ec-49e5-815c-e1f7bf3c3d93"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ac5b73d7-e9f9-48f4-85a9-fcc9fc35776e">
+                    <propertyInstance
+                      Id="3577ea32-8b4f-497c-8bdc-6f008c3733b7"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f6345f4b-445b-43fe-893e-3b2b87599e13">
+                    <propertyInstance
+                      Id="2e2ae0a1-9795-49e1-8ef2-46646047e239"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6b2ccb7d-675d-4245-b12d-5489ccceef86">
+                    <propertyInstance
+                      Id="9c880848-3c6d-45f9-8442-d805fd1d51f0"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5a30bb85-c5a7-4d39-8e88-89a5e6c07cb3">
+                    <propertyInstance
+                      Id="1c2e3ef3-f40d-4ad5-9596-d32f031d1197"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c9b519c8-0765-4e01-b3b1-ff238f4da6db"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="436be995-246e-42f2-b750-9ded3282a39b"
+                  name="input"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="89dcb843-3f6f-43d5-837b-dc5ed2e4cf67"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DValidation Member%3D(Name%3DisAlphaNumericSomeSpecial OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dinput"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ba57ce75-7ed9-4830-8868-02bfb7fb153c"
+            name="isHtmlDate"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="86899b71-463e-439a-9001-4f5d22b83eff"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DValidation Member%3D(Name%3DisHtmlDate OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="75b5afff-1bbe-41a1-8908-9d154aa3c387"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="40005cb4-9b52-4255-9d2a-ee678a8b187b">
+                    <propertyInstance
+                      Id="e4e9f654-6709-4a01-903d-9ce9d3efb140"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="15c1e842-4149-4f37-b75c-bccd8b923454">
+                    <propertyInstance
+                      Id="e46fe67a-a91c-4502-92e3-54123be0f247"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5bafc918-5525-4ef9-94d7-b4cfd343d072">
+                    <propertyInstance
+                      Id="2758d085-73b4-4844-a9f7-31b6f5bc4e4c"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="89be82ef-3eb9-4a46-999a-a8334e31319a">
+                    <propertyInstance
+                      Id="d637df74-d8a9-4533-a758-1a7f2e138788"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="590c9f27-dda8-41d9-bc89-976141bc14ae">
+                    <propertyInstance
+                      Id="f51f6db3-6ac4-4e40-8530-81a1ee0ed4df"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3b2213a4-6d14-4c08-abac-177534a4b4f8">
+                    <propertyInstance
+                      Id="878a04e4-256b-4474-b491-7a3b76231eae"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="af800436-032b-4e38-8963-a04166402774"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c1911b32-a176-4cb3-8229-245dd3b0da75"
+                  name="input"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="81270db9-38eb-4753-bcbc-519396a7864c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DValidation Member%3D(Name%3DisHtmlDate OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dinput"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="136fb705-c71d-45cb-a5c1-66f79b324ea1"
+            name="isNumeric"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="22a33d72-a357-4fc3-9603-34b84356556d"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DValidation Member%3D(Name%3DisNumeric OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="9b2d3cc3-d901-4c07-b7e8-9d9aacefb643"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a9e0de0f-5a47-49e1-9b9c-b3501a773987">
+                    <propertyInstance
+                      Id="551a4e0e-efac-41c7-8335-43c32e46f530"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bb2f83b5-a162-4dfd-8cf9-d02f2857f022">
+                    <propertyInstance
+                      Id="7f30bd28-e751-4001-b291-fc1027e58e8d"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="976073be-6bc6-46fc-90f1-c16c3080c411">
+                    <propertyInstance
+                      Id="05058810-a411-4657-9eb2-ca8beadc5b91"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8546258c-5313-4de8-af9a-7394fd4ac375">
+                    <propertyInstance
+                      Id="871fbbad-8189-40ca-8f2a-726ad775b9f3"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e1a27005-520e-43e8-acd8-49035fee0a39">
+                    <propertyInstance
+                      Id="6d8804b5-ceef-4298-95d7-8ce68e072b9b"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="34de642f-e156-4f68-b05d-8b92df490564">
+                    <propertyInstance
+                      Id="d9b08806-fe16-4cc1-8c98-c28c8eb87d90"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="837d36d8-82d3-4338-b2d4-066c99c3d16e"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6813a48e-185c-4353-9b54-c1a92f043ed3"
+                  name="input"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="3554584c-2aeb-4593-b9cd-6ca4ddebc59c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DValidation Member%3D(Name%3DisNumeric OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dinput"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="61cff295-f383-412b-82ed-d3a00e69ed71"
+        name="CompanyClass"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="7953994c-a4b7-4a4a-b7fd-42a2eafe4191"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="4b437784-e0b6-438a-8cf4-1f76c0f4e84e"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1dee59d4-9fac-4281-be79-42609113bef0">
+                <propertyInstance
+                  Id="58ad5d9f-b00d-4600-ac7e-2526f7d03421"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f314646a-ffdb-4d42-bec0-a377e23933b6">
+                <propertyInstance
+                  Id="56ca8424-8da6-4de0-bf5b-5d76c95aa08d"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="faaa20bc-d2e2-4e2c-a38e-085a88fa2d98">
+                <propertyInstance
+                  Id="fc4873b9-27d8-47b2-89df-46606b65a407"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a9c35a77-d6b2-45cd-9cff-6868bd16fdee">
+                <propertyInstance
+                  Id="7e67b531-8edd-454c-b859-c9838448e789"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b3013a9a-85f8-4483-869a-82ee8ec83752">
+                <propertyInstance
+                  Id="76502f01-937c-43fa-852e-d56e58b45028"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="74dbdc93-9122-4611-94af-7daf59f84252"
+            isSubstitutable="false">
+            <classMoniker
+              Id="a370d341-b67b-40bf-8444-83baa4b160e3"
+              LastKnownName="company"
+              LastKnownLocation="Package_1905.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="a56d9176-9f51-4183-8071-c19b9b304d06"
+            name="ValidationErrors"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="94e7f9e9-412c-4b7e-8e31-04587600e572"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3DValidationErrors"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a6f5a8d6-9e59-45cb-8b07-620dc3bf687e"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d4656ae8-c0fe-4763-9d12-861324a1c066">
+                    <propertyInstance
+                      Id="0a8f6a04-17dd-4cf4-92e6-1959c8c470b4"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="14556951-2d0f-4eb8-86f7-df4caa82d1a0">
+                    <propertyInstance
+                      Id="271c55ba-76aa-4e0a-b718-9db91ebb87be"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fd6a461f-6b15-47fb-a5ea-4beb117e6a92">
+                    <propertyInstance
+                      Id="d71011ec-64ab-4259-939a-68e64d939be5"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dc778b6d-522b-4c5e-94da-2d9fe1f547e3">
+                    <propertyInstance
+                      Id="7dd45845-d2b3-41ad-8fc3-2026e553ff33"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="beb6b459-7dab-4d42-8c50-299b2abc464f">
+                    <propertyInstance
+                      Id="c97d7ca4-d4db-46d4-922f-97bd8d169b02"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4ce7c2ab-eba9-448f-8f85-ae6b5255919e">
+                    <propertyInstance
+                      Id="45a65e73-581e-45b3-823c-d94fbf6be1f8"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="39ba90aa-84dd-4985-a90e-a64a59a23f56">
+                    <propertyInstance
+                      Id="31dd2641-6649-402e-9332-9ad4e1f5b8ad"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                LastKnownName="String"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="9cce862a-14aa-4433-a4f0-2cab675062df"
+            name="db"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="eaf42e5f-c44c-4094-9036-839b1b7013bd"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3Ddb"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="7cbfe83b-0940-4f5c-8401-34ca33eecd5d"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4306e478-0ea2-4ada-887c-e62786eac73e">
+                    <propertyInstance
+                      Id="6878aebf-05fd-4ee4-bd8f-1fbed4abb24b"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="834b71ae-45ac-4a40-8d10-ab9c90589c02">
+                    <propertyInstance
+                      Id="89a72d8b-d5f3-4aa1-954e-6985cd56a08a"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c68fc71e-c686-46a4-8416-0443aa1524fc">
+                    <propertyInstance
+                      Id="4f50ec15-e598-4bd9-872f-84ac29d369f6"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7d744d0f-3f3b-4073-a4e2-e61766cc2857">
+                    <propertyInstance
+                      Id="51666f0c-cd8c-4aa6-9a40-b0def6a28af0"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e9b07272-387e-4f9f-b4bc-b4a1beee393a">
+                    <propertyInstance
+                      Id="83b972fd-8e63-4def-9db4-de146ca7bb9e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="580272a8-6664-4ed4-866b-95245770921b"
+                LastKnownName="teethLabEntities"
+                LastKnownLocation="Package_1905.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5f4b0127-2969-4ef2-baa6-52fcec9e9931"
+            name="validationErrors"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="dd380b43-655a-47df-b041-2fe39e2064cc"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3DvalidationErrors"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="972fb6e0-3262-432b-8a32-42a7fc022b7b"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="43d0822b-499f-4bdc-a5fa-6be3b190d595">
+                    <propertyInstance
+                      Id="fdf025c2-be21-4f6c-8331-6186db14c0b9"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="899742cf-8d87-470a-8079-daefd66a62ff">
+                    <propertyInstance
+                      Id="5ccdcca3-442e-4327-9de4-1dc78f2d7b0a"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1ec0a3ed-a8f2-4ab8-909e-7a48b36d6422">
+                    <propertyInstance
+                      Id="7e849f59-9f82-4d5a-8357-d5ec32b8ea19"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="940636ee-a97a-4588-b30d-51705d9cb01d">
+                    <propertyInstance
+                      Id="89080cee-5991-4d09-ba1c-e741bdc5cdf5"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8480b6ee-5691-45f9-b141-87d24116ce32">
+                    <propertyInstance
+                      Id="58ae2889-1e87-4bc4-9b55-f860a111269a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                LastKnownName="String"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="b2f2ca21-f5ce-4bde-a3ed-b2daa01d44c8"
+            name="CompanyClass"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="e9918ff6-f0b5-42a5-b0f0-144a303ea235"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="2695c4b5-44e1-435f-bc73-4b194d626023"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="68cdb703-41f0-4c1d-ada0-3fac0eac22d4">
+                    <propertyInstance
+                      Id="24ef9a3f-f7df-43ca-960e-d46487c01711"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8f271923-4a65-4d02-acba-11a0f3d01448">
+                    <propertyInstance
+                      Id="00be7078-0a75-4826-b539-ded64661d5e2"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f2756a0d-c3d9-416b-a0bb-6c9a496d69fb">
+                    <propertyInstance
+                      Id="d16f8d39-c3d2-4b56-90d6-fa6ceded52d8"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="47fcaaef-4e5a-4951-a2b7-ce2a8baf13a8">
+                    <propertyInstance
+                      Id="a909b4f3-adb4-40eb-814a-bda31c7a4dbc"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="39c34129-5c41-4801-8dcd-0f5397a692ff">
+                    <propertyInstance
+                      Id="225c9c05-fdb8-44be-a7b0-e664833e19be"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a8b3cdc3-ee82-4efd-9fc4-0cb398fc5346">
+                    <propertyInstance
+                      Id="cd796954-a101-406f-a4b8-395481c10d63"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="603b5929-93c7-4e0e-a751-d4159a91a39d"
+            name="AddDof3a"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="dfd5f836-9dea-4264-9e24-e09eeff658d3"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3D(Name%3DAddDof3a OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDateTime)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32 ParamKind%3DRef)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="6b20c569-16a1-43d2-9838-0f9d3e7f95a2"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="763f9585-cd57-4763-9b41-fe0a4c1bcaab">
+                    <propertyInstance
+                      Id="2ea9d836-6d37-4855-bb12-8b2738d2f8f7"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="553750d5-531a-48bc-bff9-9a2f6e3f2561">
+                    <propertyInstance
+                      Id="cc272344-56f1-4528-97d2-2f52d2303f94"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="020fcfd9-ed51-466e-bf72-8fa80e6562eb">
+                    <propertyInstance
+                      Id="777bef5c-c2f2-49ac-9c53-4deab74c0f9d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7077ee22-fa3d-45fb-bff5-fc1acfbda98f">
+                    <propertyInstance
+                      Id="03eef309-dbf6-485b-9e7d-f8b9be717ca3"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6dd2f702-b024-4676-b345-e7aee15b5a66">
+                    <propertyInstance
+                      Id="4985f423-7f46-4be3-9876-cb55d76414d8"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8b97f5c0-d4a0-4681-b3fa-26878af5e65f">
+                    <propertyInstance
+                      Id="b2d30827-fec9-41be-87bd-c21cca2d6ab3"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c53e6e28-cd68-4a03-aea9-82092a2dd338"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f68dcca6-2a2c-4378-9156-8966c3db3737"
+                  name="productId"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="a584126c-4d00-4190-8015-c2a75b6aa1ed"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3D(Name%3DAddDof3a OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDateTime)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32 ParamKind%3DRef)]) ParameterIdentifier%3DproductId"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6bd5c600-e3b8-4111-9bd0-28c6bb0a01e0"
+                  name="cost"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="046f725b-f804-468b-b426-22e6b6556262"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3D(Name%3DAddDof3a OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDateTime)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32 ParamKind%3DRef)]) ParameterIdentifier%3Dcost"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f1c57771-9e0d-4773-953c-c69ad4f95b97"
+                  name="date"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="4e2890bb-d49f-4cb5-a31b-90639f8ede76"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3D(Name%3DAddDof3a OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDateTime)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32 ParamKind%3DRef)]) ParameterIdentifier%3Ddate"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="f43fa0bf-76a0-49be-8f93-f66b1584080c"
+                      LastKnownName="DateTime"
+                      LastKnownLocation="Package2_1905.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="55dfef5c-99c7-4c91-b400-eadc87c85187"
+                  name="productPayId"
+                  direction="Out">
+                  <referencesInternal>
+                    <reference
+                      Id="c3678504-a96e-4b44-ba3d-2cae8f43d374"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3D(Name%3DAddDof3a OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DDateTime)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32 ParamKind%3DRef)]) ParameterIdentifier%3DproductPayId"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="d4dcb871-8aa4-457b-9b97-43e1bbd34ce4"
+            name="deleteDof3a"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="1aa96cb7-46b7-45aa-afbf-803cc2fcd966"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3D(Name%3DdeleteDof3a OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="770e9fc7-8e7c-49ea-b6cf-ed8f1be09b2e"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="826e8ec0-4a23-4885-8cd6-f83fbee7d016">
+                    <propertyInstance
+                      Id="fe879e50-5018-4acf-b45f-3398fbd128cf"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="66142bbd-9fb5-479a-9f1d-703812176b2c">
+                    <propertyInstance
+                      Id="f75f27b8-1b5f-4507-b082-d352f2b416f6"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fdd297d9-0379-4495-a829-bacf5263e4e3">
+                    <propertyInstance
+                      Id="b4127288-ad39-4eeb-8a30-dca275af9d16"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cd79e77e-7abd-466e-a0cb-ee4ebcb38495">
+                    <propertyInstance
+                      Id="8e08e2e8-d12c-4a2e-9e7e-c6f1f2d72014"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="24d967fc-02b9-49aa-807c-e8e9f4204d66">
+                    <propertyInstance
+                      Id="a844b9ff-f116-4e02-b480-36c18efd3945"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9d175bd8-55b0-4e42-89fa-0d30a7b1223e">
+                    <propertyInstance
+                      Id="239c5392-5dbc-438e-94ad-ae04be8d7090"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="44b8a480-c37d-4b97-803a-9eded1109ec8"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="dbe7d6a9-dd7d-43c0-802f-397fddd1abfb"
+                  name="id"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="dd678610-774b-46aa-a335-f3fc3829f67a"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3D(Name%3DdeleteDof3a OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3Did"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="2b97d9d3-ba21-46cd-bf05-32f072111572"
+            name="getCompanyByName"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="a52348be-958f-49db-a551-5443c81cc145"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3D(Name%3DgetCompanyByName OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c7b3b992-f683-42ad-89a7-2bb1b7222f94"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="24cebea2-3530-4c5d-88b4-9d354bc22c25">
+                    <propertyInstance
+                      Id="c1967925-e35f-4b06-8abb-d5421e985362"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b06d4983-b665-4d53-abdd-668761d0782d">
+                    <propertyInstance
+                      Id="9a484a8a-f891-45bb-b8d9-92bd7923c61f"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7d497f49-08c3-4766-93c7-f295534fe58f">
+                    <propertyInstance
+                      Id="2ff7541d-8bc1-4517-9f73-3a48db2d3662"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ba0a2ee9-f2ff-4f8c-b8b1-56073520a90d">
+                    <propertyInstance
+                      Id="9d55e4cc-67ac-4c6b-998b-b7c1812ed22a"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="08cf046a-c2cf-4348-8bb7-1ca277e2d6b4">
+                    <propertyInstance
+                      Id="6f30257a-4f92-4f63-b148-624e3ef46f18"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="45b96a4f-aa7e-451b-9715-70128d547b99">
+                    <propertyInstance
+                      Id="bc9f3d54-c37c-4a0c-8f38-4d6bb0f2029c"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="92b09203-b03d-4f14-94a9-2494ea4759da"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="a370d341-b67b-40bf-8444-83baa4b160e3"
+                      LastKnownName="company"
+                      LastKnownLocation="Package_1905.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a420a6f5-cf81-4333-ac85-bcec3de7381e"
+                  name="name"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="86af423c-736e-42d3-95d1-f924ff34d840"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DCompanyClass Member%3D(Name%3DgetCompanyByName OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dname"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="e97495bb-5fa4-4716-a996-9b8f0e089dbd"
+        name="myDate"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="31dce1be-8c85-4322-9c3e-b24cea985bb1"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DmyDate"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="a5fa4d0e-7961-45cf-9935-ebfcadd9a7b4"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="745be53a-3fbe-4675-86ab-af2735c4481d">
+                <propertyInstance
+                  Id="47d7b002-c968-450a-a527-4d082045905e"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7797bf7b-98a7-43a2-b092-10f31c4ea4a0">
+                <propertyInstance
+                  Id="26f30bec-1889-4113-a37f-1e1025c7429a"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f2c72132-b89d-4c0d-9545-7dfef3501160">
+                <propertyInstance
+                  Id="5f020336-a502-4d1e-a2a8-ac762f86f745"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0f25b683-117e-4d33-8248-095b0432a97d">
+                <propertyInstance
+                  Id="0f714cb6-3caf-418c-86bd-aa0614465cf6"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="015340d0-6681-4471-8b42-a7611737b5e7">
+                <propertyInstance
+                  Id="b0cd1024-fe85-4a7e-9c99-8ac060b17542"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="533500ad-4b84-49ef-957d-493fa083feec"
+            name="myDate"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="2971283e-56e5-4713-a95c-763fb8a89d14"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DmyDate Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b3f1639a-749f-4198-8498-388ddfff3fe6"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d43df341-a226-4a29-a11e-8773b0bb0682">
+                    <propertyInstance
+                      Id="2559ac3f-1ac6-4e3d-a955-3ff5f0b1b2bc"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b07cadad-d658-463c-ac0f-d4a4b4b610b9">
+                    <propertyInstance
+                      Id="f685ef6c-d716-4914-b708-3a8f832f64fb"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e8342ff8-6f34-4596-a6b5-6dadee864e98">
+                    <propertyInstance
+                      Id="724fdb92-17ce-46bb-a58b-27f1c75b5a6b"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0af437a6-b856-4f91-a654-fe0871936a6b">
+                    <propertyInstance
+                      Id="deb241e8-195e-4b8c-aa9a-513e033dd423"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b1e05eeb-b9b9-4c92-b2ff-78aa7ff84d54">
+                    <propertyInstance
+                      Id="c91ab789-e72f-49d9-98cd-240db0d253e0"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="784e1288-8c8d-41ca-9b10-d5d42d3cd7c6">
+                    <propertyInstance
+                      Id="9c54ac2f-ee10-4d55-9a13-9bcf7b434b4f"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="9da0d12e-7d7e-4bba-81a1-0195371592e3"
+            name="dateFromString"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="58873061-e64c-48a1-a770-ee039f8776e6"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DmyDate Member%3D(Name%3DdateFromString OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="bb98bf80-93ba-438a-9dfe-595fc50f1a1a"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="39829cba-38b4-494d-9c30-6347ffdcc3df">
+                    <propertyInstance
+                      Id="2fe729c6-be11-4ea3-a3f9-2d706f8e25a2"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f4561404-2060-461e-a52d-d732d9ba7096">
+                    <propertyInstance
+                      Id="a38e3f2c-7386-49e9-9adc-37158263d76e"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="05fb1ea9-4add-4033-b90f-ec25c21b1280">
+                    <propertyInstance
+                      Id="122e42ba-0cdd-47ac-b11a-221ec3d181b1"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="732d5f9f-f1d5-4924-8c24-1358649d5ffc">
+                    <propertyInstance
+                      Id="3361e021-9dca-4c5a-9226-ee51bc67f807"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0957dd76-a1e5-4c80-8b6e-7028fc35c6be">
+                    <propertyInstance
+                      Id="03fe6747-5e7c-4d54-9b70-d0dd3bbe5ff2"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7aaa69a7-9a0b-488d-a9a3-df9996c470ca">
+                    <propertyInstance
+                      Id="be256674-bba6-4ca5-ab39-61383e867ba3"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c1c2997a-9d5c-4c6e-8c98-1a2e87f71c5d"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="f43fa0bf-76a0-49be-8f93-f66b1584080c"
+                      LastKnownName="DateTime"
+                      LastKnownLocation="Package2_1905.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3dbdbddd-8988-4560-9418-d0bcb1f961b1"
+                  name="date"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="44efdea6-601e-4b94-8f0a-fd655521a014"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Fmostafa%2FDesktop%2Fwork%2FteethLab%2FteethLab%2Fbin%2FteethLab.dll Namespace%3DteethLab Type%3DmyDate Member%3D(Name%3DdateFromString OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Ddate"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

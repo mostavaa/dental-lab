@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "الشركات";
+}
+
+<h2>الشركات</h2>
+
+
+
+<div class="container">
+    <div class="row">
+        <h3>اضافة شركة</h3>
+        <form method="post" action="@Url.Action("AddCom", "Company")">
+            <label>اسم الشركة</label><input type="text" name="name" class="form-control" />
+            <br />
+            <input type="submit" value="اضافة" class="btn btn-default" />
+
+        </form>
+    </div>
+    <br />
+    @{
+        var companies = (List<teethLab.company>)ViewData["companies"];
+        foreach (teethLab.company company in companies)
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>@company.name</h2>
+                </div>
+
+                <div class="col-md-3">
+                    <button class="delete btn btn-default" data-id="@company.id">مسح الشركة</button>
+                </div>
+            </div>
+        }
+    }
+
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(".delete").click(function () {
+                resu = confirm("هل انت متأكد من مسح الشركة");
+                if (resu==false)
+                    return;
+                sup = this;
+                id = $(this).attr("data-id");
+                $.post("@Url.Action("DeleteComp", "Company")", "id="+id, function (res) {
+                    if (res == "success") {
+                        alert("تم المسح");
+                        $(sup).parent().parent().remove();
+                    }
+                });
+            });
+        });
+    </script>
+}

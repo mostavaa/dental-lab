@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "حساب شركة";
+}
+@section head{
+    <style>
+        body {
+            text-align: right;
+        }
+    </style>
+}
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            
+        $("#companySearchBtn").click(function () {
+            $.post('@Url.Action("GetCompany", "Company")', "name=" + $("#companyTxt").val(), function (res) {
+                    //alert(res);
+                    result = res.split(",");
+                    statusRes = result[0];
+                    companyName = result[1];
+                    if (result[2] != "" && result[2]!=null)
+                    companyProducts = result[2].split("^^");
+                    output = "";
+                    if (companyProducts != "" && companyProducts != null) {
+                        for (var i = 0; i < companyProducts.length - 1; i++) {
+                            companyProduct = companyProducts[i].split("&&");
+                            productName = companyProduct[0];
+                            productPrice = companyProduct[1];
+                            productEnterDate = companyProduct[2];
+                            output += "<div class=\"row\">" +
+                            "<div class=\"col-md-2\">" +
+                                "<h3>" + productName + "</h3>" +
+                            "</div>" +
+                            "<div class=\"col-md-1\">" +
+                                "<h3>" + productPrice + "</h3>" +
+                            "</div>" +
+                            "<div class=\"col-md-1\">" +
+                                "<h3>" + productEnterDate + "</h3>" +
+                            "</div>" +
+                            "<br />";
+                            output += "<div class=\"col-md-4\">";
+                            productId = companyProduct[6];
+                            output += "<div class=\"col-md-12\">" +
+                            "<div class=\"col-md-6\">" +
+                                "<input type=\"number\" class=\"cost form-control\" placeholder=\"المبلغ\" />" +
+                            "</div>" +
+                            "<div class=\"col-md-6\">" +
+                                "<input type=\"date\" class=\"date col-md-6 form-control\" />" +
+                            "</div>" +
+                                "<input data-id='" + productId + "' type=\"button\" class=\"btn btn-default dof3at\" value=\"اضافة\" />" +
+                            "</div>";
+                            if (companyProduct[3] != "" && companyProduct[3] != null) {
+                                productPays = companyProduct[3].split("##");
+
+                                for (var j = 0; j < productPays.length - 1; j++) {
+                                    productPayCost = productPays[j].split("%%")[0];
+                                    productPayDate = productPays[j].split("%%")[1];
+                                    productPayId = productPays[j].split("%%")[2];
+
+                                    output += "<div>" +
+                                        "<label class=\"col-md-4 cost\">" + productPayCost + "</label><label class=\"col-md-4 date\">" + productPayDate + "</label><input data-id='" + productPayId + "' class='btn btn-default remove' type='button' value='مسح' />" +
+                                    "</div>";
+
+                                }
+                            }
+                         
+                           output+= "</div>";
+                            productCredit = companyProduct[4];
+                            productNotes = companyProduct[5];
+                            
+                            output += "<div class=\"col-md-2\">" +
+                                "<h3 class=\"credit\">" + productCredit + "</h3>" +
+                            "</div>" +
+                            "<div class=\"col-md-2\">" +
+                                "<h3>" + productNotes + "</h3>" +
+                            "</div>" +
+                            
+                            "</div>";//end row
+                        }//end loop
+                    }//end if
+
+                    if (statusRes == "success") {
+                        $("#companyNamelabel").html(companyName);
+                        $("#companyProducts").html(output);
+
+                        $(".remove").click(function () {
+                            result = confirm("هل انت متأكد من المسح ؟");
+                            if (result != true) {
+                                return;
+                            }
+                            id = $(this).attr("data-id");
+                            button = this;
+                            $.post('@Url.Action("deleteDof3a", "Company")', "id="+id,function(res){
+                                if (res == "success") {
+                                    
+                                    credit = $(button).parent().parent().parent().find(".credit").html();
+                                    credit = parseInt(credit);
+                                    
+
+                                    cost = $(button).parent().find(".cost").html();
+                                    cost = parseInt(cost);
+                                    credit -= parseInt(cost);
+                                    $(button).parent().parent().parent().find(".credit").html(credit + " ج");
+                                    $(button).parent().remove();
+                                }
+                            });
+                        });
+
+                        $(".dof3at").click(function () {
+                            date = $(this).parent().find(".date").val();
+                            cost = $(this).parent().find(".cost").val();
+                            id = $(this).attr("data-id");
+                            button = this;
+                            if (date != null && date != "" && cost != null && cost != "") {
+                                $.post('@Url.Action("AddDof3a", "Company")', "id=" + id + "&date=" + date + "&cost=" + cost, function (res) {
+                                    if (res.split(",")[0] == "success") {
+                                        productPayId = res.split(",")[1]
+                                        $(button).parent().parent().append("<div><label class=\"col-md-4 cost\">" + cost + " ج </label><label class=\"col-md-4 date\">" + date + "</label><input data-id='" + productPayId + "' class='btn btn-default remove' type='button' value='مسح' /></div>");
+                                        credit = $(button).parent().parent().parent().find(".credit").html();
+                                        credit = parseInt(credit);
+                                        credit += parseInt(cost);
+                                        $(button).parent().parent().parent().find(".credit").html(credit + " ج");
+                                        $(".remove").click(function () {
+                                            result = confirm("هل انت متأكد من المسح ؟");
+                                            if (result != true) {
+                                                return;
+                                            } 
+                                           
+                                            id = $(this).attr("data-id");
+                                            button = this;
+                                            $.post('@Url.Action("deleteDof3a", "Company")', "id=" + id, function (res) {
+                                                if (res == "success") {
+
+                                                    credit = $(button).parent().parent().parent().find(".credit").html();
+                                                    credit = parseInt(credit);
+
+
+                                                    cost = $(button).parent().find(".cost").html();
+                                                    cost = parseInt(cost);
+                                                    credit -= parseInt(cost);
+                                                    $(button).parent().parent().parent().find(".credit").html(credit + " ج");
+                                                    $(button).parent().remove();
+                                                }
+                                            });
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+         
+            
+        });
+    </script>
+}
+<h2><label id="companyNamelabel"></label> حساب شركة </h2>
+<div class="row">
+    <div class="col-lg-3">
+        <input type="text" id="companyTxt" class="form-control" />
+    </div>
+    <div class="col-lg-3">
+        <input type="button" id="companySearchBtn" value="بحث" class="btn btn-default" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <h3>الصنف</h3>
+    </div>
+    <div class="col-md-1">
+        <h3>السعر</h3>
+    </div>
+    <div class="col-md-1">
+        <h3>التاريخ</h3>
+    </div>
+    <div class="col-md-4">
+        <h3>الدفعات</h3>
+        <div>
+            <label class="col-md-4">مبلغ</label><label class="col-md-4">تاريخ</label>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <h3>الرصيد</h3>
+    </div>
+    <div class="col-md-2">
+        <h3>ملاحظات</h3>
+    </div>
+</div>
+
+<div id="companyProducts"></div>

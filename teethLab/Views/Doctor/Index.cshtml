@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "أطباء";
+}
+
+<h2>أطباء</h2>
+<br />
+<a href="@Url.Action("viewAddDoc" , "Doctor")" class="btn btn-default">اضافة طبيب</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>الاسم</th>
+            <th>العنوان</th>
+            <th>الرصيد</th>
+            <th>عميل حالى</th>
+            <th>تعديل</th>
+            <th>مسح</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var doctors = (List<teethLab.doctor>)ViewData["doctors"];
+            foreach (teethLab.doctor doctor in doctors)
+            {
+                <tr>
+                    <td>@doctor.name</td>
+                    <td>@doctor.address</td>
+                    <td>@doctor.depit</td>
+                    <td><span>@{
+                Write(doctor.isActive ? "حالى" : "سوق");
+                    }</span>
+
+                        <button class="btn btn-default activate" data-id="@doctor.id">تحويل</button>
+                    </td>
+                    <td ><a href="@Url.Action("viewEditDoc", "Doctor", new { id = doctor.id })" class="btn btn-default editDoc">تعديل</a></td>
+                    <td ><button data-id="@doctor.id" class="btn btn-default deleteDoc">مسح</button></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+@section scripts{
+<script>
+    $(document).ready(function () {
+        $(".deleteDoc").click(function () {
+            res = confirm("هل انت متأكد من مسح الطيب من النظام ؟");
+            doc = this;
+            if (res == true) {
+                id = $(this).attr("data-id");
+                $.post('@Url.Action("deleteDoc" , "Doctor")', "id="+id, function (response) {
+                    if (response=="success"){
+                        alert("تم مسح الطبيب");
+                        $(doc).parent().parent().remove();
+                    }
+                });
+                
+            }
+        });
+
+        $(".activate").click(function () {
+            docid = $(this).attr("data-id");
+            doctor = this;
+            
+            $.post("@Url.Action("activateDoc" , "Doctor")", "id="+docid, function (res) {
+                if (res == "success") {
+                    doccase = $(doctor).parent().find("span").html();
+                    if (doccase == "حالى") {
+                        $(doctor).parent().find("span").html("سوق");
+                    } else {
+                        $(doctor).parent().find("span").html("حالى");
+                    }
+                }
+            });
+        });
+    });
+    </script>
+}

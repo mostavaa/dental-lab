@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "المندوبين";
+}
+
+<h2>المندوبين</h2>
+
+<div class="container">
+    <div class="row">
+        <h3>اضافة مندوب</h3>
+        <form method="post" action="@Url.Action("AddSup" , "Supplier")">
+            <label>اسم المندوب</label><input type="text" name="name" class="form-control" />
+            <br />
+            <input type="submit" value="اضافة" class="btn btn-default"/>
+
+        </form>
+    </div>
+    <br />
+    @{
+        var suppliers = (List<teethLab.supplier>)ViewData["suppliers"];
+        foreach (teethLab.supplier supplier in suppliers)
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <h2>@supplier.name</h2>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        @{
+            foreach (teethLab.doctor doc in supplier.doctors)
+            {
+                <li>@doc.name</li>
+            }
+                        }
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <button class="delete btn btn-default"  data-id="@supplier.id">مسح المندوب</button>
+                </div>
+            </div>
+        }
+    }
+
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(".delete").click(function () {
+                resu = confirm("هل انت متأكد من مسح المندوب");
+                if (resu==false)
+                    return;
+                sup = this;
+                id = $(this).attr("data-id");
+                $.post("@Url.Action("DeleteSup", "Supplier")", "id="+id, function (res) {
+                    if (res == "success") {
+                        alert("تم المسح");
+                        $(sup).parent().parent().remove();
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "viewLogin";
+}
+<style>
+
+body{
+    background-color:#405460 ;
+}
+
+.cont{
+
+    background-color:#e5e9eb;
+    border-radius:5px;
+    position:relative;
+    width:40%;
+    margin:0 auto;
+}
+.forminputs{
+    position:relative;
+    width:80%;
+    margin:0 auto;
+}
+#myform input{
+    
+    background-color:#4c5c65;
+
+}
+.forminputs h2{
+    color:red;
+}
+</style>
+<div class="container">
+    <div class="cont">
+        <div class="forminputs">
+            <br />
+
+
+            <h1>Log In</h1>
+            <form id="myform" method="post" action="@Url.Action("login", "User")">
+                <input class="form-control" type="text" name="name" placeholder="Username" />
+                <br />
+                <input class="form-control" type="password" name="password" placeholder="Password" />
+                <br />
+                <input type="submit" class="btn btn-default" value="Log In" />
+                <br />
+            </form>
+            <br />
+            @{
+
+                string error = (string)ViewData["error"];
+                if (error != null && error != "")
+                {
+                    <h2>@error</h2>
+                }
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+﻿@functions{
+public static int getCountofTeeth(string caseTeeth)
+{
+    List<string> ulList, urList, llList, lrList;
+
+    string[] casess = caseTeeth.Split('#');
+    string ul = casess[0].Split('$')[0];
+    string ur = casess[1].Split('$')[0];
+    string ll = casess[2].Split('$')[0];
+    string lr = casess[3].Split('$')[0];
+    ulList = ul.Split(',').ToList();
+    ulList.Remove("");
+    urList = ur.Split(',').ToList();
+    urList.Remove("");
+    llList = ll.Split(',').ToList();
+    llList.Remove("");
+    lrList = lr.Split(',').ToList();
+    lrList.Remove("");
+    int noOfUnits = 0;
+
+    for (int i = ulList.Count - 1; i >= 0; i--)
+    {
+        noOfUnits++;
+    }
+
+
+    for (int i = 0; i < urList.Count; i++)
+    {
+        noOfUnits++;
+    }
+
+    for (int i = llList.Count - 1; i >= 0; i--)
+    {
+        noOfUnits++;
+    }
+
+    for (int i = 0; i < lrList.Count; i++)
+    {
+        noOfUnits++;
+    }
+    return noOfUnits;
+}
+}
+@{
+    ViewBag.Title = "Report";
+    int docid = (int)ViewData["docid"];
+
+    List<teethLab.money> m = (List<teethLab.money>)ViewData["m"];
+    List<teethLab.transaction> trans = (List<teethLab.transaction>)ViewData["trans"];
+
+    SortedDictionary<DateTime, List<object>> alldata = new SortedDictionary<DateTime, List<object>>();
+    foreach (teethLab.money mday in m)
+    {
+        if (alldata.Keys.Contains(mday.moneyDay.day))
+        {
+            alldata[mday.moneyDay.day].Add(mday);
+        }
+        else
+        {
+            List<object> ob = new List<object>();
+            ob.Add(mday);
+            alldata.Add(mday.moneyDay.day, ob);
+        }
+    }
+    foreach (teethLab.transaction tran in trans)
+    {
+        if (alldata.Keys.Contains(tran.recieveDate))
+        {
+            alldata[tran.recieveDate].Add(tran);
+        }
+        else
+        {
+            List<object> ob = new List<object>();
+            ob.Add(tran);
+            alldata.Add(tran.recieveDate, ob);
+        }
+    }
+
+}
+
+<h2>Report</h2>
+<table>
+    <thead>
+        <tr>
+            <th>رقم الحالة</th>
+            <th>الحالة</th>
+            <th>التاريخ</th>
+            <th>سعر الوحدة</th>
+            <th>العدد</th>
+            <th>مدين</th>
+            <th>دائن</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int credit =0, depit=0 ;
+            foreach (KeyValuePair<DateTime, List<object>> obj in alldata)
+            {
+
+
+
+                foreach (object o in obj.Value)
+                {
+                    if (o is teethLab.transaction)
+                    {
+                        teethLab.transaction t = (teethLab.transaction)o;
+                        
+
+                            teethLab.teethLabEntities db = new teethLab.teethLabEntities();
+                            int caseId = t.@case.id;
+                            int docId = t.doctor.id;
+
+                            int casePrice = db.caseDoctorPrices.Where(r => r.doctorId == docId && r.caseId == caseId).First().price;
+                            string caseName = t.@case.name;
+
+
+                            int noOfUnits = getCountofTeeth(t.caseTeeth);
+                            depit += t.price;
+
+                            <tr>
+                                <td>@t.actualCaseNumber</td>
+                                <td>@caseName</td>
+                                <td>@t.recieveDate.ToString("yyyy-MM-dd")</td>
+                                <td>@casePrice</td>
+                                <td>@noOfUnits</td>
+                                <td>@t.price</td>
+                                <td></td>
+                            </tr>
+
+                    }
+                    else if (o is teethLab.money)
+                    {
+                        teethLab.money mo = (teethLab.money)o;
+                        credit += mo.value;
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>@mo.moneyDay.day.ToString("yyyy-MM-dd")</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>@mo.value</td>
+                        </tr>
+                    }
+                }
+
+
+
+            }
+}
+        
+    </tbody>
+</table>
+<div class="row">
+    @{
+        int currentDepit = depit - credit;
+    }
+    <label>Credit : @credit , depit : @depit , Current depit : @currentDepit</label>
+</div>

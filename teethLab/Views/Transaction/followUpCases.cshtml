@@ -1,0 +1,807 @@
+﻿@helper renderTable(List<teethLab.transaction> transactions)
+{
+    foreach (teethLab.transaction transaction in transactions)
+    {
+        <tr>
+
+            <td>@transaction.notes</td>
+            @{
+
+        DateTime toRecDay = (DateTime)transaction.toRecieveDate;
+        string date = toRecDay.ToString("yyyy-MM-dd");
+            }
+            <td>@date</td>
+            <td>@transaction.patientName</td>
+            <td>@transaction.caseColor</td>
+            @{
+        string caseName = transaction.@case.name;
+            }
+            <td>
+                @caseName
+                @{
+        string caseTeeth = transaction.caseTeeth;
+        string[] casess = caseTeeth.Split('#');
+        string ul = casess[0].Split('$')[0];
+        string ur = casess[1].Split('$')[0];
+        string ll = casess[2].Split('$')[0];
+        string lr = casess[3].Split('$')[0];
+        List<string> ulList = ul.Split(',').ToList();
+        ulList.Remove("");
+        List<string> urList = ur.Split(',').ToList();
+        urList.Remove("");
+        List<string> llList = ll.Split(',').ToList();
+        llList.Remove("");
+        List<string> lrList = lr.Split(',').ToList();
+        lrList.Remove("");
+                }
+                <div style="position:relative">
+                    <div id="" class="colShadeFollow ul" style="">
+                        &nbsp;&nbsp;
+                        @{
+        int noOfUnits = 0;
+        for (int i = ulList.Count - 1; i >= 0; i--)
+        {
+            noOfUnits++;
+            <a href="#" class="img-circle crossNumberFollow upper" data-on="1" style="float:right">@ulList[i]</a>
+        }
+                        }
+                    </div>
+
+                    <div class="" style="
+    position:absolute;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    ">
+                        <img style="width:5px;height:68px;" src="~/Content/images/controls/VrLineWhite.png" />
+                    </div>
+
+                    <div id="" class="colShadeFollow ur" style="">
+                        @{
+
+        for (int i = 0; i < urList.Count; i++)
+        {
+            noOfUnits++;
+            <a href="#" class="img-circle crossNumberFollow upper" data-on="1" style="float:left">@urList[i]</a>
+        }
+                        }
+
+                    </div>
+
+                    <div style="width:100%;">
+                        <img style="width:100%;height:15px;" src="~/Content/images/controls/HorizontalLinewhite.png" />
+                    </div>
+
+                    <div id="" class="colShadeFollow ll" style="">
+                        &nbsp;&nbsp;
+                        @{
+        for (int i = llList.Count - 1; i >= 0; i--)
+        {
+            noOfUnits++;
+            <a href="#" class="img-circle crossNumberFollow upper" data-on="1" style="float:right">@llList[i]</a>
+        }
+                        }
+
+                    </div>
+                    <div id="" class="colShadeFollow lr" style="">
+
+                        @{
+        for (int i = 0; i < lrList.Count; i++)
+        {
+            noOfUnits++;
+
+            <a href="#" class="img-circle crossNumberFollow upper" data-on="1" style="float:left">@lrList[i]</a>
+        }
+                        }
+                    </div>
+
+                </div>
+
+            </td>
+            @{
+        teethLab.teethLabEntities db = new teethLab.teethLabEntities();
+        int caseId = transaction.@case.id;
+        int docId = transaction.doctor.id;
+
+        int casePrice = db.caseDoctorPrices.Where(o => o.doctorId == docId && o.caseId == caseId).First().price;
+            }
+            <td>@transaction.doctor.name</td>
+            <td>@transaction.actualCaseNumber</td>
+            <td>@casePrice</td>
+            <td>@noOfUnits</td>
+            <td>@transaction.price</td>
+            <td>
+                <form method="post" action="@Url.Action("Print", "Transaction")">
+                    <input type="hidden" name="transId" value="@transaction.id" />
+                    <input type="submit" value="Print" class="btn btn-primary" />
+                </form>
+            </td>
+        </tr>
+    }
+
+}
+@{
+    ViewBag.Title = "followUpCases";
+    /*
+    DateTime day = (DateTime)ViewData["day"];
+    if (day == null)
+    {
+        day = DateTime.Now;
+    }
+    */
+    DateTime day;
+    FileStream fs = new FileStream(Server.MapPath("~") + "/Content/files/startdate.txt", FileMode.Open);
+
+    StreamReader sr = new StreamReader(fs);
+
+    string date = sr.ReadToEnd();
+    sr.Close();
+    fs.Close();
+    System.Globalization.CultureInfo enUS = new System.Globalization.CultureInfo("en-US");
+    DateTime.TryParseExact(date, "yyyy-MM-dd", enUS,
+                              System.Globalization.DateTimeStyles.None, out day);
+
+
+
+
+    teethLab.teethLabEntities db = new teethLab.teethLabEntities();
+    List<teethLab.transaction> inputCases = new List<teethLab.transaction>();
+    if (db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == false && t.prova == false).Count() > 0)
+    {
+        inputCases = db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
+            && t.isOut == false
+            && t.prova == false).ToList();
+    }
+    List<teethLab.transaction> inProva = new List<teethLab.transaction>();
+    if (db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == false && t.prova == true).Count() > 0)
+    {
+        inProva = db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
+            && t.isOut == false
+            && t.prova == true).ToList();
+    }
+
+
+    List<teethLab.transaction> outCases = new List<teethLab.transaction>();
+    if (db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == true && t.prova == false).Count() > 0)
+    {
+        outCases = db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
+            && t.isOut == true
+            && t.prova == false).ToList();
+    }
+    List<teethLab.transaction> outProva = new List<teethLab.transaction>();
+    if (db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == true && t.prova == true).Count() > 0)
+    {
+        outProva = db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
+            && t.isOut == true
+            && t.prova == true).ToList();
+    }
+}
+
+<style>
+    .tabsFollow {
+        background-color: #99c2e1;
+        color: #012b43;
+        height: 40px;
+        text-align: center;
+        font-size: x-large;
+    }
+
+    .buttonsFollow {
+        position: relative;
+        float: left;
+        background-color: white;
+        color: #012b43;
+        text-align: center;
+        height: 25px;
+        border-radius: 5px;
+        width: 10%;
+    }
+
+    .colShadeFollow {
+        position: relative;
+        float: left;
+        width: 45%;
+        margin: 0 7px;
+    }
+
+        .colShadeFollow a {
+            position: relative;
+            float: left;
+            background-color: #012b43;
+            color: white;
+            width: 11%;
+            height: 23px;
+        }
+
+    .crossNumberFollow[data-on='0'] {
+        position: relative;
+        float: left;
+        background-color: #012b43;
+        color: white;
+    }
+
+    .crossNumberFollow[data-on='1'] {
+        position: relative;
+        float: left;
+        background-color: red;
+        color: white;
+    }
+
+    .mytable {
+        background-color: #99c2e1;
+        color: #012b43;
+        text-align: center;
+    }
+
+    .mytable, th, td {
+        border: 3px solid #012b43;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+
+<input type="hidden" value="@day.ToString("yyyy-MM-dd")" id="day" />
+<div class="">
+    <div class="container">
+        <div class="row">
+            <a class="btn btn-primary" href="@Url.Action("recieveTransaction" , "Transaction")">View Cases at Specific Delivery Date</a>
+        </div>
+        <div style="text-align:center;">
+            <h1 style="text-transform:capitalize;color:#99c2e1">Follow Up Cases</h1>
+        </div>
+        <div class="row">
+            <a class="col-md-5 tabsFollow" id="outCaseFollow" style="margin-left:5%;" href="#">Cases Out</a>
+
+            <a class="col-md-5 tabsFollow" id="inputCaseFollow" style="margin-left:5%;" href="#">Cases In</a>
+
+        </div>
+        <br />
+        <div class="row">
+            <a class=" buttonsFollow" id="OutCaseBtn" style="display:none; margin-left:21%;" href="#">Add Cases Out</a>
+
+            <a class=" buttonsFollow" id="AddCaseBtn" style="margin-left:68%" href="#">Add Case In</a>
+
+        </div>
+        <br />
+        <div id="inFollow">
+            @{
+                if (inputCases != null)
+                {
+
+                    <div id="newCasesInFollow">
+                        <div class="col-md-11" style="">
+                            <table class="mytable ">
+                                <thead>
+                                    <tr>
+                                        <th width="10%">Notes</th>
+                                        <th width="10%">Deliv. Date</th>
+                                        <th width="10%">Patient</th>
+                                        <th width="5%">Shade</th>
+                                        <th width="30%">Case</th>
+                                        <th width="10%">Doctor</th>
+                                        <th width="5%">Case No</th>
+                                        <th width="5%">Unit Price</th>
+                                        <th width="5%">No of Units</th>
+                                        <th width="5%">Total Prices</th>
+                                        <th width="5%">Print</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @renderTable(inputCases)
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="col-md-1">
+                            <img src="~/Content/images/controls/newCasesCaseIn.png" />
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+
+                }
+            }
+            @{
+                if (inProva != null)
+                {
+
+                    <div id="provaCasesInFollow">
+                        <div class="col-md-11" style="">
+                            <table class="mytable ">
+                                <thead>
+                                    <tr>
+                                        <th width="10%">Notes</th>
+                                        <th width="10%">Deliv. Date</th>
+                                        <th width="10%">Patient</th>
+                                        <th width="5%">Shade</th>
+                                        <th width="30%">Case</th>
+                                        <th width="10%">Doctor</th>
+                                        <th width="5%">Case No</th>
+                                        <th width="5%">Unit Price</th>
+                                        <th width="5%">No of Units</th>
+                                        <th width="5%">Total Prices</th>
+                                        <th width="5%">Print</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @renderTable(inProva)
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="col-md-1">
+                            <img src="~/Content/images/controls/casesInProva.png" />
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+
+
+        <div id="outFollow" style="display:none">
+            <br />
+            @{
+                if (outCases != null)
+                {
+
+
+                    <div id="newCasesOutFollow" style="">
+                        <div class="col-md-11" style="">
+                            <table class="mytable ">
+                                <thead>
+                                    <tr>
+                                        <th width="10%">Notes</th>
+                                        <th width="10%">Deliv. Date</th>
+                                        <th width="10%">Patient</th>
+                                        <th width="5%">Shade</th>
+                                        <th width="30%">Case</th>
+                                        <th width="10%">Doctor</th>
+                                        <th width="5%">Case No</th>
+                                        <th width="5%">Unit Price</th>
+                                        <th width="5%">No of Units</th>
+                                        <th width="5%">Total Prices</th>
+                                        <th width="5%">Print</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @renderTable(outCases)
+
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="col-md-1">
+                            <img src="~/Content/images/controls/outCases.png" />
+                        </div>
+                    </div>
+                }
+            }
+            @{
+                if (outProva != null)
+                {
+
+                    <br /><br />
+                    <div id="provaCasesOutFollow" style="">
+                        <div class="col-md-11" style="">
+                            <table class="mytable ">
+                                <thead>
+                                    <tr>
+                                        <th width="10%">Notes</th>
+                                        <th width="10%">Deliv. Date</th>
+                                        <th width="10%">Patient</th>
+                                        <th width="5%">Shade</th>
+                                        <th width="30%">Case</th>
+                                        <th width="10%">Doctor</th>
+                                        <th width="5%">Case No</th>
+                                        <th width="5%">Unit Price</th>
+                                        <th width="5%">No of Units</th>
+                                        <th width="5%">Total Prices</th>
+                                        <th width="5%">Print</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @renderTable(outProva)
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="col-md-1" style="">
+                            <img src="~/Content/images/controls/toProva.png" />
+                        </div>
+                    </div>
+
+                }
+            }
+        </div>
+
+
+    </div>
+</div>
+<div id="popupCaseIn" style="display:none;position:fixed;width:100%;height:100%;top:0;left:0;z-index:999;">
+    <div id="popupbackCaseIn" style="position:absolute;width:100%;height:100%;background-color:grey;opacity:0.5;z-index:1;"></div>
+    <div id="popupcontentCaseIn" style="position:relative; width:50%;height:80%;border-radius:5px;margin:30px auto;z-index:2;">
+        <div id="caseIn1" style="display:none">
+            @Html.Partial("~/Views/Transaction/_caseIn.cshtml")
+        </div>
+        <div id="caseIn2" style="display:none">
+            @Html.Partial("~/Views/Transaction/_caseIn2.cshtml")
+        </div>
+    </div>
+</div>
+<div id="popupCaseOut" style="display:none;position:fixed;width:100%;height:100%;top:0;left:0;z-index:999;">
+    <div id="popupbackCaseOut" style="position:absolute;width:100%;height:100%;background-color:grey;opacity:0.5;z-index:1;"></div>
+    <div id="popupcontentCaseOut" style="position:relative; width:50%;height:80%;border-radius:5px;margin:100px auto;z-index:2;">
+        @Html.Partial("~/Views/Transaction/_caseOut.cshtml")
+
+    </div>
+</div>
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            $("#outCaseFollow").click(function () {
+                $("#AddCaseBtn").hide();
+                $("#AddCaseBtn").css("margin-left", "68%");
+                $("#OutCaseBtn").show();
+                $("#inFollow").hide();
+                $("#outFollow").show();
+            });
+            $("#inputCaseFollow").click(function () {
+                $("#AddCaseBtn").show();
+                $("#AddCaseBtn").css("margin-left", "68%");
+                $("#OutCaseBtn").hide();
+                $("#inFollow").show();
+                $("#outFollow").hide();
+            });
+            $("#AddCaseBtn").click(function () {
+
+
+                $("#popupCaseIn").fadeIn();
+                $("#caseIn1").fadeIn();
+                $("#caseIn2").fadeOut();
+            });
+            $("#OutCaseBtn").click(function () {
+                $("#popupCaseOut").fadeIn();
+            });
+
+
+            $("#inputBtn , #outPrint").click(function () {
+
+                id = $("#caseNo2ndPage").html();
+                action = $(this).attr("data-statu");
+                doctorId = $("#doctor").val();
+                if (doctorId == "" || doctorId == null || isNaN(doctorId)) {
+                    alert("يجب اختيار طبيب");
+                    return;
+                }
+                doctorName = $("#doctor option:selected").text();
+
+                caseId = $("#case").val();
+                if (caseId == "" || caseId == null || isNaN(caseId)) {
+                    alert("يجب اختيار حالة");
+                    return;
+                }
+                caseName = $("#case option:selected").text();
+                caseColor = $("#shadeColor").html();
+                if (caseColor == "" || caseColor == null || caseColor == "Shade") {
+                    alert("يجب اختيار لون");
+                    return;
+                }
+                patientName = $("#patientName").val();
+                recieveDate = $("#recieveDate").val();
+                if (recieveDate == "" || recieveDate == null) {
+                    alert("يجب اختيار تاريخ تسليم");
+                    return;
+                }
+
+                notes = $("#notes").val();
+                day = $("#day").val();
+
+                numCases = 0;
+                ul = "";
+                $("#ul .crossNumber[data-on='1']").each(function () {
+                    ul += $(this).html() + ",";
+                    numCases++;
+                });
+                ul = ul.substring(0, ul.length - 1);
+                ul += "$ul";
+
+                ur = "";
+                $("#ur .crossNumber[data-on='1']").each(function () {
+                    ur += $(this).html() + ",";
+                    numCases++;
+                });
+                ur = ur.substring(0, ur.length - 1);
+                ur += "$ur";
+
+                ll = "";
+                $("#ll .crossNumber[data-on='1']").each(function () {
+                    ll += $(this).html() + ",";
+                    numCases++;
+                });
+                ll = ll.substring(0, ll.length - 1);
+                ll += "$ll";
+
+                lr = "";
+                $("#lr .crossNumber[data-on='1']").each(function () {
+                    lr += $(this).html() + ",";
+                    numCases++;
+                });
+                lr = lr.substring(0, lr.length - 1);
+                lr += "$lr";
+                if (numCases == 0) {
+                    alert("يجب اختيار ارقام");
+                    return;
+                }
+
+                caseTeeth = ul + "#" + ur + "#" + ll + "#" + lr;
+                newMonth = $("#newMonth").attr("data-on");
+                button = this;
+                $.post('@Url.Action("addCase" , "Transaction")', "doctorId=" + doctorId
+                                    + "&caseId=" + caseId
+                                    + "&caseColor=" + caseColor
+                                    + "&patientName=" + patientName
+                                    + "&notes=" + notes
+                                    + "&recieveDate=" + recieveDate
+                                    + "&caseTeeth=" + caseTeeth
+                                    + "&numCases=" + numCases
+                                    + "&day=" + day
+                                    + "&newMonth=" + newMonth
+                                    + "&action=" + action
+                                    + "&transId=" + id
+                                    , function (res) {
+                                        if (res.split(",")[0] == "success") {
+                                            alert("تمت العملية بنجاح");
+
+
+                                            if ($(button).attr("id") == "outPrint") {
+                                                window.location.href = "@Url.Action("Print","Transaction")";
+                                            }
+
+                                            $(button).parents("#popupCaseIn").fadeOut();
+                                        }
+                                    }
+                                    );
+
+
+            });
+
+            $("#nextCaseInProva , #nextCaseOutProva , #nextCaseOut").click(function () {
+                $("#doctor").val("");
+                $("#case").val("");
+                $("#shadeColor").html("Shade");
+                $(".crossNumber").attr("data-on", "0");
+                $("#recieveDate").val("");
+                $("#patientNumber").val("");
+                $("#notes").val("");
+                id = $(this).parent().find(".caseInProvaCaseNumber").val();
+                statu = $(this).attr("data-statu");
+                if (id != "" && id != null && !isNaN(id)) {
+
+                    $.post("@Url.Action("getCaseById", "Transaction")", "caseId=" + id, function (res) {
+                        if (res.split("^")[0] == "success") {
+
+                            var trans = JSON.parse(res.split("^")[1])
+                            $("#generatedNo").val(trans.id);
+                            $("#caseNo2ndPage").html(trans.id);
+                            $("#popupCaseOut").fadeOut();
+                            $("#popupCaseIn").fadeIn();
+                            $("#caseIn2").fadeIn();
+                            $("#caseIn1").fadeOut();
+
+
+                            if (statu == "inputProva") {
+                                $("#heading").html("Case-In");
+                                $("#statu2ndPage").html("Prova");
+
+                                $("#outPrint").hide();
+
+                                $("#inputBtn").show();
+                                $("#inputBtn").css("margin-left", "62%");
+                            } else if (statu == "outCase") {
+                                $("#heading").html("Case-Out");
+                                $("#statu2ndPage").html("Out");
+
+                                $("#outPrint").show();
+                                $("#outPrint").css("margin-left", "16%");
+
+                                $("#inputBtn").show();
+                                $("#inputBtn").css("margin-left", "16%");
+
+                            } else if (statu == "outProva") {
+                                $("#heading").html("Case-Out");
+                                $("#statu2ndPage").html("Prova");
+
+                                $("#outPrint").hide();
+
+                                $("#inputBtn").show();
+                                $("#inputBtn").css("margin-left", "62%");
+                            } else {
+
+                                $("#outPrint").hide();
+
+                                $("#inputBtn").show();
+                                $("#inputBtn").css("margin-left", "62%");
+                            }
+
+
+
+                            $("#doctor").val(trans.doctorId);
+                            $("#case").val(trans.caseId);
+                            $("#shadeColor").html(trans.caseColor);
+                            $("#patientName").val(trans.patientName);
+                            $("#notes").val(trans.notes);
+                            date = new Date(trans.toRecieveDate);
+
+                            var day = ("0" + date.getDate()).slice(-2);
+                            var month = ("0" + (date.getMonth() + 1)).slice(-2);
+
+                            var today = date.getFullYear() + "-" + (month) + "-" + (day);
+                            $("#recieveDate").val(today);
+
+                            caseTeeth = trans.caseTeeth;
+                            casess = caseTeeth.split('#');
+                            ul = casess[0].split('$')[0];
+                            teeth = ul.split(",");
+                            for (var i = 0; i < teeth.length; i++) {
+                                $("#ul .crossNumber").each(function () {
+                                    if ($(this).html() == teeth[i]) {
+                                        $(this).attr("data-on", "1")
+                                    }
+                                });
+                            }
+                            ur = casess[1].split('$')[0];
+                            teeth = ur.split(",");
+                            for (var i = 0; i < teeth.length; i++) {
+
+                                $("#ur .crossNumber").each(function () {
+                                    if ($(this).html() == teeth[i]) {
+                                        $(this).attr("data-on", "1")
+                                    }
+                                });
+                            }
+                            ll = casess[2].split('$')[0];
+                            teeth = ll.split(",");
+                            for (var i = 0; i < teeth.length; i++) {
+
+                                $("#ll .crossNumber").each(function () {
+                                    if ($(this).html() == teeth[i]) {
+                                        $(this).attr("data-on", "1")
+                                    }
+                                });
+                            }
+                            lr = casess[3].split('$')[0];
+                            teeth = lr.split(",");
+                            for (var i = 0; i < teeth.length; i++) {
+
+                                $("#lr .crossNumber").each(function () {
+                                    if ($(this).html() == teeth[i]) {
+                                        $(this).attr("data-on", "1")
+                                    }
+                                });
+                            }
+                            $("#inputBtn").attr("data-statu", statu);
+                            $("#backToCaseIn").attr("data-statu", statu);
+
+
+                        } else {
+                            alert("Case Not Exists");
+                        }
+                    });
+                } else {
+                    alert("Please provide case Number");
+                }
+            });
+
+            //
+
+            $("#popupback , #popupbackOut , #outCase , #popupbackCaseIn , #popupbackCaseOut").click(function () {
+                //$("#popup").fadeOut();
+                $(this).parent().fadeOut();
+            });
+            $("#AddCaseBtn").click(function () {
+                $("#popupCaseIn").fadeIn();
+                $("#caseIn1").fadeIn();
+                $("#caseIn2").fadeOut();
+            });
+
+            $("#generateBtn").click(function () {
+                button = this;
+                $.post("@Url.Action("getNewCaseNumber" , "Transaction")", "", function (res) {
+
+                    $(button).after("<span id='spanGenrated'>Case Number : " + res + "</span>");
+                    $(button).hide();
+                    $("#generatedNo").val(res);
+                    $("#caseNo2ndPage").html(res);
+                });
+            });
+            $("#nextCaseIn").click(function () {
+                if ($("#generateBtn").css("display") == "none") {
+                    $("#doctor").val("");
+                    $("#case").val("");
+                    $("#shadeColor").html("Shade");
+                    $(".crossNumber").attr("data-on", "0");
+                    $("#recieveDate").val("");
+                    $("#patientNumber").val("");
+                    $("#notes").val("");
+                    $("#backToCaseIn").attr("data-statu", "inputCase");
+                    $("#inputBtn").attr("data-statu", "inputCase");
+                    $("#spanGenrated").remove();
+                    $("#generateBtn").show();
+                    $("#popupCaseIn").fadeIn();
+                    $("#caseIn2").fadeIn();
+                    $("#caseIn1").fadeOut();
+                    $("#statu2ndPage").html("New");
+                }
+
+            });
+            $("#backToCaseIn").click(function () {
+
+                $("#popupCaseIn").fadeIn();
+
+                $("#caseIn2").fadeOut();
+                statu = $(this).attr("data-statu");
+                if (statu == "inputCase" || statu == "inputProva") {
+                    $("#caseIn1").fadeIn();
+                } else if (statu == "outCase" || statu == "outProva") {
+                    $("#popupCaseOut").fadeIn();
+                    $("#popupCaseIn").fadeOut();
+                }
+            });
+            $("#OutCaseBtn").click(function () {
+                $("#popupCaseOut").fadeIn();
+            });
+
+            $("#fullLower").click(function () {
+                if ($(".lowerCase").attr("data-on") == '0') {
+                    $(".lowerCase").attr("data-on", '1');
+                } else {
+                    $(".lowerCase").attr("data-on", '0');
+                }
+            });
+            $("#fullUpper").click(function () {
+                if ($(".upperCase").attr("data-on") == '0') {
+                    $(".upperCase").attr("data-on", '1');
+                } else {
+                    $(".upperCase").attr("data-on", '0');
+                }
+            });
+            $(".caseNumber , #newMonth , .crossNumber").click(function () {
+                if ($(this).attr("data-on") == '0') {
+                    $(this).attr("data-on", '1');
+                } else if ($(this).attr("data-on") == '1') {
+                    $(this).attr("data-on", '0');
+                }
+            });
+
+
+
+            $(".close").click(function () {
+                $(this).parents(".modal").fadeOut();
+            });
+
+            $(".colorImages").click(function () {
+                $("#color").val($(this).attr("data-val"));
+                $("#shadeColor").html($(this).attr("data-val"));
+                $("#popup").fadeOut();
+            });
+
+            $("#pick , #pickColor").click(function () {
+                $("#popup").fadeIn();
+            });
+
+
+
+        });
+
+    </script>
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="47cbea12060940fe8f69fa299ebac596" Name="Diagram1">
+        <EntityTypeShape EntityType="teethLabModel.case" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="teethLabModel.caseDoctorPrice" Width="1.5" PointX="8.25" PointY="9.5" />
+        <EntityTypeShape EntityType="teethLabModel.clinic" Width="1.5" PointX="5.25" PointY="23.75" />
+        <EntityTypeShape EntityType="teethLabModel.clinicPhone" Width="1.5" PointX="7.5" PointY="24" />
+        <EntityTypeShape EntityType="teethLabModel.company" Width="1.5" PointX="6" PointY="16.125" />
+        <EntityTypeShape EntityType="teethLabModel.doctor" Width="1.5" PointX="3" PointY="8.875" />
+        <EntityTypeShape EntityType="teethLabModel.doctorPhone" Width="1.5" PointX="5.25" PointY="13.5" />
+        <EntityTypeShape EntityType="teethLabModel.employee" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="teethLabModel.money" Width="1.5" PointX="8.25" PointY="4.5" />
+        <EntityTypeShape EntityType="teethLabModel.moneyDay" Width="1.5" PointX="6" PointY="3.25" />
+        <EntityTypeShape EntityType="teethLabModel.product" Width="1.5" PointX="8.25" PointY="15.625" />
+        <EntityTypeShape EntityType="teethLabModel.productPay" Width="1.5" PointX="10.5" PointY="16" />
+        <EntityTypeShape EntityType="teethLabModel.supplier" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="teethLabModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="teethLabModel.transaction" Width="1.5" PointX="5.25" PointY="7.375" />
+        <EntityTypeShape EntityType="teethLabModel.user" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="teethLabModel.FK_caseDoctorPrices_case" />
+        <AssociationConnector Association="teethLabModel.FK_transactions_case" />
+        <AssociationConnector Association="teethLabModel.FK_caseDoctorPrices_doctor" />
+        <AssociationConnector Association="teethLabModel.FK_clinic_doctor" />
+        <AssociationConnector Association="teethLabModel.FK_clinicPhones_clinic" />
+        <AssociationConnector Association="teethLabModel.FK_money_company" />
+        <AssociationConnector Association="teethLabModel.FK_product_company" />
+        <AssociationConnector Association="teethLabModel.FK_doctor_supplier" />
+        <AssociationConnector Association="teethLabModel.FK_doctorPhones_doctor" />
+        <AssociationConnector Association="teethLabModel.FK_money_doctor" />
+        <AssociationConnector Association="teethLabModel.FK_transactions_doctor" />
+        <AssociationConnector Association="teethLabModel.FK_money_employee" />
+        <AssociationConnector Association="teethLabModel.FK_money_moneyDay" />
+        <AssociationConnector Association="teethLabModel.FK_productPay_product" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

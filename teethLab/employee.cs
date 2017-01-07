@@ -16,12 +16,16 @@ namespace teethLab
     {
         public employee()
         {
+            this.employeeMoneys = new HashSet<employeeMoney>();
             this.moneys = new HashSet<money>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
+        public int credit { get; set; }
+        public int defaultSalary { get; set; }
     
+        public virtual ICollection<employeeMoney> employeeMoneys { get; set; }
         public virtual ICollection<money> moneys { get; set; }
     }
 }

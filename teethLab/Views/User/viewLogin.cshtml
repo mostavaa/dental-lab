@@ -3,14 +3,12 @@
 }
 <style>
 
-body{
-    background-color:#405460 ;
-}
+
 
 .cont{
 
     background-color:#e5e9eb;
-    border-radius:5px;
+    
     position:relative;
     width:40%;
     margin:0 auto;
@@ -20,37 +18,30 @@ body{
     width:80%;
     margin:0 auto;
 }
-#myform input{
-    
-    background-color:#4c5c65;
 
-}
-.forminputs h2{
-    color:red;
-}
 </style>
-<div class="container">
+<div >
     <div class="cont">
         <div class="forminputs">
             <br />
 
 
-            <h1>Log In</h1>
-            <form id="myform" method="post" action="@Url.Action("login", "User")">
-                <input class="form-control" type="text" name="name" placeholder="Username" />
+            
+            <form id="" method="post" action="@Url.Action("login", "User")">
+                <input class="" type="text" name="name" placeholder="Username" />
                 <br />
-                <input class="form-control" type="password" name="password" placeholder="Password" />
+                <input class="" type="password" name="password" placeholder="Password" />
                 <br />
-                <input type="submit" class="btn btn-default" value="Log In" />
+                <input type="submit" class="" value="Login" />
                 <br />
             </form>
-            <br />
+            
             @{
 
-                string error = (string)ViewData["error"];
-                if (error != null && error != "")
+                string error = (string)TempData["error"];
+                if (Request.QueryString["error"] != null && Request.QueryString["error"] != "")
                 {
-                    <h2>@error</h2>
+                    <h2 class="alert-box ss-error hideit">@Request.QueryString["error"]</h2>
                 }
             }
         </div>

@@ -12,13 +12,16 @@ namespace teethLab
     using System;
     using System.Collections.Generic;
     
-    public partial class productPay
+    public partial class Unit
     {
-        public int id { get; set; }
-        public int cost { get; set; }
-        public System.DateTime payDate { get; set; }
-        public int productId { get; set; }
+        public Unit()
+        {
+            this.ProductUnits = new HashSet<ProductUnit>();
+        }
     
-        public virtual product product { get; set; }
+        public int id { get; set; }
+        public string unit1 { get; set; }
+    
+        public virtual ICollection<ProductUnit> ProductUnits { get; set; }
     }
 }

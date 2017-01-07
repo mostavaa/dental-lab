@@ -18,9 +18,18 @@ namespace teethLab.Controllers
         /// <returns></returns>
         public ActionResult followUpCases()
         {
+            string day = Request.QueryString["day"];
+            if (day != null)
+            {
+                DateTime date;
+                System.Globalization.CultureInfo enUS = new System.Globalization.CultureInfo("en-US");
+                DateTime.TryParseExact(day, "yyyy-MM-dd", enUS,
+                                          System.Globalization.DateTimeStyles.None, out date);
+                ViewData["day"] = date;
+            }
             teethLabEntities db = new teethLabEntities();
-            List<doctor> doctors = db.doctors.Where(d => d.isActive == true).ToList();
-            List<teethLab.@case> cases = db.cases.ToList();
+            List<doctor> doctors = db.doctors.ToList();
+            List<teethLab.CurrentCas> cases = db.CurrentCases.ToList();
             ViewData["doctors"] = doctors;
             ViewData["cases"] = cases;
             return View();
@@ -52,7 +61,7 @@ namespace teethLab.Controllers
         public ActionResult viewCurrentCases()
         {
             teethLabEntities db = new teethLabEntities();
-            List<@case> cases = db.cases.ToList();
+            List<CurrentCas> cases = db.CurrentCases.ToList();
             ViewData["cases"] = cases;
             return View();
         }
@@ -66,7 +75,7 @@ namespace teethLab.Controllers
             return null;
 
         }
-#endregion views
+        #endregion views
         public void getCaseByNumber()
         {
             try
@@ -77,10 +86,10 @@ namespace teethLab.Controllers
                 int caseMonth = int.Parse(Request.Form["month"]);
                 teethLabEntities db = new teethLabEntities();
                 db.Configuration.ProxyCreationEnabled = false;
-                transaction trans = db.transactions.Where(c => c.caseNumber == caseNumber && c.recieveDate.Day == caseDay
+                CaseTransaction trans = db.CaseTransactions.Where(c => c.caseNumber == caseNumber && c.recieveDate.Day == caseDay
                     && c.recieveDate.Month == caseMonth && c.recieveDate.Year == DateTime.Now.Year).First();
-                Response.Write("success^" + JsonConvert.SerializeObject(trans ));
-                
+                Response.Write("success^" + JsonConvert.SerializeObject(trans));
+
                 Json(trans, JsonRequestBehavior.AllowGet);
                 //Json.Write(trans, Response.Output);
             }
@@ -95,14 +104,16 @@ namespace teethLab.Controllers
             {
                 int caseId = int.Parse(Request.Form["caseId"]);
                 teethLabEntities db = new teethLabEntities();
-                if (db.transactions.Where(c => c.actualCaseNumber == caseId).Count() > 0)
+                if (db.CaseTransactions.Where(c => c.caseNumber == caseId).Count() > 0)
                 {
                     db.Configuration.ProxyCreationEnabled = false;
-                    transaction trans = db.transactions.Where(c => c.actualCaseNumber == caseId).First();
+                    CaseTransaction trans = db.CaseTransactions.Where(c => c.caseNumber == caseId).First();
                     Response.Write("success^" + JsonConvert.SerializeObject(trans));
                 }
-            }catch(Exception e){
-                
+            }
+            catch (Exception e)
+            {
+
             }
         }
 
@@ -113,70 +124,70 @@ namespace teethLab.Controllers
             try
             {
 
-            
-            int doctorId = int.Parse(Request.Form["doctorId"]);
-            int caseId = int.Parse(Request.Form["caseId"]);
-            string caseColor = Request.Form["caseColor"];
-            string patientName = Request.Form["patientName"];
-            string notes = Request.Form["notes"];
-            DateTime recieveDate;
-            CultureInfo enUS = new CultureInfo("en-US");
-            DateTime.TryParseExact(Request.Form["recieveDate"], "yyyy-MM-dd", enUS,
-                        DateTimeStyles.None, out recieveDate);
-            string caseTeeth = Request.Form["caseTeeth"];
-            DateTime enterdate;
-             enUS = new CultureInfo("en-US");
-            DateTime.TryParseExact(Request.Form["day"], "yyyy-MM-dd", enUS,
-                        DateTimeStyles.None, out enterdate);
+
+                int doctorId = int.Parse(Request.Form["doctorId"]);
+                int caseId = int.Parse(Request.Form["caseId"]);
+                string caseColor = Request.Form["caseColor"];
+                string patientName = Request.Form["patientName"];
+                string notes = Request.Form["notes"];
+                DateTime recieveDate;
+                CultureInfo enUS = new CultureInfo("en-US");
+                DateTime.TryParseExact(Request.Form["recieveDate"], "yyyy-MM-dd", enUS,
+                            DateTimeStyles.None, out recieveDate);
+                string caseTeeth = Request.Form["caseTeeth"];
+                DateTime enterdate;
+                enUS = new CultureInfo("en-US");
+                DateTime.TryParseExact(Request.Form["day"], "yyyy-MM-dd", enUS,
+                            DateTimeStyles.None, out enterdate);
 
 
-            teethLabEntities db = new teethLabEntities();
-            
-            //get price 
-            int price = db.caseDoctorPrices.Where(o => o.doctorId == doctorId && o.caseId == caseId).First().price ;
-            
-            //get last case number
+                teethLabEntities db = new teethLabEntities();
 
-             string newMonth = Request.Form["newMonth"];
+                //get price 
+                int price = db.caseDoctorPrices.Where(o => o.doctorId == doctorId && o.caseId == caseId).First().price;
+
+                //get last case number
+
+                string newMonth = Request.Form["newMonth"];
 
 
                 int caseNumber = this.NewCaseNumber();
 
-            
-            int numCases = int .Parse( Request.Form["numCases"]);
 
-        
+                int numCases = int.Parse(Request.Form["numCases"]);
 
-            string year = DateTime.Now.Year.ToString();
-            string month = DateTime.Now.Month.ToString();
-            if (int.Parse(month) < 10)
-            {
-                month = "0" + month;
-            }
-            string day = DateTime.Now.Day.ToString();
-            if (int.Parse(day) < 10)
-            {
-                day = "0" + day;
-            }
-            price *= numCases;
+
+
+                string year = DateTime.Now.Year.ToString();
+                string month = DateTime.Now.Month.ToString();
+                if (int.Parse(month) < 10)
+                {
+                    month = "0" + month;
+                }
+                string day = DateTime.Now.Day.ToString();
+                if (int.Parse(day) < 10)
+                {
+                    day = "0" + day;
+                }
+                price *= numCases;
                 string action = Request.Form["action"];
-                transaction tran = new transaction();
+                CaseTransaction tran = new CaseTransaction();
                 if (action == "inputProva")
                 {
                     int id = int.Parse(Request.Form["transId"]);
-                     tran = db.transactions.Find(id);
-                     tran.notes = notes + "*Case Input Prova at " + DateTime.Now.ToString("yyyy-MM-dd") + "*";
-                     tran.isOut = false;
-                     tran.prova = true;
+                    tran = db.CaseTransactions.Find(id);
+                    tran.notes = notes + "*Case Input Prova at " + DateTime.Now.ToString("yyyy-MM-dd") + "*";
+                    tran.isOut = false;
+                    tran.prova = true;
 
-                     
+
                 }
                 else if (action == "inputCase")
                 {
-                    tran = new transaction();
+                    tran = new CaseTransaction();
                     tran.caseNumber = caseNumber;
                     DateTime currentDate = myDate.dateFromString(this.getDay());
-                    tran.actualCaseNumber = int.Parse(currentDate.Month + "" + currentDate.Day + "" + caseNumber);
+                    tran.caseNumber = int.Parse(currentDate.Month + "" + currentDate.Day + "" + caseNumber);
                     tran.notes = notes;
                     tran.isOut = false;
                     tran.prova = false;
@@ -185,7 +196,7 @@ namespace teethLab.Controllers
                 else if (action == "outCase")
                 {
                     int id = int.Parse(Request.Form["transId"]);
-                    tran = db.transactions.Find(id);
+                    tran = db.CaseTransactions.Find(id);
                     tran.notes = notes + "*Case Out at " + DateTime.Now.ToString("yyyy-MM-dd") + "*";
                     tran.isOut = true;
                     tran.prova = false;
@@ -195,7 +206,7 @@ namespace teethLab.Controllers
                 else if (action == "outProva")
                 {
                     int id = int.Parse(Request.Form["transId"]);
-                    tran = db.transactions.Find(id);
+                    tran = db.CaseTransactions.Find(id);
                     tran.prova = true;
                     tran.notes = notes + "*Case Out Prova at " + DateTime.Now.ToString("yyyy-MM-dd") + "*";
                     tran.isOut = true;
@@ -205,25 +216,25 @@ namespace teethLab.Controllers
                 {
                     return;
                 }
-            tran.caseTeeth = caseTeeth;
-            tran.caseColor = caseColor;
-            tran.price = price;
-            tran.patientName = patientName;
-            tran.toRecieveDate = recieveDate;
-            
-            tran.caseId = caseId;
-            tran.doctorId = doctorId;
-            db.transactions.Add(tran);
-            if (action == "inputProva" || action == "outCase" || action == "outProva")
-            {
-                db.Entry(tran).State = System.Data.EntityState.Modified;
-            }
-            else if (action == "inputCase" )
-            {
-                db.Entry(tran).State = System.Data.EntityState.Added;
-            }
-            db.SaveChanges();
-            Response.Write("success," + price + "," + recieveDate.Month+"/"+recieveDate.Day+"/"+caseNumber);
+                //tran.caseTeeth = caseTeeth;
+                tran.caseColor = caseColor;
+                tran.price = price;
+                tran.patientName = patientName;
+                tran.deliverDate = recieveDate;
+
+                tran.caseId = caseId;
+                tran.doctorId = doctorId;
+                db.CaseTransactions.Add(tran);
+                if (action == "inputProva" || action == "outCase" || action == "outProva")
+                {
+                    db.Entry(tran).State = System.Data.EntityState.Modified;
+                }
+                else if (action == "inputCase")
+                {
+                    db.Entry(tran).State = System.Data.EntityState.Added;
+                }
+                db.SaveChanges();
+                Response.Write("success," + price + "," + recieveDate.Month + "/" + recieveDate.Day + "/" + caseNumber);
             }
             catch (Exception e)
             {
@@ -274,9 +285,9 @@ namespace teethLab.Controllers
             }
             else
             {
-                int maxId = db.transactions.Max(o => o.id);
+                int maxId = db.CaseTransactions.Max(o => o.id);
 
-                lastCaseNumber = db.transactions.Find(maxId).caseNumber;
+                lastCaseNumber = db.CaseTransactions.Find(maxId).caseNumber;
             }
             lastCaseNumber++;
             return lastCaseNumber;
@@ -285,7 +296,7 @@ namespace teethLab.Controllers
         {
             int lastCaseNumber = this.NewCaseNumber();
             DateTime currentDate = myDate.dateFromString(this.getDay());
-            Response.Write(currentDate.Month+""+currentDate.Day+""+ lastCaseNumber);
+            Response.Write(currentDate.Month + "" + currentDate.Day + "" + lastCaseNumber);
         }
 
         public string getDay()
@@ -334,7 +345,7 @@ namespace teethLab.Controllers
             Response.Write("success");
         }
 
-        
+
 
     }
 
@@ -344,7 +355,7 @@ namespace teethLab.Controllers
         public void DeleteCaseById(int caseid)
         {
             teethLabEntities db = new teethLabEntities();
-            @case cas =  db.cases.Find(caseid);
+            CurrentCas cas = db.CurrentCases.Find(caseid);
             if (cas != null)
             {
                 db.Entry(cas).State = System.Data.EntityState.Deleted;
@@ -364,7 +375,7 @@ namespace teethLab.Controllers
         public void editCase(int id, string casename, int defaultPrice)
         {
             teethLabEntities db = new teethLabEntities();
-            @case cas = db.cases.Find(id);
+            CurrentCas cas = db.CurrentCases.Find(id);
             cas.name = casename;
             cas.defaultPrice = defaultPrice;
             db.Entry(cas).State = System.Data.EntityState.Modified;
@@ -373,27 +384,27 @@ namespace teethLab.Controllers
         public void addNewCase(string casename, int caseDefaultPrice)
         {
             teethLabEntities db = new teethLabEntities();
-            @case cas = new @case();
+            CurrentCas cas = new CurrentCas();
             cas.name = casename;
             cas.defaultPrice = caseDefaultPrice;
             db.Entry(cas).State = System.Data.EntityState.Added;
-            db.cases.Add(cas);
+            db.CurrentCases.Add(cas);
             db.SaveChanges();
 
             this.addDefaultCasePrices(cas);
         }
-        public void addDefaultCasePrices(@case cas)
+        public void addDefaultCasePrices(CurrentCas cas)
         {
             teethLabEntities db = new teethLabEntities();
-            List<doctor> docs = db.doctors.Where(d=>d.isActive==true). ToList();
+            List<doctor> docs = db.doctors.ToList();
             foreach (doctor doc in docs)
             {
                 this.addNewCasePrice(doc.id, cas.id, cas.defaultPrice);
             }
-            
+
         }
 
-        public void addNewCasePrice(int docId , int caseId , int price )
+        public void addNewCasePrice(int docId, int caseId, int price)
         {
             caseDoctorPrice cp = new caseDoctorPrice();
             cp.caseId = caseId;

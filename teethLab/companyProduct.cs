@@ -12,16 +12,17 @@ namespace teethLab
     using System;
     using System.Collections.Generic;
     
-    public partial class supplier
+    public partial class companyProduct
     {
-        public supplier()
-        {
-            this.doctors = new HashSet<doctor>();
-        }
-    
         public int id { get; set; }
-        public string name { get; set; }
+        public int productId { get; set; }
+        public int companyId { get; set; }
+        public string unit { get; set; }
+        public int quantity { get; set; }
+        public int unitPrice { get; set; }
+        public System.DateTime enterDate { get; set; }
     
-        public virtual ICollection<doctor> doctors { get; set; }
+        public virtual company company { get; set; }
+        public virtual product product { get; set; }
     }
 }

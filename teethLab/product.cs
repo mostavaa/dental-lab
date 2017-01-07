@@ -16,18 +16,16 @@ namespace teethLab
     {
         public product()
         {
-            this.productPays = new HashSet<productPay>();
+            this.companyProducts = new HashSet<companyProduct>();
+            this.ProductUnits = new HashSet<ProductUnit>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
-        public int price { get; set; }
-        public System.DateTime enterDate { get; set; }
         public string notes { get; set; }
-        public bool isFinished { get; set; }
-        public Nullable<int> companyId { get; set; }
+        public Nullable<System.DateTime> enterDate { get; set; }
     
-        public virtual company company { get; set; }
-        public virtual ICollection<productPay> productPays { get; set; }
+        public virtual ICollection<companyProduct> companyProducts { get; set; }
+        public virtual ICollection<ProductUnit> ProductUnits { get; set; }
     }
 }

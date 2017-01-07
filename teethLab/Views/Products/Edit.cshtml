@@ -1,4 +1,4 @@
-﻿@model teethLab.employee
+﻿@model teethLab.product
 
 @{
     ViewBag.Title = "Edit";
@@ -11,6 +11,7 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
+        <legend>product</legend>
 
         @Html.HiddenFor(model => model.id)
 
@@ -22,7 +23,24 @@
             @Html.ValidationMessageFor(model => model.name)
         </div>
 
-        <input type="hidden" value="@Model.credit" name="credit" id="credit" />
+        <div class="editor-label">
+            @Html.LabelFor(model => model.notes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.notes)
+            @Html.ValidationMessageFor(model => model.notes)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.enterDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.enterDate)
+            @Html.ValidationMessageFor(model => model.enterDate)
+        </div>
+
+     
+
         <p>
             <input type="submit" value="Save" />
         </p>

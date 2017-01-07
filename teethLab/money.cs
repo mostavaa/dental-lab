@@ -15,21 +15,18 @@ namespace teethLab
     public partial class money
     {
         public int id { get; set; }
-        public string type { get; set; }
-        public string fromTo { get; set; }
+        public bool import { get; set; }
         public int value { get; set; }
-        public string product { get; set; }
         public Nullable<System.DateTime> recieveDate { get; set; }
-        public Nullable<int> dayId { get; set; }
+        public string other { get; set; }
+        public string notes { get; set; }
+        public Nullable<int> currentCredit { get; set; }
         public Nullable<int> doctorId { get; set; }
         public Nullable<int> employeeId { get; set; }
         public Nullable<int> companyId { get; set; }
-        public int receiptno { get; set; }
-        public string notes { get; set; }
     
         public virtual company company { get; set; }
         public virtual doctor doctor { get; set; }
         public virtual employee employee { get; set; }
-        public virtual moneyDay moneyDay { get; set; }
     }
 }

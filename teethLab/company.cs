@@ -16,14 +16,16 @@ namespace teethLab
     {
         public company()
         {
+            this.companyProducts = new HashSet<companyProduct>();
             this.moneys = new HashSet<money>();
-            this.products = new HashSet<product>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
+        public int credit { get; set; }
+        public Nullable<System.DateTime> enterDate { get; set; }
     
+        public virtual ICollection<companyProduct> companyProducts { get; set; }
         public virtual ICollection<money> moneys { get; set; }
-        public virtual ICollection<product> products { get; set; }
     }
 }

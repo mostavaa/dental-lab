@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace teethLab.Controllers
 {
-    public class CompController : Controller
+    public class CompaniesController : Controller
     {
         private teethLabEntities db = new teethLabEntities();
 
         //
-        // GET: /Comp/
+        // GET: /Companies/
 
         public ActionResult Index()
         {
@@ -22,20 +21,7 @@ namespace teethLab.Controllers
         }
 
         //
-        // GET: /Comp/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            company company = db.companies.Find(id);
-            if (company == null)
-            {
-                return HttpNotFound();
-            }
-            return View(company);
-        }
-
-        //
-        // GET: /Comp/Create
+        // GET: /Companies/Create
 
         public ActionResult Create()
         {
@@ -43,12 +29,13 @@ namespace teethLab.Controllers
         }
 
         //
-        // POST: /Comp/Create
+        // POST: /Companies/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(company company)
         {
+            company.enterDate = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.companies.Add(company);
@@ -60,7 +47,7 @@ namespace teethLab.Controllers
         }
 
         //
-        // GET: /Comp/Edit/5
+        // GET: /Companies/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
@@ -73,7 +60,7 @@ namespace teethLab.Controllers
         }
 
         //
-        // POST: /Comp/Edit/5
+        // POST: /Companies/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -89,7 +76,7 @@ namespace teethLab.Controllers
         }
 
         //
-        // GET: /Comp/Delete/5
+        // GET: /Companies/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
@@ -102,7 +89,7 @@ namespace teethLab.Controllers
         }
 
         //
-        // POST: /Comp/Delete/5
+        // POST: /Companies/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -119,44 +106,5 @@ namespace teethLab.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
-
-
-
-        public void deleteDof3a()
-        {
-
-            int Id = int.Parse(Request.Form["id"]);
-            CompanyClass com = new CompanyClass();
-            if (com.deleteDof3a(Id))
-            {
-                Response.Write("success");
-            }
-            else
-            {
-                Response.Write("fail");
-            }
-        }
-        public void AddDof3a()
-        {
-            int productId = int.Parse(Request.Form["id"]);
-            int cost = int.Parse(Request.Form["cost"]);
-
-            DateTime date;
-            CultureInfo enUS = new CultureInfo("en-US");
-            DateTime.TryParseExact(Request.Form["date"], "yyyy-MM-dd", enUS,
-                        DateTimeStyles.None, out date);
-            CompanyClass com = new CompanyClass();
-            int productPayId = 0;
-            if (com.AddDof3a(productId, cost, date, out productPayId))
-            {
-                Response.Write("success," + productPayId);
-            }
-            else
-            {
-                Response.Write("fail");
-            }
-
-        }
-
     }
 }

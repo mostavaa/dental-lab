@@ -153,8 +153,7 @@ namespace teethLab.Controllers
                 return Redirect(Url.Action("Index", "Home"));
             }
 
-            TempData["error"] = "الاسم او الرقم السري غير صحيح";
-            return Redirect(Url.Action("viewLogin", "user"));
+            return RedirectToAction("viewLogin", new { error = "الاسم او الرقم السري غير صحيح" });
         }
         public ActionResult register()
         {

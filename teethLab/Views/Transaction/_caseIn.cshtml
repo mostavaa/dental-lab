@@ -1,65 +1,27 @@
 ﻿<style>
-    .cContainer {
-        text-align: center;
-        background-color: #99c2e1;
-        width: 100%;
-        height: 100%;
-    }
-
-    .textBox {
-           background: url("../../Content/images/controls/TextBox.png") no-repeat center center fixed;
-         -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-        border: none;
-        border-radius: 5px;
-        height: 39px;
-        
-  padding: 8px 12px;
-
   
-  
-font-family: 'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif;
-	font-size: 20px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 500;
-    color:white;
-    background-color:#99c2e1;
-	line-height: 26.3999996185303px;
-    }
-    .textBox:focus {
-  outline: 0;
-}
 </style>
-<div class="cContainer">
-    <div class="row" style="">
+<div class=" alert-box ss-dialog hideit" style="text-align:center">
+    <div class="row">
         <h1><img class="" src="~/Content/images/controls/Case-InTxt.png" /></h1>
         <br />
     </div>
     <div class="row">
         <div class="col-md-5">
-            <br />
             <h1><img class="" src="~/Content/images/controls/NewTxt.png" /></h1>
-            <br /><br />
-            <a href="#" id="generateBtn"><img class="" src="~/Content/images/controls/GenerateBtn.png" /></a>
+            <a href="#" id="generateBtn"><input type="button" value="Generate" /> </a>
             <input type="hidden" id="generatedNo" />
-            <br /><br /><br />
-            <a href="#" id="nextCaseIn"><img class="" src="~/Content/images/controls/NextBtn.png" /></a>
+            <a href="#" id="nextCaseIn" data-statu="inputCase"><input type="button" value="Next" /></a>
         </div>
         <div class="col-md-2" style="">
-            <br />
-            <img  src="~/Content/images/controls/HrLine.png"/>
+            <img src="~/Content/images/controls/HrLine.png" />
         </div>
         <div class="col-md-5">
 
-            <br />
             <h1><img class="" src="~/Content/images/controls/ProvaTxt.png" /></h1>
-            <br /><br />
-            <input type="text" id="caseInProvaCaseNumber"  class="textBox caseInProvaCaseNumber" />
-            <br /><br /><br />
-            <a href="#" id="nextCaseInProva" data-statu="inputProva"><img class="" src="~/Content/images/controls/NextBtn.png" /></a>
+
+            <input type="text" id="caseInProvaCaseNumber" class=" caseInProvaCaseNumber" />
+            <a href="#" id="nextCaseInProva" data-statu="inputProva"><input type="button" value="Next" /></a>
         </div>
     </div>
 

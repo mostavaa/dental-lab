@@ -23,6 +23,9 @@
             @Html.ValidationMessageFor(model => model.name)
         </div>
 
+        <input type="hidden" value="@Model.credit" name="credit" id="credit" />
+        <input type="hidden" value="@Model.enterDate" name="enterDate" id="enterDate" />
+
         <p>
             <input type="submit" value="Save" />
         </p>

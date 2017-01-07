@@ -107,11 +107,11 @@ public static int getCountofTeeth(string caseTeeth)
                         
 
                             teethLab.teethLabEntities db = new teethLab.teethLabEntities();
-                            int caseId = t.@case.id;
+                            int caseId = t.CurrentCas.id;
                             int docId = t.doctor.id;
 
                             int casePrice = db.caseDoctorPrices.Where(r => r.doctorId == docId && r.caseId == caseId).First().price;
-                            string caseName = t.@case.name;
+                            string caseName = t.CurrentCas.name;
 
 
                             int noOfUnits = getCountofTeeth(t.caseTeeth);
@@ -119,9 +119,9 @@ public static int getCountofTeeth(string caseTeeth)
 
                             <tr>
                                 <td>@t.actualCaseNumber</td>
-                                <td>@caseName</td>
+                                <td>CurrentCasName</td>
                                 <td>@t.recieveDate.ToString("yyyy-MM-dd")</td>
-                                <td>@casePrice</td>
+                                <td>CurrentCasPrice</td>
                                 <td>@noOfUnits</td>
                                 <td>@t.price</td>
                                 <td></td>

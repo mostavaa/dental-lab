@@ -1,7 +1,7 @@
 ﻿<style>
     .cContainer {
         /*text-align: center;*/
-        background-color: #99c2e1;
+        
         width: 100%;
         height: 100%;
     }
@@ -12,8 +12,7 @@
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-        border: none;
-        border-radius: 5px;
+        margin :0 auto !important;
         height: 50px;
         padding: 8px 12px;
         font-family: 'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif;
@@ -22,7 +21,7 @@
         font-variant: normal;
         font-weight: 500;
         color: white;
-        background-color: #99c2e1;
+        background-color: #012b43!important;
         line-height: 26.3999996185303px;
     }
 
@@ -74,7 +73,7 @@
 
     .colLine {
         position: absolute;
-        margin-left: 49.5%;
+        margin-left: 45.5%;
     }
 
     .full {
@@ -96,9 +95,9 @@
         height:50px;
     }
 </style>
-<div class="cContainer">
+<div class="alert-box ss-dialog hideit" style="text-align:center">
     <div class="row">
-        <h1 id="heading">Case-In</h1>
+        <a id="heading"><img class="" src="~/Content/images/controls/Case-InTxt.png" /></a>
         <h1 style="display:inline" id="caseNo2ndPage">CaseNo</h1> - <h2 style="display:inline" id="statu2ndPage">New</h2>
     </div>
     <br />
@@ -152,7 +151,7 @@
                                     <img class="img-circle colorImages" width="50px" height="50px" data-val="0M1" src="~/Content/images/ShadeGuide/0M1.png" />
                                 </div>
                                 <div class="col-md-1 ">
-                                    <h1 class="img-circle clear" data-val="x" ></h1>
+                                    <h1 class="img-circle clear" data-val="x"></h1>
                                     <img class="img-circle colorImages" width="50px" height="50px" data-val="1M2" src="~/Content/images/ShadeGuide/1M2.png" />
                                     <img class="img-circle colorImages" width="50px" height="50px" data-val="1M1" src="~/Content/images/ShadeGuide/1M1.png" />
                                 </div>
@@ -253,13 +252,13 @@
         <div class="col" style="margin-left:1%;">
             @{
 
-                var cases = (List<teethLab.@case>)ViewData["cases"];
+                var cases = (List<teethLab.CurrentCas>)ViewData["cases"];
             }
 
             <select id="case" class="select" style="width:100%">
                 <option value="">Case</option>
                 @{
-                    foreach (teethLab.@case casee in cases)
+                    foreach (teethLab.CurrentCas casee in cases)
                     {
                         <option value="@casee.id">@casee.name</option>
                     }
@@ -331,8 +330,8 @@
     <br />
     <div class="row">
         <div class="col" style="margin-left: 15%">
-            <div class="select" style="width:100%">
-                <label style="font-size:12px;">D.Date</label><input id="recieveDate" style="width:80%;border:none;background-color:transparent" type="date" />
+            <div class="" style="width:100%">
+                <input id="recieveDate" class="select" style="" placeholder="Deliver Date" type="date" />
             </div>
         </div>
         <div class="col" style="margin-left:1%;">
@@ -341,9 +340,9 @@
     </div>
     <br />
     <div class="row">
-        <div>
-            <input type="text" class="select" style="width:70%" id="notes" placeholder="Notes" />
-        </div>
+        
+        <input type="text" class="select" style="width:70%;margin:0 auto!important; " id="notes" placeholder="Notes" />
+        
     </div>
     <br />
     <div class="row">
@@ -354,7 +353,7 @@
             <a href="#" id="outPrint" style="display:none; margin-left:16%; width:30%;" data-statu="outCase" class="picker">Out + Print Bill</a>
 
             <a href="#" id="inputBtn" style="margin-left:62%; width:10%;" data-statu="" class="picker">Done</a>
-            
+
 
         </div>
     </div>

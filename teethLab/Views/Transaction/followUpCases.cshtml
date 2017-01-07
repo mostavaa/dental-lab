@@ -1,25 +1,25 @@
-﻿@helper renderTable(List<teethLab.transaction> transactions)
+﻿@helper renderTable(List<teethLab.CaseTransaction> transactions)
 {
-    foreach (teethLab.transaction transaction in transactions)
+    foreach (teethLab.CaseTransaction transaction in transactions)
     {
         <tr>
 
             <td>@transaction.notes</td>
             @{
 
-        DateTime toRecDay = (DateTime)transaction.toRecieveDate;
+        DateTime toRecDay = (DateTime)transaction.deliverDate;
         string date = toRecDay.ToString("yyyy-MM-dd");
             }
             <td>@date</td>
             <td>@transaction.patientName</td>
             <td>@transaction.caseColor</td>
             @{
-        string caseName = transaction.@case.name;
+        string caseName = transaction.CurrentCas.name;
             }
             <td>
-                @caseName
+                CurrentCasName
                 @{
-        string caseTeeth = transaction.caseTeeth;
+        string caseTeeth = "";
         string[] casess = caseTeeth.Split('#');
         string ul = casess[0].Split('$')[0];
         string ur = casess[1].Split('$')[0];
@@ -101,14 +101,14 @@
             </td>
             @{
         teethLab.teethLabEntities db = new teethLab.teethLabEntities();
-        int caseId = transaction.@case.id;
+        int caseId = transaction.CurrentCas.id;
         int docId = transaction.doctor.id;
 
         int casePrice = db.caseDoctorPrices.Where(o => o.doctorId == docId && o.caseId == caseId).First().price;
             }
             <td>@transaction.doctor.name</td>
-            <td>@transaction.actualCaseNumber</td>
-            <td>@casePrice</td>
+            <td>@transaction.caseNumber</td>
+            <td>CurrentCasPrice</td>
             <td>@noOfUnits</td>
             <td>@transaction.price</td>
             <td>
@@ -123,13 +123,17 @@
 }
 @{
     ViewBag.Title = "followUpCases";
-    /*
-    DateTime day = (DateTime)ViewData["day"];
-    if (day == null)
+    
+    DateTime day ;
+    if (ViewData["day"] == null)
     {
         day = DateTime.Now;
+    }else{
+        day = (DateTime)ViewData["day"];
+        
     }
-    */
+    /*
+    
     DateTime day;
     FileStream fs = new FileStream(Server.MapPath("~") + "/Content/files/startdate.txt", FileMode.Open);
 
@@ -141,38 +145,38 @@
     System.Globalization.CultureInfo enUS = new System.Globalization.CultureInfo("en-US");
     DateTime.TryParseExact(date, "yyyy-MM-dd", enUS,
                               System.Globalization.DateTimeStyles.None, out day);
-
+*/
 
 
 
     teethLab.teethLabEntities db = new teethLab.teethLabEntities();
-    List<teethLab.transaction> inputCases = new List<teethLab.transaction>();
-    if (db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == false && t.prova == false).Count() > 0)
+    List<teethLab.CaseTransaction> inputCases = new List<teethLab.CaseTransaction>();
+    if (db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == false && t.prova == false).Count() > 0)
     {
-        inputCases = db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
+        inputCases = db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
             && t.isOut == false
             && t.prova == false).ToList();
     }
-    List<teethLab.transaction> inProva = new List<teethLab.transaction>();
-    if (db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == false && t.prova == true).Count() > 0)
+    List<teethLab.CaseTransaction> inProva = new List<teethLab.CaseTransaction>();
+    if (db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == false && t.prova == true).Count() > 0)
     {
-        inProva = db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
+        inProva = db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
             && t.isOut == false
             && t.prova == true).ToList();
     }
 
 
-    List<teethLab.transaction> outCases = new List<teethLab.transaction>();
-    if (db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == true && t.prova == false).Count() > 0)
+    List<teethLab.CaseTransaction> outCases = new List<teethLab.CaseTransaction>();
+    if (db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == true && t.prova == false).Count() > 0)
     {
-        outCases = db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
+        outCases = db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
             && t.isOut == true
             && t.prova == false).ToList();
     }
-    List<teethLab.transaction> outProva = new List<teethLab.transaction>();
-    if (db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == true && t.prova == true).Count() > 0)
+    List<teethLab.CaseTransaction> outProva = new List<teethLab.CaseTransaction>();
+    if (db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == true && t.prova == true).Count() > 0)
     {
-        outProva = db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
+        outProva = db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
             && t.isOut == true
             && t.prova == true).ToList();
     }
@@ -180,87 +184,48 @@
 
 <style>
     .tabsFollow {
-        background-color: #99c2e1;
-        color: #012b43;
-        height: 40px;
         text-align: center;
-        font-size: x-large;
     }
 
     .buttonsFollow {
-        position: relative;
-        float: left;
-        background-color: white;
-        color: #012b43;
-        text-align: center;
-        height: 25px;
-        border-radius: 5px;
-        width: 10%;
     }
 
     .colShadeFollow {
-        position: relative;
-        float: left;
-        width: 45%;
-        margin: 0 7px;
     }
 
         .colShadeFollow a {
-            position: relative;
-            float: left;
-            background-color: #012b43;
-            color: white;
-            width: 11%;
-            height: 23px;
         }
 
     .crossNumberFollow[data-on='0'] {
-        position: relative;
-        float: left;
-        background-color: #012b43;
-        color: white;
     }
 
     .crossNumberFollow[data-on='1'] {
-        position: relative;
-        float: left;
-        background-color: red;
-        color: white;
     }
 
     .mytable {
-        background-color: #99c2e1;
-        color: #012b43;
-        text-align: center;
     }
 
     .mytable, th, td {
-        border: 3px solid #012b43;
-        border-radius: 5px;
-        text-align: center;
     }
 </style>
 
-<input type="hidden" value="@day.ToString("yyyy-MM-dd")" id="day" />
-<div class="">
-    <div class="container">
-        <div class="row">
-            <a class="btn btn-primary" href="@Url.Action("recieveTransaction" , "Transaction")">View Cases at Specific Delivery Date</a>
-        </div>
-        <div style="text-align:center;">
-            <h1 style="text-transform:capitalize;color:#99c2e1">Follow Up Cases</h1>
-        </div>
-        <div class="row">
-            <a class="col-md-5 tabsFollow" id="outCaseFollow" style="margin-left:5%;" href="#">Cases Out</a>
 
-            <a class="col-md-5 tabsFollow" id="inputCaseFollow" style="margin-left:5%;" href="#">Cases In</a>
+<div class="">
+    <div class="container" style="text-align:center;">
+        <div class="row" style="text-align:center;">
+            <h1 style="text-transform:capitalize;color:#99c2e1">Daily Cases</h1>
+
+            <input style="margin:10px auto !important" type="date" class="" value="@day.ToString("yyyy-MM-dd")" id="day" />
+        </div>
+        <div class="row">
+            <input type="button" class="col-md-5 tabsFollow" id="outCaseFollow" style="margin-left:5%;" value="Output" />
+            <input type="button" class="col-md-5 tabsFollow" id="inputCaseFollow" style="margin-left:5%;" value="Input" />
 
         </div>
         <br />
         <div class="row">
-            <a class=" buttonsFollow" id="OutCaseBtn" style="display:none; margin-left:21%;" href="#">Add Cases Out</a>
-
-            <a class=" buttonsFollow" id="AddCaseBtn" style="margin-left:68%" href="#">Add Case In</a>
+            <input type="button" class="buttonsFollow" id="OutCaseBtn" style="float:left; display:none; margin-left:5%;" value="Output Case" />
+            <input type="button" class="buttonsFollow" id="AddCaseBtn" style=" float:right; margin-right:6.5%;" value="Input Case" />
 
         </div>
         <br />
@@ -268,75 +233,81 @@
             @{
                 if (inputCases != null)
                 {
+                    <div class="row"><h1>New</h1></div>
+                    <div class="row">
+                        <div id="newCasesInFollow">
+                            <div class="col-md-12" style="">
+                                <table class="mytable ">
+                                    <thead>
+                                        <tr>
+                                            <th width="10%">Notes</th>
+                                            <th width="10%">Deliv. Date</th>
+                                            <th width="10%">Patient</th>
+                                            <th width="5%">Shade</th>
+                                            <th width="30%">Case</th>
+                                            <th width="10%">Doctor</th>
+                                            <th width="5%">Case No</th>
+                                            <th width="5%">Unit Price</th>
+                                            <th width="5%">No of Units</th>
+                                            <th width="5%">Total Prices</th>
+                                            <th width="5%">Print</th>
 
-                    <div id="newCasesInFollow">
-                        <div class="col-md-11" style="">
-                            <table class="mytable ">
-                                <thead>
-                                    <tr>
-                                        <th width="10%">Notes</th>
-                                        <th width="10%">Deliv. Date</th>
-                                        <th width="10%">Patient</th>
-                                        <th width="5%">Shade</th>
-                                        <th width="30%">Case</th>
-                                        <th width="10%">Doctor</th>
-                                        <th width="5%">Case No</th>
-                                        <th width="5%">Unit Price</th>
-                                        <th width="5%">No of Units</th>
-                                        <th width="5%">Total Prices</th>
-                                        <th width="5%">Print</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @renderTable(inputCases)
+                                    </tbody>
+                                </table>
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @renderTable(inputCases)
-                                </tbody>
-                            </table>
+                            </div>
 
-                        </div>
-                        <div class="col-md-1">
-                            <img src="~/Content/images/controls/newCasesCaseIn.png" />
                         </div>
                     </div>
+
+
                     <br />
                     <br />
 
                 }
             }
+            <hr />
             @{
                 if (inProva != null)
                 {
+                    <div class="row"><h1>Prova</h1></div>
+                    <div class="row">
+                        <div id="provaCasesInFollow">
 
-                    <div id="provaCasesInFollow">
-                        <div class="col-md-11" style="">
-                            <table class="mytable ">
-                                <thead>
-                                    <tr>
-                                        <th width="10%">Notes</th>
-                                        <th width="10%">Deliv. Date</th>
-                                        <th width="10%">Patient</th>
-                                        <th width="5%">Shade</th>
-                                        <th width="30%">Case</th>
-                                        <th width="10%">Doctor</th>
-                                        <th width="5%">Case No</th>
-                                        <th width="5%">Unit Price</th>
-                                        <th width="5%">No of Units</th>
-                                        <th width="5%">Total Prices</th>
-                                        <th width="5%">Print</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @renderTable(inProva)
+                            <div class="col-md-12" style="">
+                                <table class="mytable ">
+                                    <thead>
+                                        <tr>
+                                            <th width="10%">Notes</th>
+                                            <th width="10%">Deliv. Date</th>
+                                            <th width="10%">Patient</th>
+                                            <th width="5%">Shade</th>
+                                            <th width="30%">Case</th>
+                                            <th width="10%">Doctor</th>
+                                            <th width="5%">Case No</th>
+                                            <th width="5%">Unit Price</th>
+                                            <th width="5%">No of Units</th>
+                                            <th width="5%">Total Prices</th>
+                                            <th width="5%">Print</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @renderTable(inProva)
 
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
 
-                        </div>
-                        <div class="col-md-1">
-                            <img src="~/Content/images/controls/casesInProva.png" />
+                            </div>
+
                         </div>
                     </div>
+
+
                 }
             }
 
@@ -351,35 +322,37 @@
 
 
                     <div id="newCasesOutFollow" style="">
-                        <div class="col-md-11" style="">
-                            <table class="mytable ">
-                                <thead>
-                                    <tr>
-                                        <th width="10%">Notes</th>
-                                        <th width="10%">Deliv. Date</th>
-                                        <th width="10%">Patient</th>
-                                        <th width="5%">Shade</th>
-                                        <th width="30%">Case</th>
-                                        <th width="10%">Doctor</th>
-                                        <th width="5%">Case No</th>
-                                        <th width="5%">Unit Price</th>
-                                        <th width="5%">No of Units</th>
-                                        <th width="5%">Total Prices</th>
-                                        <th width="5%">Print</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @renderTable(outCases)
+                        <div class="row"><h1>Delivered</h1></div>
+                        <div class="row">
+                            <div class="col-md-12" style="">
+                                <table class="mytable ">
+                                    <thead>
+                                        <tr>
+                                            <th width="10%">Notes</th>
+                                            <th width="10%">Deliv. Date</th>
+                                            <th width="10%">Patient</th>
+                                            <th width="5%">Shade</th>
+                                            <th width="30%">Case</th>
+                                            <th width="10%">Doctor</th>
+                                            <th width="5%">Case No</th>
+                                            <th width="5%">Unit Price</th>
+                                            <th width="5%">No of Units</th>
+                                            <th width="5%">Total Prices</th>
+                                            <th width="5%">Print</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @renderTable(outCases)
 
 
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
 
+                            </div>
                         </div>
-                        <div class="col-md-1">
-                            <img src="~/Content/images/controls/outCases.png" />
-                        </div>
+
+
                     </div>
                 }
             }
@@ -389,34 +362,36 @@
 
                     <br /><br />
                     <div id="provaCasesOutFollow" style="">
-                        <div class="col-md-11" style="">
-                            <table class="mytable ">
-                                <thead>
-                                    <tr>
-                                        <th width="10%">Notes</th>
-                                        <th width="10%">Deliv. Date</th>
-                                        <th width="10%">Patient</th>
-                                        <th width="5%">Shade</th>
-                                        <th width="30%">Case</th>
-                                        <th width="10%">Doctor</th>
-                                        <th width="5%">Case No</th>
-                                        <th width="5%">Unit Price</th>
-                                        <th width="5%">No of Units</th>
-                                        <th width="5%">Total Prices</th>
-                                        <th width="5%">Print</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @renderTable(outProva)
+                        <div class="row"><h1>Prova</h1></div>
+                        <div class="row">
+                            <div class="col-md-12" style="">
+                                <table class="mytable ">
+                                    <thead>
+                                        <tr>
+                                            <th width="10%">Notes</th>
+                                            <th width="10%">Deliv. Date</th>
+                                            <th width="10%">Patient</th>
+                                            <th width="5%">Shade</th>
+                                            <th width="30%">Case</th>
+                                            <th width="10%">Doctor</th>
+                                            <th width="5%">Case No</th>
+                                            <th width="5%">Unit Price</th>
+                                            <th width="5%">No of Units</th>
+                                            <th width="5%">Total Prices</th>
+                                            <th width="5%">Print</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @renderTable(outProva)
 
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
 
+                            </div>
                         </div>
-                        <div class="col-md-1" style="">
-                            <img src="~/Content/images/controls/toProva.png" />
-                        </div>
+
+
                     </div>
 
                 }
@@ -480,28 +455,25 @@
                 action = $(this).attr("data-statu");
                 doctorId = $("#doctor").val();
                 if (doctorId == "" || doctorId == null || isNaN(doctorId)) {
-                    alert("يجب اختيار طبيب");
+                    alert("You Should Select Doctor !");
                     return;
                 }
                 doctorName = $("#doctor option:selected").text();
 
                 caseId = $("#case").val();
                 if (caseId == "" || caseId == null || isNaN(caseId)) {
-                    alert("يجب اختيار حالة");
+                    alert("You Should Select Case !");
                     return;
                 }
                 caseName = $("#case option:selected").text();
                 caseColor = $("#shadeColor").html();
                 if (caseColor == "" || caseColor == null || caseColor == "Shade") {
-                    alert("يجب اختيار لون");
+                    alert("You Should Pick Color !");
                     return;
                 }
                 patientName = $("#patientName").val();
                 recieveDate = $("#recieveDate").val();
-                if (recieveDate == "" || recieveDate == null) {
-                    alert("يجب اختيار تاريخ تسليم");
-                    return;
-                }
+             
 
                 notes = $("#notes").val();
                 day = $("#day").val();
@@ -799,6 +771,9 @@
                 $("#popup").fadeIn();
             });
 
+            $("#day").change(function () {
+                window.location.href = "/Transaction/followUpCases?day="+$("#day").val();
+            });
 
 
         });

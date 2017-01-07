@@ -17,24 +17,19 @@ namespace teethLab
         public doctor()
         {
             this.caseDoctorPrices = new HashSet<caseDoctorPrice>();
-            this.clinics = new HashSet<clinic>();
+            this.CaseTransactions = new HashSet<CaseTransaction>();
             this.doctorPhones = new HashSet<doctorPhone>();
             this.moneys = new HashSet<money>();
-            this.transactions = new HashSet<transaction>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
         public string address { get; set; }
-        public int depit { get; set; }
-        public bool isActive { get; set; }
-        public Nullable<int> supplierId { get; set; }
+        public int Credit { get; set; }
     
         public virtual ICollection<caseDoctorPrice> caseDoctorPrices { get; set; }
-        public virtual ICollection<clinic> clinics { get; set; }
-        public virtual supplier supplier { get; set; }
+        public virtual ICollection<CaseTransaction> CaseTransactions { get; set; }
         public virtual ICollection<doctorPhone> doctorPhones { get; set; }
         public virtual ICollection<money> moneys { get; set; }
-        public virtual ICollection<transaction> transactions { get; set; }
     }
 }

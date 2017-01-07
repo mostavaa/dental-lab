@@ -192,13 +192,13 @@
 
                             @{
 
-                                var cases = (List<teethLab.@case>)ViewData["cases"];
+                                var cases = (List<teethLab.CurrentCas>)ViewData["cases"];
                             }
                             <select id="case" class="form-control">
                                 @{
-                                    foreach (teethLab.@case casee in cases)
+                                    foreach (teethLab.CurrentCas casee in cases)
                                     {
-                                        <option value="@casee.id">@casee.name</option>
+                                        <option value="CurrentCase.id">CurrentCase.name</option>
                                     }
                                 }
                             </select>

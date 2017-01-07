@@ -4,12 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
+        
+    <link href="~/Content/css/base.css" rel="stylesheet" />
+        <link href="~/Content/css/vendor.css" rel="stylesheet" />
+        <link href="~/Content/css/main.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
+
 
     @RenderSection("head", required: false)
 </head>
-<body>
+<body id="top">
     @{
         if (!teethLab.tools.isUserLogged())
         {
@@ -20,23 +27,27 @@
         }
 
     }
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="@Url.Action("Index" ,"Home")">Clinic Lab</a>
+    <!-- header
+    ================================================== -->
+    <header class="short-header">
+
+        <div class="gradient-block"></div>
+
+        <div class="row header-content">
+
+            <div class="logo">
+                <a href="@Url.Action("Index" ,"Home")">Author</a>
             </div>
-            <div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="@Url.Action("Index" ,"Home")">Home</a></li>
+
+            <nav id="main-nav-wrap">
+                <ul class="main-navigation sf-menu">
+                    <li class="current"><a href="@Url.Action("Index" ,"Home")" title="">Home</a></li>
                     <li><a href="@Url.Action("viewMoneyDays", "Money")">Financies</a></li>
                     <li><a href="@Url.Action("followUpCases", "Transaction")">Cases</a></li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
                     <li><a href="@Url.Action("clientsdatabase", "Doctor")">Clients' Database</a></li>
-                    <li><a href="@Url.Action("viewCurrentCases", "Transaction")">Current Cases</a></li>
+                    <li><a href="@Url.Action("Index", "Cases")">Current Cases</a></li>
                     <li><a href="@Url.Action("Index", "Employee")">Employees</a></li>
-                    <li><a href="@Url.Action("Index", "Comp")">Companies</a></li>
+                    <li><a href="@Url.Action("Index", "Companies")">Companies</a></li>
                     <li><a href="@Url.Action("Index", "User")">Users</a></li>
                     @{
                         if (teethLab.tools.isUserLogged())
@@ -51,20 +62,90 @@
                             }
                             <li><a href="@Url.Action("logOut" , "User")"><span class="glyphicon glyphicon-user"></span>LogOut</a></li>
                         }
-}
-                </ul>
-            </div>
-        </div>
-    </nav>
+                    }
 
-    @RenderBody()
+                    @*<li class="has-children">
+                            <a href="category.html" title="">Categories</a>
+                            <ul class="sub-menu">
+                                <li><a href="category.html">Wordpress</a></li>
+                                <li><a href="category.html">HTML</a></li>
+                                <li><a href="category.html">Photography</a></li>
+                                <li><a href="category.html">UI</a></li>
+                                <li><a href="category.html">Mockups</a></li>
+                                <li><a href="category.html">Branding</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="single-standard.html" title="">Blog</a>
+                            <ul class="sub-menu">
+                                <li><a href="single-video.html">Video Post</a></li>
+                                <li><a href="single-audio.html">Audio Post</a></li>
+                                <li><a href="single-gallery.html">Gallery Post</a></li>
+                                <li><a href="single-standard.html">Standard Post</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="style-guide.html" title="">Styles</a></li>
+                        <li><a href="about.html" title="">About</a></li>
+                        <li><a href="contact.html" title="">Contact</a></li>*@
+
+                </ul>
+            </nav> <!-- end main-nav-wrap -->
+        </div>
+
+    </header> <!-- end header -->
+
+    <section id="bricks">
+
+        <div class="row masonry">
+
+            <!-- brick-wrapper -->
+            
+
+                <div class="grid-sizer"></div>
+                @RenderBody()
+            
+
+        </div> <!-- end row -->
+
+    </section> <!-- end bricks -->
+    <!-- footer
+    ================================================== -->
+    <footer>
+        <div class="footer-bottom">
+            <div class="row">
+
+                <div class="col-twelve">
+                    <div class="copyright">
+                        <span>© Copyright Abstract 2016</span>
+                        <span>Developed by <a href="#">Mostavaa</a></span>
+                    </div>
+
+                    <div id="go-top">
+                        <a class="smoothscroll" title="Back to Top" href="#top"><i class="icon icon-arrow-up"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div> <!-- end footer-bottom -->
+
+    </footer>
+
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
 
 
     @Scripts.Render("~/bundles/jquery")
     <script src="~/Content/scripts/jquery.js"></script>
     <script src="~/Content/scripts/bootstrap.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-
+    <script src="~/Scripts/jquery-2.1.3.min.js"></script>
+    <script src="~/Scripts/modernizr.js"></script>
+    <script src="~/Scripts/pace.min.js"></script>
+    <script src="~/Scripts/plugins.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

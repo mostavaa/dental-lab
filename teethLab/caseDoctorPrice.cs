@@ -19,7 +19,7 @@ namespace teethLab
         public Nullable<int> caseId { get; set; }
         public int price { get; set; }
     
-        public virtual @case @case { get; set; }
+        public virtual CurrentCas CurrentCas { get; set; }
         public virtual doctor doctor { get; set; }
     }
 }

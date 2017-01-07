@@ -12,12 +12,19 @@ namespace teethLab
     using System;
     using System.Collections.Generic;
     
-    public partial class clinicPhone
+    public partial class CurrentCas
     {
-        public int id { get; set; }
-        public string phone { get; set; }
-        public int clinicId { get; set; }
+        public CurrentCas()
+        {
+            this.caseDoctorPrices = new HashSet<caseDoctorPrice>();
+            this.CaseTransactions = new HashSet<CaseTransaction>();
+        }
     
-        public virtual clinic clinic { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public int defaultPrice { get; set; }
+    
+        public virtual ICollection<caseDoctorPrice> caseDoctorPrices { get; set; }
+        public virtual ICollection<CaseTransaction> CaseTransactions { get; set; }
     }
 }

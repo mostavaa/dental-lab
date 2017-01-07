@@ -14,10 +14,10 @@
             <td>@transaction.patientName</td>
             <td>@transaction.caseColor</td>
             @{
-        string caseName = transaction.@case.name;
+        string caseName = transaction.CurrentCas.name;
             }
             <td>
-                @caseName
+                CurrentCasName
                 @{
         string caseTeeth = transaction.caseTeeth;
         string[] casess = caseTeeth.Split('#');
@@ -101,7 +101,7 @@
             </td>
             @{
         teethLab.teethLabEntities db = new teethLab.teethLabEntities();
-        int caseId = transaction.@case.id;
+        int caseId = transaction.CurrentCas.id;
         int docId = transaction.doctor.id;
 
         int casePrice = db.caseDoctorPrices.Where(o => o.doctorId == docId && o.caseId == caseId).First().price;
@@ -109,7 +109,7 @@
             <td>@transaction.doctor.name</td>
             <td>@transaction.actualCaseNumber</td>
             <td>@transaction.recieveDate.ToString("yyyy-MM-dd")</td>
-            <td>@casePrice</td>
+            <td>CurrentCasPrice</td>
             <td>@noOfUnits</td>
             <td>@transaction.price</td>
             <td>

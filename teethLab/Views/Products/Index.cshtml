@@ -1,4 +1,4 @@
-﻿@model IEnumerable<teethLab.company>
+﻿@model IEnumerable<teethLab.product>
 
 @{
     ViewBag.Title = "Index";
@@ -14,6 +14,13 @@
         <th>
             @Html.DisplayNameFor(model => model.name)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.enterDate)
+        </th>
+     
         <th></th>
     </tr>
 
@@ -22,6 +29,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.name)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.enterDate)
+        </td>
+       
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
             @Html.ActionLink("Details", "Details", new { id=item.id }) |

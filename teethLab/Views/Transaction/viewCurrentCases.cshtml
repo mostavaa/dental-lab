@@ -1,15 +1,9 @@
 ﻿@{
-    var cases = (List<teethLab.@case>)ViewData["cases"];
+    var cases = (List<teethLab.CurrentCas>)ViewData["cases"];
     ViewBag.Title = "viewCurrentCases";
 }
 <style>
-    .header h2 {
-        color: white;
-    }
 
-    #heading {
-        color: #eb6864;
-    }
 </style>
 <h2 id="heading">Current Cases</h2>
 
@@ -42,7 +36,7 @@
         </div>
     </div>
     @{
-        foreach (teethLab.@case cas in cases)
+        foreach (teethLab.CurrentCas cas in cases)
         {
             <div class="row onecase">
                 <input type="hidden" value="@cas.id" name="caseid" class="caseid" />

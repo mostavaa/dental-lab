@@ -20,19 +20,7 @@ namespace teethLab.Controllers
             return View(db.employees.ToList());
         }
 
-        //
-        // GET: /Employee/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            employee employee = db.employees.Find(id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employee);
-        }
-
+        
         //
         // GET: /Employee/Create
 

@@ -16,6 +16,20 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.name)
     </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.credit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.credit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.enterDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.enterDate)
+    </div>
 </fieldset>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()

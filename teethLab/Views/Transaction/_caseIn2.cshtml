@@ -1,0 +1,360 @@
+﻿<style>
+    .cContainer {
+        /*text-align: center;*/
+        
+        width: 100%;
+        height: 100%;
+    }
+
+    .select {
+        background: url("../../Content/images/controls/TextBox.png") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        margin :0 auto !important;
+        height: 50px;
+        padding: 8px 12px;
+        font-family: 'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif;
+        font-size: 20px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 500;
+        color: white;
+        background-color: #012b43!important;
+        line-height: 26.3999996185303px;
+    }
+
+    .textBox:focus {
+        outline: 0;
+    }
+
+    .col {
+        position: relative;
+        float: left;
+        width: 34.5%;
+    }
+
+    .colShade {
+        position: relative;
+        float: left;
+        width: 28%;
+    }
+
+        .colShade a {
+            margin: 1px;
+            position: relative;
+            float: left;
+            background-color: #012b43;
+            color: white;
+            height: 23px;
+            width: 11%;
+        }
+
+    .crossNumber[data-on='0'], #newMonth[data-on='0'] {
+                   margin: 1px;
+            position: relative;
+            float: left;
+            background-color: #012b43;
+            color: white;
+            height: 23px;
+            width: 11%;
+    }
+
+    .crossNumber[data-on='1'], #newMonth[data-on='1'] {
+              margin: 1px;
+            position: relative;
+            float: left;
+            background-color: red;
+            color: white;
+            height: 23px;
+            width: 11%;
+    }
+
+    .colLine {
+        position: absolute;
+        margin-left: 45.5%;
+    }
+
+    .full {
+        position: relative;
+        float: left;
+        width: 5%;
+    }
+
+    .picker {
+        float: left;
+        background-color: white;
+        height: 35px;
+        color: #012b43;
+        font-size: 15px;
+        border-radius: 5px;
+    }
+    .clear{
+        width:50px;
+        height:50px;
+    }
+</style>
+<div class="alert-box ss-dialog hideit" style="text-align:center">
+    <div class="row">
+        <a id="heading"><img class="" src="~/Content/images/controls/Case-InTxt.png" /></a>
+        <h1 style="display:inline" id="caseNo2ndPage">CaseNo</h1> - <h2 style="display:inline" id="statu2ndPage">New</h2>
+    </div>
+    <br />
+    <div class="row">
+        @{
+
+            var doctors = (List<teethLab.doctor>)ViewData["doctors"];
+        }
+
+
+        <select id="doctor" class="select" style="width:70%">
+            <option value="">Doctor</option>
+            @{
+                foreach (teethLab.doctor doc in doctors)
+                {
+                    <option value="@doc.id">@doc.name</option>
+                }
+            }
+        </select>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col" style="margin-left: 15%">
+            <div class="select" style="width:100%">
+                <a href="#" class="picker" id="pickColor">Pick/Change</a><p id="shadeColor" style="">Shade</p>
+                <div id="popup" style="display:none;position:fixed;width:100%;height:100%;top:0;left:0;z-index:999;">
+                    <div id="popupback" style="position:absolute;width:100%;height:100%;background-color:grey;opacity:0.5;z-index:1;"></div>
+                    <div id="popupcontent" style="position:relative; width:80%;height:80%;background-color:#002a42;border:1px solid blue;border-radius:5px;margin:100px auto;z-index:2;">
+                        <style>
+                            .headImages img {
+                                display: block;
+                                margin-top: 40%;
+                            }
+
+                            .footer img {
+                                float: left;
+                                margin-left: 0.5%;
+                            }
+
+                            .headerImages hr {
+                                border-style: solid;
+                                border-width: thick;
+                                border-color: #bfbeb9;
+                            }
+                        </style>
+                        <div class="headerImages" style="margin:4%">
+                            <div class="row headImages">
+                                <div class="col-md-1">
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="0M3" src="~/Content/images/ShadeGuide/0M3.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="0M2" src="~/Content/images/ShadeGuide/0M2.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="0M1" src="~/Content/images/ShadeGuide/0M1.png" />
+                                </div>
+                                <div class="col-md-1 ">
+                                    <h1 class="img-circle clear" data-val="x"></h1>
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="1M2" src="~/Content/images/ShadeGuide/1M2.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="1M1" src="~/Content/images/ShadeGuide/1M1.png" />
+                                </div>
+                                <div class="col-md-1">
+                                    <h1 class="img-circle clear" data-val="x"></h1>
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="2L2.5" src="~/Content/images/ShadeGuide/2L2.5.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="2L1.5" src="~/Content/images/ShadeGuide/2L1.5.png" />
+
+                                </div>
+                                <div class="col-md-1">
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="2M3" src="~/Content/images/ShadeGuide/2M3.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="2M2" src="~/Content/images/ShadeGuide/2M2.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="2M1" src="~/Content/images/ShadeGuide/2M1.png" />
+
+                                </div>
+                                <div class="col-md-1">
+                                    <h1 class="img-circle clear" data-val="x"></h1>
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="2R2.5" src="~/Content/images/ShadeGuide/2R2.5.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="2R1.5" src="~/Content/images/ShadeGuide/2R1.5.png" />
+
+                                </div>
+                                <div class="col-md-1">
+                                    <h1 class="img-circle clear" data-val="x"></h1>
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="3L2.5" src="~/Content/images/ShadeGuide/3L2.5.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="3L1.5" src="~/Content/images/ShadeGuide/3L1.5.png" />
+
+                                </div>
+                                <div class="col-md-1">
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="3M3" src="~/Content/images/ShadeGuide/3M3.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="3M2" src="~/Content/images/ShadeGuide/3M2.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="3M1" src="~/Content/images/ShadeGuide/3M1.png" />
+
+                                </div>
+                                <div class="col-md-1">
+                                    <h1 class="img-circle clear" data-val="x"></h1>
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="3R2.5" src="~/Content/images/ShadeGuide/3R2.5.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="3R1.5" src="~/Content/images/ShadeGuide/3R1.5.png" />
+
+                                </div>
+                                <div class="col-md-1">
+                                    <h1 class="img-circle clear" data-val="x"></h1>
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="4L2.5" src="~/Content/images/ShadeGuide/4L2.5.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="4L1.5" src="~/Content/images/ShadeGuide/4L1.5.png" />
+
+                                </div>
+                                <div class="col-md-1">
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="4M3" src="~/Content/images/ShadeGuide/4M3.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="4M2" src="~/Content/images/ShadeGuide/4M2.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="4M1" src="~/Content/images/ShadeGuide/4M1.png" />
+
+                                </div>
+                                <div class="col-md-1">
+                                    <h1 class="img-circle clear" data-val="x"></h1>
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="4R2.5" src="~/Content/images/ShadeGuide/4R2.5.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="4R1.5" src="~/Content/images/ShadeGuide/4R1.5.png" />
+
+                                </div>
+                                <div class="col-md-1">
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="5M3" src="~/Content/images/ShadeGuide/5M3.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="5M2" src="~/Content/images/ShadeGuide/5M2.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="5M1" src="~/Content/images/ShadeGuide/5M1.png" />
+
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row footer">
+                                <div class="col-md-12">
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="A1" src="~/Content/images/ShadeGuide/A1.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="A2" src="~/Content/images/ShadeGuide/A2.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="A3" src="~/Content/images/ShadeGuide/A3.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="A3.5" src="~/Content/images/ShadeGuide/A3.5.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="A4" src="~/Content/images/ShadeGuide/A4.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="B1" src="~/Content/images/ShadeGuide/B1.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="B2" src="~/Content/images/ShadeGuide/B2.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="B3" src="~/Content/images/ShadeGuide/B3.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="B4" src="~/Content/images/ShadeGuide/B4.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="C1" src="~/Content/images/ShadeGuide/C1.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="C2" src="~/Content/images/ShadeGuide/C2.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="C3" src="~/Content/images/ShadeGuide/C3.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="C4" src="~/Content/images/ShadeGuide/C4.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="D2" src="~/Content/images/ShadeGuide/D2.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="D3" src="~/Content/images/ShadeGuide/D3.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="D4" src="~/Content/images/ShadeGuide/D4.png" />
+                                    <img class="img-circle colorImages" width="50px" height="50px" data-val="empty" src="~/Content/images/ShadeGuide/empty.png" />
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col" style="margin-left:1%;">
+            @{
+
+                var cases = (List<teethLab.CurrentCas>)ViewData["cases"];
+            }
+
+            <select id="case" class="select" style="width:100%">
+                <option value="">Case</option>
+                @{
+                    foreach (teethLab.CurrentCas casee in cases)
+                    {
+                        <option value="@casee.id">@casee.name</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+        <div id="ul" class="colShade" style="margin-left:17%;">
+
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style=" ">8</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">7</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">6</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">5</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">4</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">3</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">2</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">1</a>
+        </div>
+        <div class="colLine" style="">
+            <img style="width:100%;height:70px;" src="~/Content/images/controls/HrLine.png" />
+        </div>
+        <div id="ur" class="colShade" style="margin-left:6.5%;">
+
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">1</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">2</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">3</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">4</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">5</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">6</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">7</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">8</a>
+        </div>
+        <div class="full">
+            <img id="fullUpper" src="~/Content/images/controls/Full.png" />
+        </div>
+        <br />
+        <div style="width:61%;margin-left:17%;">
+            <img style="width:100%;height:15px;" src="~/Content/images/controls/HorizontalLine.png" />
+        </div>
+        <div id="ll" class="colShade" style="margin-left:17%;">
+
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">8</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">7</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">6</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">5</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">4</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">3</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">2</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">1</a>
+        </div>
+        <div id="lr" class="colShade" style="margin-left:6.5%;">
+
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style=" ">1</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">2</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">3</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">4</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">5</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">6</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">7</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">8</a>
+        </div>
+        <div class="full">
+            <img id="fullLower" src="~/Content/images/controls/Full.png" />
+        </div>
+        <br />
+    </div>
+    <br />
+    <div class="row">
+        <div class="col" style="margin-left: 15%">
+            <div class="" style="width:100%">
+                <input id="recieveDate" class="select" style="" placeholder="Deliver Date" type="date" />
+            </div>
+        </div>
+        <div class="col" style="margin-left:1%;">
+            <input type="text" class="select" id="patientName" placeholder="Patient Name" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        
+        <input type="text" class="select" style="width:70%;margin:0 auto!important; " id="notes" placeholder="Notes" />
+        
+    </div>
+    <br />
+    <div class="row">
+
+        <div class="" style="margin-left: 15%">
+            <a href="#" id="backToCaseIn" data-statu="" style="width:10%;" class="picker">Back</a>
+
+            <a href="#" id="outPrint" style="display:none; margin-left:16%; width:30%;" data-statu="outCase" class="picker">Out + Print Bill</a>
+
+            <a href="#" id="inputBtn" style="margin-left:62%; width:10%;" data-statu="" class="picker">Done</a>
+
+
+        </div>
+    </div>
+</div>

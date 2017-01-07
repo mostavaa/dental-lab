@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "viewLogin";
+}
+<style>
+
+
+
+.cont{
+
+    background-color:#e5e9eb;
+    
+    position:relative;
+    width:40%;
+    margin:0 auto;
+}
+.forminputs{
+    position:relative;
+    width:80%;
+    margin:0 auto;
+}
+
+</style>
+<div >
+    <div class="cont">
+        <div class="forminputs">
+            <br />
+
+
+            
+            <form id="" method="post" action="@Url.Action("login", "User")">
+                <input class="" type="text" name="name" placeholder="Username" />
+                <br />
+                <input class="" type="password" name="password" placeholder="Password" />
+                <br />
+                <input type="submit" class="" value="Login" />
+                <br />
+            </form>
+            
+            @{
+
+                string error = (string)TempData["error"];
+                if (Request.QueryString["error"] != null && Request.QueryString["error"] != "")
+                {
+                    <h2 class="alert-box ss-error hideit">@Request.QueryString["error"]</h2>
+                }
+            }
+        </div>
+    </div>
+</div>

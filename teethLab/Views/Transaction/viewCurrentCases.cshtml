@@ -1,0 +1,125 @@
+﻿@{
+    var cases = (List<teethLab.CurrentCas>)ViewData["cases"];
+    ViewBag.Title = "viewCurrentCases";
+}
+<style>
+
+</style>
+<h2 id="heading">Current Cases</h2>
+
+<div class="container">
+    <div class="row header addcasediv">
+        <h2>Add Case</h2>
+        <div class="col-md-3">
+            <input type="text" placeholder="Case Name" class="casename form-control" />
+        </div>
+        <div class="col-md-3">
+            <input type="number" placeholder="Case Default Price" class="casedefaultprice form-control" />
+        </div>
+        <div class="col-md-3">
+            <input type="button" value="Add" class="addcasebtn btn btn-default" />
+        </div>
+    </div>
+    <div class="row header">
+        <input type="hidden" value="" name="caseid" class="caseid" />
+        <div class="col-md-3">
+            <h2>Case Name</h2>
+        </div>
+        <div class="col-md-3">
+            <h2>Case Default Price</h2>
+        </div>
+        <div class="col-md-3">
+            <h2>Edit Case</h2>
+        </div>
+        <div class="col-md-3">
+            <h2>Delete Case</h2>
+        </div>
+    </div>
+    @{
+        foreach (teethLab.CurrentCas cas in cases)
+        {
+            <div class="row onecase">
+                <input type="hidden" value="@cas.id" name="caseid" class="caseid" />
+                <div class="col-md-3">
+                    <input type="text" value="@cas.name" readonly="readonly" class="casename form-control" />
+                </div>
+                <div class="col-md-3">
+                    <input type="number" value="@cas.defaultPrice" readonly="readonly" class="casedefaultprice form-control" />
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Edit" class="btn btn-primary editcase" />
+                    <input type="hidden" value="Done Editing" class="btn btn-primary submiteditcase" />
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Delete" class="btn btn-danger deletecase" />
+                </div>
+            </div>
+        }
+    }
+
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(".deletecase").click(function () {
+                casename = $(this).parents(".onecase").find(".casename").val();
+                res = confirm("Are You Sure You Want to Delete " + casename);
+                deleteBtn = this;
+                if (res == true) {
+                    caseid = $(this).parents(".onecase").find(".caseid").val();
+                    $.post("@Url.Action("DeleteCaseById" , "Transaction")", "id=" + caseid, function (res) {
+                        if (res == "success") {
+                            alert("Case Deleted");
+                            $(deleteBtn).parents(".onecase").fadeOut().remove();
+                        }
+                    });
+                }
+            });
+
+            $(".editcase").click(function () {
+                $(this).parents(".onecase").find(".casename").removeAttr("readonly");
+                $(this).parents(".onecase").find(".casedefaultprice").removeAttr("readonly");
+                $(this).parents(".onecase").find(".submiteditcase").attr("type", "button");
+                $(this).hide();
+            });
+            $(".submiteditcase").click(function () {
+                res = confirm("Are You Sure You Want to Edit ");
+                if (res == true) {
+                    caseid = $(this).parents(".onecase").find(".caseid").val();
+                    casename = $(this).parents(".onecase").find(".casename").val();
+                    casedefaultprice = $(this).parents(".onecase").find(".casedefaultprice").val();
+                    $.post("@Url.Action("EditCase" , "Transaction")",
+                        "caseid=" + caseid
+                        + "&casename=" + casename
+                        + "&casedefaultprice=" + casedefaultprice
+                        , function (res) {
+                            if (res == "success") {
+                                alert("Case Edited");
+                                window.location.href = "@Url.Action("viewCurrentCases", "Transaction")";
+                            }
+                        });
+                }
+            });
+            $(".addcasebtn").click(function () {
+                res = confirm("Are You Sure You Want to Add This Case ");
+                if (res == true) {
+                    casename = $(this).parents(".addcasediv").find(".casename").val();
+                    casedefaultprice = $(this).parents(".addcasediv").find(".casedefaultprice").val();
+                    if (casename != "" && casename != null && casedefaultprice != "" && casedefaultprice != null && !isNaN(casedefaultprice)) {
+                        $.post("@Url.Action("AddNewCase" , "Transaction")", "casename=" + casename
+            + "&casedefaultprice=" + casedefaultprice
+            , function (res) {
+                if (res == "success") {
+                    alert("Case Added");
+                    window.location.href = "@Url.Action("viewCurrentCases", "Transaction")";
+                }
+            });
+                    } else {
+                        alert("Please Enter A valid Data");
+                    }
+
+                }
+            });
+        });
+    </script>
+}

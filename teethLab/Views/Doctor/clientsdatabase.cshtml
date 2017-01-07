@@ -1,0 +1,674 @@
+﻿@{
+    List<teethLab.doctor> docs = (List<teethLab.doctor>)ViewData["docs"];
+}
+<style>
+    .head {
+        text-align: center;
+    }
+
+        .head h1 {
+            color: #e5e9eb;
+        }
+
+    .addNewClient {
+        background-color: #e5e9eb;
+        text-align: center;
+        width: 10%;
+        margin: 0 auto;
+        border-radius: 5px;
+    }
+
+        .addNewClient a {
+            color: #012b43;
+        }
+
+    .onedoctor {
+        background-color: #e5e9eb;
+        height: 500px;
+        border-radius: 5px;
+        margin: 20px;
+        overflow-y: auto;
+    }
+
+    .clientname {
+        background-color: #012b43;
+        text-align: center;
+        border-radius: 5px;
+        margin: 7px;
+    }
+
+        .clientname label {
+            color: #e5e9eb;
+        }
+
+    .doctorinfo {
+        margin: 50px;
+    }
+
+        .doctorinfo .alllabels {
+            color: #012b43;
+        }
+
+    .phonenumber , .phonenumberClinic {
+        margin: 5px;
+        float: left;
+        width: 150px;
+        overflow-x: auto;
+        text-align: center;
+        border-radius: 5px;
+        background-color: #012b43;
+    }
+
+        .phonenumber label {
+            color: #e5e9eb;
+            margin: 5px;
+        }
+
+    .plus {
+        margin: 5px;
+    }
+
+    .product {
+        width: 410px;
+        background-color: #012b43;
+        border-radius: 5px;
+    }
+
+    .productname, .productprice {
+        width: 200px;
+        color: #e5e9eb;
+        margin: 5px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .productname {
+        border-right-style: solid;
+    }
+
+    .productprice input[type=text] {
+        color: #012b43;
+    }
+
+    .accountnav {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        width: 300px;
+        text-align: center;
+        background-color: #012b43;
+        border-radius: 5px;
+    }
+
+        .accountnav input {
+            color: #e5e9eb;
+            background: none;
+            border: none;
+        }
+
+    .editnav {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        width: 75px;
+        text-align: center;
+        background-color: #012b43;
+        border-radius: 5px;
+    }
+
+        .editnav span {
+            color: #e5e9eb;
+        }
+
+    .searchbar {
+        background-color: #e5e9eb;
+        height: 600px;
+        border-radius: 5px;
+        margin: 20px;
+        overflow-y: auto;
+    }
+
+    .searchinput {
+        border-radius: 5px;
+        background-color: #4c5c65;
+        color: white;
+        margin: 10px auto;
+        width: 98%;
+    }
+
+    ::-webkit-input-placeholder {
+        text-align: center;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+        text-align: center;
+    }
+
+    ::-moz-placeholder { /* Firefox 19+ */
+        text-align: center;
+    }
+
+    :-ms-input-placeholder {
+        text-align: center;
+    }
+</style>
+<div>
+    <div class="row">
+        <div class="head">
+            <h1>Clients' Database</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="addNewClient">
+            <a id="addnewclientbtn" href="#">Add New Client</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 onedoctor">
+            <div class="row clientname">
+                <label id="nameofclient">Client Name</label>
+            </div>
+            <div class="doctorinfo">
+                <!--
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="alllabels">Active Client : </label>
+                    </div>
+                    <div class="col-md-9">
+                        <span class="alllabels" id="activeclient">No</span>
+                    </div>
+                </div>
+                -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="alllabels">Address : </label>
+                    </div>
+                    <div class="col-md-9">
+                        <span class="alllabels" id="addressofclient">address...</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="alllabels">Phones : </label>
+                    </div>
+                    <div class="col-md-9">
+                        <span id="phonesofclient"><span class="phonenumber"><label>01065318609</label></span></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="alllabels">Prices : </label>
+                    </div>
+                    <div class="col-md-9 allproducts">
+                        <div class="row product">
+                            <label class="productname">Product</label>
+                            <label class="productprice">000</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="allClinics"></div>
+            </div>
+            <form method="post" action="@Url.Action("viewdoctorcases", "Doctor")">
+                <input type="hidden" name="docid" id="docid" />
+                <div class="row accountnav">
+                    <input type="submit" value="" />
+                </div>
+            </form>
+            <div class="row editnav" style="display:none">
+                <input type="hidden" />
+                <span>Edit</span>
+            </div>
+        </div>
+        <div class="col-md-3 searchbar">
+            <div class="row searchtext">
+                <input type="text" class="searchinput" placeholder="Search" />
+            </div>
+            <div class="row searchresult" style="">
+                <ul class="list-group"></ul>
+            </div>
+            <div class="row alldoctors">
+                @{
+                    <ul class="list-group">
+                        @{
+                            foreach (teethLab.doctor doc in docs)
+                            {
+                                <li class="list-group-item" data-id="@doc.id">@doc.name</li>
+                            }
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="addNewClient">
+        <a id="addnewclinicbtn" href="#">Add New Clinic</a>
+    </div>
+    <div class="row newclinic" style="display:none">
+        <div class="col-md-8 onedoctor">
+            <div class="row clientname">
+                <input class="form-control clinicName" placeholder="Clinic Name" type="text" /> 
+            </div>
+            <div class="doctorinfo">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="alllabels">Address : </label>
+                    </div>
+                    <div class="col-md-9">
+                        <textarea class="form-control clinicAddress"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="alllabels">Phones : </label>
+                    </div>
+                    <div class="col-md-9">
+                        <span id='' class='btn btn-default glyphicon glyphicon-plus addphone'></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="btn btn-primary addNewClinic">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div id="myModalHead">
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="myModalBody">
+                    <p>Some text in the modal.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div id="myModalFooter">
+
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#addnewclinicbtn").click(function (e) {
+                e.preventDefault();
+                $(".newclinic").fadeToggle();
+            });
+            $(".addNewClinic").click(function () {
+                doctorid = $(".editnav input").val();
+                name = $(".clinicName").val();
+                if (name == "" || name == null) {
+                    alert("please provide Clinic name !");
+                    return;
+                }
+                address = $(".clinicAddress").val();
+                if (address == "" || address == null) {
+                    alert("please provide Clinic address");
+                }
+                phones = "";
+                $(".allnewphonesClinic").each(function () {
+                    phones += $(this).val() + ",";
+                });
+
+                $.post("@Url.Action("addNewClinic", "Doctor")", "doctorid=" + doctorid
+                    + "&name=" + name
+                    + "&address=" + address
+                    + "&phones=" + phones
+                    , function (res) {
+                        if (res == "success") {
+                            alert("clinic Added successfully");
+                            window.location.reload();
+                        }
+                });
+            });
+            mode = "view";
+            $(".searchinput").keypress(function () {
+
+                val = $(this).val();
+                if (val.length > 2) {
+                    $.post("@Url.Action("getDoctorByName", "Doctor")", "val=" + val, function (res) {
+                    docs = res.split("&");
+                    if (docs.length > 0) {
+
+                        $(".searchresult ul li").remove();
+                        for (var i = 0; i < docs.length - 1; i++) {
+                            doc = docs[i].split(",");
+                            id = doc[0];
+                            name = doc[1];
+                            li = "<li class='list-group-item' data-id='" + id + "'>" + name + "</li>";
+                            $(".searchresult ul").append(li);
+                        }
+
+                        $(".searchresult ul li").click(function () {
+                            if (mode != "view") {
+                                alert("save of cancel first !");
+                            } else {
+                                id = $(this).attr("data-id");
+                                $(".editnav input").val(id);
+                                $(".editnav").css("display", "");
+                                $.post("getDoctorById", "id=" + id, function (res) {
+                                    row = res.split("&");
+                                    if (row.length > 0) {
+                                        $("#docid").val(id);
+
+                                        newdoc = row[0].split(",");
+                                        newname = newdoc[0];
+                                        $("#nameofclient").html(newname);
+                                        newaddress = newdoc[1];
+                                        $("#addressofclient").html(newaddress);
+
+                                        newactive = newdoc[2];
+                                        if (newactive == "False") {
+                                            //    $("#activeclient").html("No");
+                                            $(".accountnav input[type=submit]").val("Open Account");
+                                        } else if (newactive == "True") {
+                                            //   $("#activeclient").html("Yes");
+                                            $(".accountnav input[type=submit]").val("Go to Account");
+                                        }
+
+                                        $("#phonesofclient").html("");
+                                        docphones = row[1];
+                                        if (docphones.length > 0) {
+                                            phones = docphones.split("^");
+                                            if (phones.length > 0) {
+                                                output = "";
+                                                for (var i = 0; i < phones.length - 1; i++) {
+                                                    output += "<span class=\"phonenumber\"><label>" + phones[i] + "</label></span>";
+                                                }
+                                                $("#phonesofclient").html(output);
+                                            }
+                                        }
+
+                                        $(".allproducts").html("");
+                                        docprices = row[2];
+                                        if (docprices.length > 0) {
+                                            prices = docprices.split("^");
+                                            if (prices.length > 0) {
+                                                output = "";
+                                                for (var i = 0; i < prices.length - 1; i++) {
+                                                    price = prices[i].split(",");
+                                                    output += "<div data-id='" + price[2] + "' class=\"row product\">"
+                                                        + "<label class=\"productname\">" + price[0] + "</label>"
+                                                        + "<label class=\"productprice\">" + price[1] + "</label>"
+                                                        + "</div>";
+                                                }
+                                                $(".allproducts").html(output);
+                                            }
+                                        }
+                                        getDoctorClinics(id);
+
+                                    }
+                                });
+                            }
+                        });
+                    }
+                })
+            }
+
+            });
+
+            function getDoctorClinics(id) {
+                //////////////////// output in the controller
+                $.post("getDoctorClinics", "id=" + id, function (res) {
+                    $("#allClinics").html(res);
+                    $(".deleteClinic").click(function () {
+                        res = confirm("Are You Sure You Want to Delete ?");
+                        if (res == true) {
+                            clinicId = $(this).attr("data-id");
+                            $.post("DeleteClinic", "id=" + clinicId, function (res) {
+                                if (res == "success") {
+                                    alert("Deleted");
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                    });
+                });
+            }
+            function cancelmode() {
+
+                $(".editnav input").val("0");
+                $(".editnav").css("display", "none");
+                mode = "view";
+                res = confirm("are you sure you want to cancel");
+                if (res == true) {
+                    // $("#activeclient").html("No");
+                    $("#nameofclient").replaceWith("<label id='nameofclient'>Client Name</label>");
+                    $("#addressofclient").replaceWith("<span class='alllabels' id='addressofclient'>address...</span>");
+                    $("#phonesofclient").replaceWith("<span id='phonesofclient'><span class='phonenumber'><label>01065318609</label></span></span>");
+                    $(".phonenumber").remove();
+                    $(".allproducts").html(" <div class='row product'>"
+                        + "<label class='productname'>Product</label>"
+                        + "<label class='productprice'>000</label>"
+                    + "</div>");
+                    $("#canceladd").remove();
+                    $("#saveadd").remove();
+                }
+
+
+            }
+            function savemode(newmode) {
+                action = newmode;
+                mode = "view";
+
+                doctorid = $(".editnav input").val();
+                name = $("#nameofclient").val();
+                if (name == "" || name == null) {
+                    alert("please provide client name !");
+                    return;
+                }
+                address = $("#addressofclient").val();
+                if (address == "" || address == null) {
+                    alert("please provide client address");
+                }
+                phones = "";
+                $(".allnewphones").each(function () {
+                    phones += $(this).val() + ",";
+                });
+
+                //activate = $("#activeclientinput").is(':checked');
+
+
+                products = "";
+                $(".product").each(function () {
+                    // in add mode , considerted to be case id , but in edit it is case price doctor id
+                    id = $(this).attr("data-id");
+                    price = $(this).find(".productprice").val();
+                    /*
+                    if (price == "" || price == null || isNaN(price)) {
+                        alert("please check prices");
+                        return;
+                    }
+                    */
+                    products += id + "," + price + "^";
+                });
+
+                $.post("@Url.Action("addnewdoctor" , "Doctor" )", "action=" + action
+                + "&name=" + name
+                + "&address=" + address
+                + "&phones=" + phones
+                + "&products=" + products
+                + "&doctorid=" + doctorid
+                //+ "&activate=" + activate
+                , function (res) {
+                    if (res == "success") {
+                        alert("process done successfully");
+                        cancelmode();
+                    }
+
+                });
+            }
+            function addMode() {
+
+                $(".editnav input").val("0");
+                $(".editnav").css("display", "none");
+                mode = "add";
+                //$("#activeclient").html("<input type='checkbox' name='activeclientinput' id='activeclientinput' />");
+
+                $("#nameofclient").replaceWith("<input type='text' class='form-control' placeholder='Client Name' id='nameofclient' />");
+                $("#addressofclient").replaceWith("<textarea id='addressofclient' placeholder='Address' class='form-control alllabels'></textarea>");
+                $("#phonesofclient").replaceWith("<span id='phonesofclient' class='btn btn-default glyphicon glyphicon-plus addphone'><span>");
+                $(".addphone").click(function () {
+                    $(this).before("<span class='phonenumber'><input type='text' class='form-control allnewphones'/></span>");
+                });
+                $.post("@Url.Action("getallcases", "Doctor")", "", function (res) {
+                    cases = res.split("&");
+                    if (cases.length > 0) {
+                        output = "";
+                        for (var i = 0; i < cases.length - 1; i++) {
+                            onecase = cases[i].split(",");
+                            output += "<div data-id='" + onecase[0] + "' class=\"row product\">"
+                                      + "<label class=\"productname\">" + onecase[1] + "</label>"
+                                      + "<input type='text' class=\"productprice\" />"
+                                      + "</div>";
+                        }
+                        $(".allproducts").html(output);
+                        output = "<a class='btn btn-primary' id='canceladd'>Cancel</a>"
+                        + "<a class='btn btn-primary' id='saveadd'>Save</a>";
+                        $(".allproducts").after(output);
+                        $("#canceladd").click(function () {
+                            cancelmode();
+                        });
+                        $("#saveadd").click(function () {
+                            savemode("add");
+                        });
+                    }
+                });
+            }
+
+            function editmode() {
+                mode = "edit";
+                name = $("#nameofclient").html();
+                address = $("#addressofclient").html();
+
+                /*active = $("#activeclient").html();
+                if (active == "No") {
+                    $("#activeclient").html("<input type='checkbox' id='activeclientinput' />");
+                } else if (active == "Yes") {
+                    $("#activeclient").html("<input type='checkbox' checked='checked'  id='activeclientinput' />");
+                }
+                */
+                $("#nameofclient").replaceWith("<input type='text' class='form-control' placeholder='Client Name' value='" + name + "' id='nameofclient' />");
+                $("#addressofclient").replaceWith("<textarea id='addressofclient' placeholder='Address' class='form-control alllabels'>" + address + "</textarea>");
+                output = "";
+                $(".phonenumber").each(function () {
+
+                    output += "<span class='phonenumber'><input type='text' value='" + $(this).find("label").html() + "' class='form-control allnewphones'/></span>";
+                });
+                output += "<span id='phonesofclient' class='btn btn-default glyphicon glyphicon-plus addphone'><span>";
+                $("#phonesofclient").html(output);
+                $(".addphone").click(function () {
+                    $(this).before("<span class='phonenumber'><input type='text' class='form-control allnewphones'/></span>");
+                });
+                output = "";
+                $(".product").each(function () {
+                    output += "<div data-id='" + $(this).attr("data-id") + "' class=\"row product\">"
+                                    + "<label class=\"productname\">" + $(this).find(".productname").html() + "</label>"
+                                    + "<input type='text' value='" + $(this).find(".productprice").html() + "' class=\"productprice\" />"
+                                    + "</div>";
+                });
+
+                $(".allproducts").html(output);
+                output = "<a class='btn btn-primary' id='canceladd'>Cancel</a>"
+                    + "<a class='btn btn-primary' id='saveadd'>Save</a>";
+                $(".allproducts").after(output);
+                $("#canceladd").click(function () {
+                    cancelmode();
+                });
+                $("#saveadd").click(function () {
+                    savemode("edit");
+                });
+
+                $(".editnav").css("display", "none");
+            }
+            $("#addnewclientbtn").click(function () {
+                addMode();
+            });
+            $(".editnav span").click(function () {
+                editmode();
+            });
+            $(".alldoctors ul li").click(function () {
+                if (mode != "view") {
+                    alert("save of cancel first !");
+                } else {
+                    id = $(this).attr("data-id");
+                    $(".editnav input").val(id);
+                    $(".editnav").css("display", "");
+                    $.post("getDoctorById", "id=" + id, function (res) {
+                        row = res.split("&");
+                        if (row.length > 0) {
+                            $("#docid").val(id);
+
+                            newdoc = row[0].split(",");
+                            newname = newdoc[0];
+                            $("#nameofclient").html(newname);
+                            newaddress = newdoc[1];
+                            $("#addressofclient").html(newaddress);
+                            newactive = newdoc[2];
+                            if (newactive == "False") {
+                                //    $("#activeclient").html("No");
+                                $(".accountnav input[type=submit]").val("Open Account");
+                            } else if (newactive == "True") {
+                                //   $("#activeclient").html("Yes");
+                                $(".accountnav input[type=submit]").val("Go to Account");
+                            }
+                            $("#phonesofclient").html("");
+                            docphones = row[1];
+                            if (docphones.length > 0) {
+                                phones = docphones.split("^");
+                                if (phones.length > 0) {
+                                    output = "";
+                                    for (var i = 0; i < phones.length - 1; i++) {
+                                        output += "<span class=\"phonenumber\"><label>" + phones[i] + "</label></span>";
+                                    }
+                                    $("#phonesofclient").html(output);
+                                }
+                            }
+
+                            $(".allproducts").html("");
+                            docprices = row[2];
+                            if (docprices.length > 0) {
+                                prices = docprices.split("^");
+                                if (prices.length > 0) {
+                                    output = "";
+                                    for (var i = 0; i < prices.length - 1; i++) {
+                                        price = prices[i].split(",");
+                                        output += "<div data-id='" + price[2] + "' class=\"row product\">"
+                                            + "<label class=\"productname\">" + price[0] + "</label>"
+                                            + "<label class=\"productprice\">" + price[1] + "</label>"
+                                            + "</div>";
+                                    }
+                                    $(".allproducts").html(output);
+                                }
+                            }
+                            getDoctorClinics(id);
+
+                        }
+                    });
+
+                }
+            });
+
+            $(".addphone").click(function () {
+                $(this).before("<span class='phonenumberClinic'><input type='text' class='form-control allnewphonesClinic'/></span>");
+            });
+        });
+    </script>
+}

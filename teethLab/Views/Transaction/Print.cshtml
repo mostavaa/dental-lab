@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Print";
+
+        int transId = (int)ViewData["transId"];
+        
+        teethLab.teethLabEntities db  = new teethLab.teethLabEntities();
+        teethLab.transaction trans = db.transactions.Find(transId);
+}
+
+<h1>@trans.doctor.name</h1>
+<a class="btn btn-default" id="print">طباعة</a>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#print").click(function () {
+                $(this).hide();
+                window.print();
+            });
+        });
+    </script>
+}

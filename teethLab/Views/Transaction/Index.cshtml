@@ -1,0 +1,783 @@
+﻿@{
+    return;
+    ViewBag.Title = "Index";
+    DateTime day = (DateTime)ViewData["date"];
+    if (day == null)
+    {
+        day = DateTime.Now;
+    }
+    teethLab.teethLabEntities db = new teethLab.teethLabEntities();
+    List<teethLab.transaction> enterCases = new List<teethLab.transaction>();
+    if (db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day).Count() > 0)
+    {
+        enterCases = db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day).ToList();
+    }
+    List<teethLab.transaction> outCases = new List<teethLab.transaction>();
+    if (db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == false).Count() > 0)
+    {
+        outCases = db.transactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == false).ToList();
+    }
+}
+
+<h2>الحالات</h2>
+<div class="container">
+
+    <div class="row">
+        <h1><a href="@Url.Action("recieveTransaction", "Transaction")">خروج في تاريخ استلام</a></h1>
+    </div>
+    <div class="row">
+        <form method="post" action="@Url.Action("Index" , "Transaction")">
+            <label>اليوم</label><input type="date" class="form-control" id="day" name="day" value="@day.ToString("yyyy-MM-dd")" />
+            <input type="submit" class="btn btn-default" />
+        </form>
+        <div class="col-md-6">
+            <h2>دخول</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>اسم الحالة</th>
+                        <th>رقم الحالة</th>
+                        <th>الحالة</th>
+                        <th>لون الحالة</th>
+                        <th>سعر الحالة</th>
+                        <th>اسم المريض</th>
+                        <th>تاريخ الدخول</th>
+                        <th> ملاحظات</th>
+                        <th>خرجت</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (teethLab.transaction transaction in enterCases)
+                        {
+                            <tr>
+                                @{
+
+                                }
+                                <td>@db.cases.Find(transaction.caseId).name</td>
+                                <td>@transaction.caseNumber</td>
+
+                                @{
+                            string caseTeeth = transaction.caseTeeth;
+                            string[] casess = caseTeeth.Split('#');
+                            string ul = casess[0].Split('$')[0];
+                            string ur = casess[1].Split('$')[0];
+                            string ll = casess[2].Split('$')[0];
+                            string lr = casess[3].Split('$')[0];
+                                }
+                                <td><label>@ul</label>||<label>@ur</label><br /><label>@ll</label>||<label>@lr</label></td>
+                                <td>@transaction.caseColor</td>
+                                <td>@transaction.price</td>
+                                <td>@transaction.patientName</td>
+                                <td>@transaction.recieveDate</td>
+                                <td>@transaction.notes</td>
+                                <td><label class="outCaseVal">@{Write(transaction.isOut == true ? "نعم" : "لا");}</label></td>
+
+
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col-md-6">
+            <h2>خروج</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>اسم الحالة</th>
+                        <th>رقم الحالة</th>
+                        <th>الحالة</th>
+                        <th>لون الحالة</th>
+                        <th>سعر الحالة</th>
+                        <th>اسم المريض</th>
+                        <th>تاريخ الدخول</th>
+                        <th> ملاحظات</th>
+                        <th>خرجت</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (teethLab.transaction transaction in outCases)
+                        {
+                            <tr>
+                                <td>@db.cases.Find(transaction.caseId).name</td>
+                                <td>@transaction.caseNumber</td>
+
+                                @{
+                            string caseTeeth = transaction.caseTeeth;
+                            string[] casess = caseTeeth.Split('#');
+                            string ul = casess[0].Split('$')[0];
+                            string ur = casess[1].Split('$')[0];
+                            string ll = casess[2].Split('$')[0];
+                            string lr = casess[3].Split('$')[0];
+                                }
+                                <td><label>@ul</label>||<label>@ur</label><br /><label>@ll</label>||<label>@lr</label></td>
+                                <td>@transaction.caseColor</td>
+                                <td>@transaction.price</td>
+                                <td>@transaction.patientName</td>
+                                <td>@transaction.recieveDate</td>
+                                <td>@transaction.notes</td>
+                                <td><label class="outCaseVal">@{Write(transaction.isOut == true ? "نعم" : "لا");}</label></td>
+
+
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div>
+                <button id="outCase" class="btn btn-danger">خروج</button>
+                <div id="popupOut" style="display:none;position:fixed;width:100%;height:100%;top:0;left:0;z-index:999;">
+                    <div id="popupbackOut" style="position:absolute;width:100%;height:100%;background-color:grey;opacity:0.5;z-index:1;"></div>
+                    <div id="popupcontentOut" style="position:relative; width:50%;height:70%;background-color:white;border:1px solid blue;border-radius:5px;margin:100px auto;z-index:2;">
+
+                        <label>ادخل رقم الحالة</label>
+                        <br />
+                        <label>رقم الحالة</label>
+                        <input type="number" id="caseNumberOut" class="form-control" />
+
+                        <label>اليوم</label>
+                        <input type="number" id="caseDayOut" class="form-control" />
+
+                        <label>الشهر</label>
+                        <input type="number" id="caseMonthOut" class="form-control" />
+                        <br />
+                        <button class="btn btn-danger" id="submitCaseOut">خروج</button><br />
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <button id="addCase" class="btn btn-default">اضافة</button>
+    <div class="modal addCaseModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">اضافة</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>اختر الدكتور</label>
+                        </div>
+                        <div class="col-md-6">
+                            @{
+
+                                var doctors = (List<teethLab.doctor>)ViewData["doctors"];
+                            }
+                            <select id="doctor" class="form-control">
+                                @{
+                                    foreach (teethLab.doctor doc in doctors)
+                                    {
+                                        <option value="@doc.id">@doc.name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label class="">اختر الحالة</label>
+
+                        </div>
+                        <div class="col-md-6">
+
+                            @{
+
+                                var cases = (List<teethLab.CurrentCas>)ViewData["cases"];
+                            }
+                            <select id="case" class="form-control">
+                                @{
+                                    foreach (teethLab.CurrentCas casee in cases)
+                                    {
+                                        <option value="CurrentCase.id">CurrentCase.name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <label>اختر اللون</label>
+                        </div>
+                        <div class="col-md-6">
+                            <button id="pick" class="btn btn-danger">Pick</button>
+                            <div id="popup" style="display:none;position:fixed;width:100%;height:100%;top:0;left:0;z-index:999;">
+                                <div id="popupback" style="position:absolute;width:100%;height:100%;background-color:grey;opacity:0.5;z-index:1;"></div>
+                                <div id="popupcontent" style="position:relative; width:80%;height:80%;background-color:#002a42;border:1px solid blue;border-radius:5px;margin:100px auto;z-index:2;">
+                                    <style>
+                                        .headImages img{
+                                            display:block;
+                                             margin-top:40%;
+                                        }
+                                       .footer img{
+                                           float:left;
+
+                                           margin-left:0.5%;
+                                       }
+                                       
+                                        .headerImages hr{
+                                            border-style:solid;
+                                            border-width:thick;
+                                            border-color:#bfbeb9;
+                                            
+                                        }
+                                   
+                                    </style>
+                                    <div class="headerImages" style="margin:4%">
+                                        <div class="row headImages">
+                                            <div class="col-md-1">
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="0M3" src="~/Content/images/ShadeGuide/0M3.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="0M2" src="~/Content/images/ShadeGuide/0M2.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="0M1" src="~/Content/images/ShadeGuide/0M1.png" />
+                                            </div>
+                                            <div class="col-md-1 ">
+                                                <img class="img-circle" width="50px" height="50px" alt="" data-val="x" src="" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="1M2" src="~/Content/images/ShadeGuide/1M2.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="1M1" src="~/Content/images/ShadeGuide/1M1.png" />
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="img-circle" width="50px" height="50px" alt="" data-val="x" src="" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="2L2.5" src="~/Content/images/ShadeGuide/2L2.5.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="2L1.5" src="~/Content/images/ShadeGuide/2L1.5.png" />
+
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="2M3" src="~/Content/images/ShadeGuide/2M3.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="2M2" src="~/Content/images/ShadeGuide/2M2.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="2M1" src="~/Content/images/ShadeGuide/2M1.png" />
+
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="img-circle" width="50px" height="50px" alt="" data-val="x" src="" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="2R2.5" src="~/Content/images/ShadeGuide/2R2.5.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="2R1.5" src="~/Content/images/ShadeGuide/2R1.5.png" />
+
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="img-circle" width="50px" height="50px" alt="" data-val="x" src="" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="3L2.5" src="~/Content/images/ShadeGuide/3L2.5.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="3L1.5" src="~/Content/images/ShadeGuide/3L1.5.png" />
+
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="3M3" src="~/Content/images/ShadeGuide/3M3.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="3M2" src="~/Content/images/ShadeGuide/3M2.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="3M1" src="~/Content/images/ShadeGuide/3M1.png" />
+
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="img-circle" width="50px" height="50px" alt="" data-val="x" src="" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="3R2.5" src="~/Content/images/ShadeGuide/3R2.5.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="3R1.5" src="~/Content/images/ShadeGuide/3R1.5.png" />
+
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="img-circle" width="50px" height="50px" alt="" data-val="x" src="" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="4L2.5" src="~/Content/images/ShadeGuide/4L2.5.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="4L1.5" src="~/Content/images/ShadeGuide/4L1.5.png" />
+
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="4M3" src="~/Content/images/ShadeGuide/4M3.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="4M2" src="~/Content/images/ShadeGuide/4M2.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="4M1" src="~/Content/images/ShadeGuide/4M1.png" />
+
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="img-circle" width="50px" height="50px" alt="" data-val="x" src="" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="4R2.5" src="~/Content/images/ShadeGuide/4R2.5.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="4R1.5" src="~/Content/images/ShadeGuide/4R1.5.png" />
+
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="5M3" src="~/Content/images/ShadeGuide/5M3.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="5M2" src="~/Content/images/ShadeGuide/5M2.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="5M1" src="~/Content/images/ShadeGuide/5M1.png" />
+
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row footer">
+                                            <div class="col-md-12">
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="A1" src="~/Content/images/ShadeGuide/A1.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="A2" src="~/Content/images/ShadeGuide/A2.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="A3" src="~/Content/images/ShadeGuide/A3.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="A3.5" src="~/Content/images/ShadeGuide/A3.5.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="A4" src="~/Content/images/ShadeGuide/A4.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="B1" src="~/Content/images/ShadeGuide/B1.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="B2" src="~/Content/images/ShadeGuide/B2.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="B3" src="~/Content/images/ShadeGuide/B3.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="B4" src="~/Content/images/ShadeGuide/B4.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="C1" src="~/Content/images/ShadeGuide/C1.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="C2" src="~/Content/images/ShadeGuide/C2.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="C3" src="~/Content/images/ShadeGuide/C3.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="C4" src="~/Content/images/ShadeGuide/C4.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="D2" src="~/Content/images/ShadeGuide/D2.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="D3" src="~/Content/images/ShadeGuide/D3.png" />
+                                                <img class="img-circle colorImages" width="50px" height="50px" data-val="D4" src="~/Content/images/ShadeGuide/D4.png" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <input type="text" readonly class="form-control" id="color" />
+                            <!--
+                            <select id="color" class="form-control">
+
+                                <option value="col1">col1</option>
+                                <option value="col2">col2</option>
+                                <option value="col3">col3</option>
+
+                            </select>
+                                -->
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input id="patientName" type="text" class="form-control" placeholder="اسم المريض" />
+                        </div>
+                        <div class="col-md-3">
+                            <input id="notes" type="text" class="form-control" placeholder="ملاحظات" />
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="col-lg-9">
+                                <input id="recieveDate" type="date" class="form-control" />
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="">تاريخ التسليم</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="">
+                        <div id="ul" class="col-md-6 caseNumbers">
+                            <input type="button" class="btn btn-primary caseNumber" data-on="0" value="8" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="7" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="6" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="5" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="4" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="3" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="2" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="1" />
+                        </div>
+                        <div id="ur" class="col-md-6 caseNumbers">
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="1" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="2" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="3" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="4" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="5" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="6" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="7" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="8" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div id="ll" class="col-md-6 caseNumbers">
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="8" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="7" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="6" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="5" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="4" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="3" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="2" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="1" />
+                        </div>
+                        <div id="lr" class="col-md-6 caseNumbers">
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="1" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="2" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="3" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="4" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="5" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="6" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="7" />
+                            <input type="button" class="btn btn-default caseNumber" data-on="0" value="8" />
+                        </div>
+                    </div>
+                    <br />
+                    <input type="hidden" id="transId" />
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-3">
+                        <input type="button" id="inputBtn" class="btn btn-default" value="ادخال" />
+                    </div>
+                    <div class="col-md-3">
+
+                        <input type="button" style="display:none" id="editBtn" class="btn btn-default" value="تعديل" />
+                    </div>
+                    <div class="col-md-3">
+
+                        <input type="button" style="display:none" id="outBtn" class="btn btn-default" value="خروج" />
+                    </div>
+                    <div class="col-md-3">
+
+                        <input type="button" style="display:none" id="printBtn" class="btn btn-default" value="خروج و طباعة" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <input type="button" id="newMonth" class="btn btn-default" data-on="0" value="شهر جديد" />
+    </div>
+
+
+    <br />
+    <div id="result"></div>
+</div>
+@section head{
+    <style>
+        .caseNumbers .btn {
+            width: 10%;
+            text-align: left;
+        }
+
+        .caseNumber[data-on='0'], #newMonth[data-on='0'] {
+            background-color: red;
+        }
+
+        .caseNumber[data-on='1'], #newMonth[data-on='1'] {
+            background-color: blue;
+        }
+    </style>
+}
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#outBtn").click(function () {
+                id = $("#transId").val();
+                button = this;
+                $.post("@Url.Action("changeCase", "Transaction")", "id="+id, function (res) {
+                    if (res == "success") {
+                        alert("تم الخروج");
+                        $(button).parents(".modal").fadeOut();
+                    }
+                });
+            });
+            $("#printBtn").click(function () {
+                id = $("#transId").val();
+                button = this;
+                $.post("@Url.Action("changeCasePrint", "Transaction")", "id="+id, function (res) {
+                    if (res == "success") {
+                        alert("تم الخروج");
+                        $(button).parents(".modal").fadeOut();
+                        window.location.href = "@Url.Action("Print","Transaction")";
+                    }
+                });
+            });
+
+            $("#submitCaseOut").click(function () {
+                caseNumberOut = $("#caseNumberOut").val();
+                caseDayOut = $("#caseDayOut").val();
+                caseMonthOut = $("#caseMonthOut").val();
+                if (caseNumberOut == "" || caseNumberOut == null || isNaN(caseNumberOut)) {
+                    alert("ادخل رقم الحالة");
+                    return;
+                }
+
+                if (caseDayOut == "" || caseDayOut == null || isNaN(caseDayOut)) {
+                    alert("ادخل اليوم");
+                    return;
+                }
+
+                if (caseMonthOut == "" || caseMonthOut == null || isNaN(caseMonthOut)) {
+                    alert("ادخل الشهر");
+                    return;
+                }
+                $.post("@Url.Action("getCaseByNumber" , "Transaction")", "number=" + caseNumberOut
+                    + "&day=" + caseDayOut
+                    + "&month=" + caseMonthOut
+                    , function (res) {
+                        //alert(res.split("^")[1]);
+                        if (res.split("^")[0] == "success") {
+                            var trans = JSON.parse(res.split("^")[1])
+                            $("#doctor").val(trans.doctorId);
+                            $("#case").val(trans.caseId);
+                            $("#color").val(trans.caseColor);
+                            $("#patientName").val(trans.patientName);
+                            $("#notes").val(trans.notes);
+                            date = new Date(trans.toRecieveDate);
+
+                            var day = ("0" + date.getDate()).slice(-2);
+                            var month = ("0" + (date.getMonth() + 1)).slice(-2);
+
+                            var today = date.getFullYear() + "-" + (month) + "-" + (day);
+                            $("#recieveDate").val(today);
+
+                            caseTeeth = trans.caseTeeth;
+                            casess = caseTeeth.split('#');
+                            ul = casess[0].split('$')[0];
+                            teeth = ul.split(",");
+                            for (var i = 0; i < teeth.length; i++) {
+                                $("#ul .caseNumber[value=" + teeth[i] + "]").attr("data-on", "1");
+                            }
+                            ur = casess[1].split('$')[0];
+                            teeth = ur.split(",");
+                            for (var i = 0; i < teeth.length; i++) {
+                                $("#ur .caseNumber[value=" + teeth[i] + "]").attr("data-on", "1");
+                            }
+                            ll = casess[2].split('$')[0];
+                            teeth = ll.split(",");
+                            for (var i = 0; i < teeth.length; i++) {
+                                $("#ll .caseNumber[value=" + teeth[i] + "]").attr("data-on", "1");
+                            }
+                            lr = casess[3].split('$')[0];
+                            teeth = lr.split(",");
+                            for (var i = 0; i < teeth.length; i++) {
+                                $("#lr .caseNumber[value=" + teeth[i] + "]").attr("data-on", "1");
+                            }
+                            $("#transId").val(trans.id);
+                            $("#inputBtn").hide();
+                            $("#editBtn").show();
+                            $("#outBtn").show();
+                            $("#printBtn").show();
+
+                            $(".addCaseModal").fadeIn();
+                        } else {
+                            alert("لا يوجد");
+                        }
+
+                    });
+
+            });
+            $("#popupbackOut").click(function () {
+                $("#popupOut").fadeOut();
+            });
+            $("#outCase").click(function () {
+                $("#popupOut").fadeIn();
+            });
+            $("#popupback").click(function () {
+                $("#popup").fadeOut();
+            });
+            $("#pick").click(function () {
+                $("#popup").fadeIn();
+            });
+            $(".colorImages").click(function () {
+                $("#color").val($(this).attr("data-val"));
+                $("#popup").fadeOut();
+            });
+
+            $("#addCase").click(function () {
+                $(".addCaseModal").fadeIn();
+
+                $("#inputBtn").show();
+                $("#editBtn").hide();
+
+                $("#outBtn").hide();
+                $("#printBtn").hide();
+
+                $("#color").val("");
+                $("#recieveDate").val("");
+                $("#patientName").val("");
+                $("#notes").val("");
+                $(".caseNumber").attr("data-on", "0");
+
+            });
+
+            $(".close").click(function () {
+                $(this).parents(".modal").fadeOut();
+            });
+            $("#editBtn").click(function () {
+                doctorId = $("#doctor").val();
+                if (doctorId == "" || doctorId == null || isNaN(doctorId)) {
+                    alert("يجب اختيار طبيب");
+                    return;
+                }
+                doctorName = $("#doctor option:selected").text();
+
+                caseId = $("#case").val();
+                if (caseId == "" || caseId == null || isNaN(caseId)) {
+                    alert("يجب اختيار حالة");
+                    return;
+                }
+                caseName = $("#case option:selected").text();
+                caseColor = $("#color").val();
+                if (caseColor == "" || caseColor == null) {
+                    alert("يجب اختيار لون");
+                    return;
+                }
+                patientName = $("#patientName").val();
+                recieveDate = $("#recieveDate").val();
+                if (recieveDate == "" || recieveDate == null) {
+                    alert("يجب اختيار تاريخ تسليم");
+                    return;
+                }
+                notes = $("#notes").val();
+                numCases = 0;
+                ul = "";
+                $("#ul .caseNumber[data-on='1']").each(function () {
+                    ul += $(this).attr("value") + ",";
+                    numCases++;
+                });
+                ul = ul.substring(0, ul.length - 1);
+                ul += "$ul";
+
+                ur = "";
+                $("#ur .caseNumber[data-on='1']").each(function () {
+                    ur += $(this).attr("value") + ",";
+                    numCases++;
+                });
+                ur = ur.substring(0, ur.length - 1);
+                ur += "$ur";
+
+                ll = "";
+                $("#ll .caseNumber[data-on='1']").each(function () {
+                    ll += $(this).attr("value") + ",";
+                    numCases++;
+                });
+                ll = ll.substring(0, ll.length - 1);
+                ll += "$ll";
+
+                lr = "";
+                $("#lr .caseNumber[data-on='1']").each(function () {
+                    lr += $(this).attr("value") + ",";
+                    numCases++;
+                });
+                lr = lr.substring(0, lr.length - 1);
+                lr += "$lr";
+                if (numCases == 0) {
+                    alert("يجب اختيار ارقام");
+                    return;
+                }
+                id = $("#transId").val();
+                caseTeeth = ul + "#" + ur + "#" + ll + "#" + lr;
+                button = this;
+                $.post('@Url.Action("editCase" , "Transaction")', "doctorId=" + doctorId
+                   + "&caseId=" + caseId
+                   + "&caseColor=" + caseColor
+                   + "&patientName=" + patientName
+                   + "&notes=" + notes
+                   + "&recieveDate=" + recieveDate
+                   + "&caseTeeth=" + caseTeeth
+                   + "&numCases=" + numCases
+                   + "&id=" + id
+
+                   , function (res) {
+                       if (res == "success") {
+                           alert("تم التعديل");
+
+                           $(button).parents(".modal").fadeOut();
+                       }
+                   }
+                   );
+
+
+            });
+            $("#inputBtn").click(function () {
+                doctorId = $("#doctor").val();
+                if (doctorId == "" || doctorId == null || isNaN(doctorId)) {
+                    alert("يجب اختيار طبيب");
+                    return;
+                }
+                doctorName = $("#doctor option:selected").text();
+
+                caseId = $("#case").val();
+                if (caseId == "" || caseId == null || isNaN(caseId)) {
+                    alert("يجب اختيار حالة");
+                    return;
+                }
+                caseName = $("#case option:selected").text();
+                caseColor = $("#color").val();
+                if (caseColor == "" || caseColor == null) {
+                    alert("يجب اختيار لون");
+                    return;
+                }
+                patientName = $("#patientName").val();
+                recieveDate = $("#recieveDate").val();
+                if (recieveDate == "" || recieveDate == null) {
+                    alert("يجب اختيار تاريخ تسليم");
+                    return;
+                }
+                notes = $("#notes").val();
+                day = $("#day").val();
+                numCases = 0;
+                ul = "";
+                $("#ul .caseNumber[data-on='1']").each(function () {
+                    ul += $(this).attr("value") + ",";
+                    numCases++;
+                });
+                ul = ul.substring(0, ul.length - 1);
+                ul += "$ul";
+
+                ur = "";
+                $("#ur .caseNumber[data-on='1']").each(function () {
+                    ur += $(this).attr("value") + ",";
+                    numCases++;
+                });
+                ur = ur.substring(0, ur.length - 1);
+                ur += "$ur";
+
+                ll = "";
+                $("#ll .caseNumber[data-on='1']").each(function () {
+                    ll += $(this).attr("value") + ",";
+                    numCases++;
+                });
+                ll = ll.substring(0, ll.length - 1);
+                ll += "$ll";
+
+                lr = "";
+                $("#lr .caseNumber[data-on='1']").each(function () {
+                    lr += $(this).attr("value") + ",";
+                    numCases++;
+                });
+                lr = lr.substring(0, lr.length - 1);
+                lr += "$lr";
+                if (numCases == 0) {
+                    alert("يجب اختيار ارقام");
+                    return;
+                }
+
+                caseTeeth = ul + "#" + ur + "#" + ll + "#" + lr;
+                newMonth = $("#newMonth").attr("data-on");
+                button = this;
+                $.post('@Url.Action("addCase" , "Transaction")', "doctorId=" + doctorId
+                    + "&caseId=" + caseId
+                    + "&caseColor=" + caseColor
+                    + "&patientName=" + patientName
+                    + "&notes=" + notes
+                    + "&recieveDate=" + recieveDate
+                    + "&caseTeeth=" + caseTeeth
+                    + "&numCases=" + numCases
+                    + "&day=" + day
+                    + "&newMonth=" + newMonth
+                    , function (res) {
+                        if (res.split(",")[0] == "success") {
+                            alert("تمت الاضافة بنجاح");
+                            $("#result").html("السعر = " + res.split(",")[1] + " رقم الحالة = " + res.split(",")[2]);
+
+                            $(button).parents(".modal").fadeOut();
+                        }
+                    }
+                    );
+
+
+            });
+            $(".caseNumber , #newMonth").click(function () {
+                if ($(this).attr("data-on") == '0') {
+                    $(this).attr("data-on", '1');
+                } else if ($(this).attr("data-on") == '1') {
+                    $(this).attr("data-on", '0');
+                }
+            });
+        });
+    </script>
+}

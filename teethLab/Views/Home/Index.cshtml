@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Index";
+    string day = (string)ViewData["day"];
+}
+
+<h2>Index</h2>
+
+<div>
+    <div class="row">
+        <form class="form-inline" method="post" action="@Url.Action("storenewdate" , "Home")">
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>Select Date : </label>
+                </div>
+                <div class="col-md-6">
+                    <input type="date" value="@day" class="form-control" name="date" id="date" />
+                </div>
+                <div class="col-md-3">
+                    <input type="submit" name="submit" value="submit" id="submit" class="form-control"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
+}

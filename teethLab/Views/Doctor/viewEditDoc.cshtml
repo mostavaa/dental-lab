@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "تعديل دكتور";
+}
+@{
+    teethLab.doctor doc = (teethLab.doctor)ViewData["doctor"];
+}
+<div class="container">
+
+
+    <h2>تعديل دكتور</h2>
+    <form class="form form-inline" action="@Url.Action("editDoc" , "Doctor")" method="post">
+        <input type="hidden" name="id" value="@doc.id" />
+        <label>اسم الطبيب</label><input type="text" name="name" value="@doc.name" class="form-control" /><br />
+        <label>عنوان الطبيب</label><input type="text" name="address" value="@doc.address" class="form-control" /><br />
+        <label>اسم المندوب</label>
+        <select name="supplier" class="form-control">
+            <option value="0"></option>
+            @{
+                var suppliers = (List<teethLab.supplier>)ViewData["suppliers"];
+                foreach (teethLab.supplier supplier in suppliers)
+                {
+                    if (doc.supplierId == supplier.id)
+                    {
+                        <option selected="selected" value="@supplier.id">@supplier.name</option>
+                    }
+                    else
+                    {
+                        <option value="@supplier.id">@supplier.name</option>
+                    }
+                }
+            }
+        </select><br />
+
+
+        <input type="submit" value="تعديل" class="btn btn-default" />
+    </form>
+    <br />
+    <hr />
+    <div>
+        @{
+            <label>اسعار الحالات</label>
+            <br />
+            teethLab.teethLabEntities db = new teethLab.teethLabEntities();
+            foreach (teethLab.CurrentCas cas in db.cases)
+            {
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>@cas.name</label>
+                    </div>
+                    <div class="col-md-3">
+                        @{
+                if (db.caseDoctorPrices.Where(o => o.caseId == cas.id && o.doctorId == doc.id).Count() > 0)
+                {
+                    int price = db.caseDoctorPrices.Where(o => o.caseId == cas.id && o.doctorId == doc.id).First().price;
+                    <input type="text" value="@price" class="casePrice form-control" />
+                }
+                else
+                {
+                    <input type="text" value="0" class="casePrice form-control" />
+                }
+}
+                    </div>
+                    <div class="col-md-3">
+                        <input type="button" data-doctorid="@doc.id" data-caseid="@cas.id" class="changePrice btn btn-default" value="تغيير" />
+                    </div>
+                    
+                </div>
+            }
+
+        }
+    </div>
+</div>
+@section scripts{
+<script>
+    $(document).ready(function () {
+        $(".changePrice").click(function () {
+            docId = $(this).attr("data-doctorid");
+            caseId = $(this).attr("data-caseid");
+            price = $(this).parent().parent().find(".casePrice").val();
+            selector = $(this);
+            $.post("@Url.Action("changeCasePrice" ,"Doctor")", "docId="+docId+"&caseId="+caseId+"&price="+price, function (res) {
+                if (res == "success") {
+                    alert("تم التعديل");
+                }
+            });
+        });
+    });
+    </script>
+}

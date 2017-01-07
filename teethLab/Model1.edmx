@@ -1,0 +1,1075 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="teethLabModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="caseDoctorPrices">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doctorId" Type="int" />
+          <Property Name="caseId" Type="int" />
+          <Property Name="price" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CaseTransactions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="caseNumber" Type="int" Nullable="false" />
+          <Property Name="caseColor1" Type="nvarchar" MaxLength="50" />
+          <Property Name="caseColor2" Type="nvarchar" MaxLength="50" />
+          <Property Name="caseColor3" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="patientName" Type="nvarchar" MaxLength="100" />
+          <Property Name="recieveDate" Type="datetime" Nullable="false" />
+          <Property Name="deliverDate" Type="datetime" />
+          <Property Name="notes" Type="nvarchar" MaxLength="250" />
+          <Property Name="isOut" Type="bit" />
+          <Property Name="prova" Type="bit" />
+          <Property Name="caseId" Type="int" />
+          <Property Name="doctorId" Type="int" />
+          <Property Name="UL1" Type="bit" />
+          <Property Name="UL2" Type="bit" />
+          <Property Name="UL3" Type="bit" />
+          <Property Name="UL4" Type="bit" />
+          <Property Name="UL5" Type="bit" />
+          <Property Name="UL6" Type="bit" />
+          <Property Name="UL7" Type="bit" />
+          <Property Name="UL8" Type="bit" />
+          <Property Name="UR1" Type="bit" />
+          <Property Name="UR2" Type="bit" />
+          <Property Name="UR3" Type="bit" />
+          <Property Name="UR4" Type="bit" />
+          <Property Name="UR5" Type="bit" />
+          <Property Name="UR6" Type="bit" />
+          <Property Name="UR7" Type="bit" />
+          <Property Name="UR8" Type="bit" />
+          <Property Name="LL1" Type="bit" />
+          <Property Name="LL2" Type="bit" />
+          <Property Name="LL3" Type="bit" />
+          <Property Name="LL4" Type="bit" />
+          <Property Name="LL5" Type="bit" />
+          <Property Name="LL6" Type="bit" />
+          <Property Name="LL7" Type="bit" />
+          <Property Name="LL8" Type="bit" />
+          <Property Name="LR1" Type="bit" />
+          <Property Name="LR2" Type="bit" />
+          <Property Name="LR3" Type="bit" />
+          <Property Name="LR4" Type="bit" />
+          <Property Name="LR5" Type="bit" />
+          <Property Name="LR6" Type="bit" />
+          <Property Name="LR7" Type="bit" />
+          <Property Name="LR8" Type="bit" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="credit" Type="int" Nullable="false" />
+          <Property Name="enterDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="companyProducts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="companyId" Type="int" Nullable="false" />
+          <Property Name="unit" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="unitPrice" Type="int" Nullable="false" />
+          <Property Name="enterDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurrentCases">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="defaultPrice" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="doctor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="250" />
+          <Property Name="Credit" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="doctorPhones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="doctorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="credit" Type="int" Nullable="false" />
+          <Property Name="defaultSalary" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employeeMoney">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="val" Type="int" />
+          <Property Name="isOff" Type="bit" Nullable="false" />
+          <Property Name="employeeId" Type="int" />
+        </EntityType>
+        <EntityType Name="money">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="import" Type="bit" Nullable="false" />
+          <Property Name="value" Type="int" Nullable="false" />
+          <Property Name="recieveDate" Type="date" />
+          <Property Name="other" Type="nvarchar" MaxLength="50" />
+          <Property Name="notes" Type="text" />
+          <Property Name="currentCredit" Type="int" />
+          <Property Name="doctorId" Type="int" />
+          <Property Name="employeeId" Type="int" />
+          <Property Name="companyId" Type="int" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="notes" Type="nvarchar" MaxLength="250" />
+          <Property Name="enterDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductUnits">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productId" Type="int" />
+          <Property Name="unitId" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Units">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="unit" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_caseDoctorPrices_case">
+          <End Role="CurrentCases" Type="Self.CurrentCases" Multiplicity="0..1" />
+          <End Role="caseDoctorPrices" Type="Self.caseDoctorPrices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrentCases">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="caseDoctorPrices">
+              <PropertyRef Name="caseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_caseDoctorPrices_doctor">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="0..1" />
+          <End Role="caseDoctorPrices" Type="Self.caseDoctorPrices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="caseDoctorPrices">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_companyProducts_company">
+          <End Role="company" Type="Self.company" Multiplicity="1" />
+          <End Role="companyProducts" Type="Self.companyProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="companyProducts">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_companyProducts_product">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="companyProducts" Type="Self.companyProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="companyProducts">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_doctorPhones_doctor">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="1" />
+          <End Role="doctorPhones" Type="Self.doctorPhones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="doctorPhones">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeeMoney_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+          <End Role="employeeMoney" Type="Self.employeeMoney" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employeeMoney">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_money_company">
+          <End Role="company" Type="Self.company" Multiplicity="0..1" />
+          <End Role="money" Type="Self.money" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="money">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_money_doctor">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="0..1" />
+          <End Role="money" Type="Self.money" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="money">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_money_employee">
+          <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+          <End Role="money" Type="Self.money" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="money">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductUnits_product">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="ProductUnits" Type="Self.ProductUnits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductUnits">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductUnits_Units">
+          <End Role="Units" Type="Self.Units" Multiplicity="0..1" />
+          <End Role="ProductUnits" Type="Self.ProductUnits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Units">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductUnits">
+              <PropertyRef Name="unitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactions_case">
+          <End Role="CurrentCases" Type="Self.CurrentCases" Multiplicity="0..1" />
+          <End Role="CaseTransactions" Type="Self.CaseTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrentCases">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CaseTransactions">
+              <PropertyRef Name="caseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactions_doctor">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="0..1" />
+          <End Role="CaseTransactions" Type="Self.CaseTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CaseTransactions">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="teethLabModelStoreContainer">
+          <EntitySet Name="caseDoctorPrices" EntityType="Self.caseDoctorPrices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CaseTransactions" EntityType="Self.CaseTransactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="companyProducts" EntityType="Self.companyProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurrentCases" EntityType="Self.CurrentCases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="doctor" EntityType="Self.doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="doctorPhones" EntityType="Self.doctorPhones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeeMoney" EntityType="Self.employeeMoney" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="money" EntityType="Self.money" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductUnits" EntityType="Self.ProductUnits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Units" EntityType="Self.Units" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_caseDoctorPrices_case" Association="Self.FK_caseDoctorPrices_case">
+            <End Role="CurrentCases" EntitySet="CurrentCases" />
+            <End Role="caseDoctorPrices" EntitySet="caseDoctorPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_caseDoctorPrices_doctor" Association="Self.FK_caseDoctorPrices_doctor">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="caseDoctorPrices" EntitySet="caseDoctorPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_companyProducts_company" Association="Self.FK_companyProducts_company">
+            <End Role="company" EntitySet="company" />
+            <End Role="companyProducts" EntitySet="companyProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_companyProducts_product" Association="Self.FK_companyProducts_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="companyProducts" EntitySet="companyProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_doctorPhones_doctor" Association="Self.FK_doctorPhones_doctor">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="doctorPhones" EntitySet="doctorPhones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeeMoney_employee" Association="Self.FK_employeeMoney_employee">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="employeeMoney" EntitySet="employeeMoney" />
+          </AssociationSet>
+          <AssociationSet Name="FK_money_company" Association="Self.FK_money_company">
+            <End Role="company" EntitySet="company" />
+            <End Role="money" EntitySet="money" />
+          </AssociationSet>
+          <AssociationSet Name="FK_money_doctor" Association="Self.FK_money_doctor">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="money" EntitySet="money" />
+          </AssociationSet>
+          <AssociationSet Name="FK_money_employee" Association="Self.FK_money_employee">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="money" EntitySet="money" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductUnits_product" Association="Self.FK_ProductUnits_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="ProductUnits" EntitySet="ProductUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductUnits_Units" Association="Self.FK_ProductUnits_Units">
+            <End Role="Units" EntitySet="Units" />
+            <End Role="ProductUnits" EntitySet="ProductUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactions_case" Association="Self.FK_transactions_case">
+            <End Role="CurrentCases" EntitySet="CurrentCases" />
+            <End Role="CaseTransactions" EntitySet="CaseTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactions_doctor" Association="Self.FK_transactions_doctor">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="CaseTransactions" EntitySet="CaseTransactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="teethLabModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="teethLabEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="caseDoctorPrices" EntityType="teethLabModel.caseDoctorPrice" />
+          <EntitySet Name="CaseTransactions" EntityType="teethLabModel.CaseTransaction" />
+          <EntitySet Name="companies" EntityType="teethLabModel.company" />
+          <EntitySet Name="companyProducts" EntityType="teethLabModel.companyProduct" />
+          <EntitySet Name="CurrentCases" EntityType="teethLabModel.CurrentCas" />
+          <EntitySet Name="doctors" EntityType="teethLabModel.doctor" />
+          <EntitySet Name="doctorPhones" EntityType="teethLabModel.doctorPhone" />
+          <EntitySet Name="employees" EntityType="teethLabModel.employee" />
+          <EntitySet Name="employeeMoneys" EntityType="teethLabModel.employeeMoney" />
+          <EntitySet Name="moneys" EntityType="teethLabModel.money" />
+          <EntitySet Name="products" EntityType="teethLabModel.product" />
+          <EntitySet Name="ProductUnits" EntityType="teethLabModel.ProductUnit" />
+          <EntitySet Name="sysdiagrams" EntityType="teethLabModel.sysdiagram" />
+          <EntitySet Name="Units" EntityType="teethLabModel.Unit" />
+          <EntitySet Name="users" EntityType="teethLabModel.user" />
+          <AssociationSet Name="FK_caseDoctorPrices_case" Association="teethLabModel.FK_caseDoctorPrices_case">
+            <End Role="CurrentCas" EntitySet="CurrentCases" />
+            <End Role="caseDoctorPrice" EntitySet="caseDoctorPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_caseDoctorPrices_doctor" Association="teethLabModel.FK_caseDoctorPrices_doctor">
+            <End Role="doctor" EntitySet="doctors" />
+            <End Role="caseDoctorPrice" EntitySet="caseDoctorPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactions_case" Association="teethLabModel.FK_transactions_case">
+            <End Role="CurrentCas" EntitySet="CurrentCases" />
+            <End Role="CaseTransaction" EntitySet="CaseTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactions_doctor" Association="teethLabModel.FK_transactions_doctor">
+            <End Role="doctor" EntitySet="doctors" />
+            <End Role="CaseTransaction" EntitySet="CaseTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_companyProducts_company" Association="teethLabModel.FK_companyProducts_company">
+            <End Role="company" EntitySet="companies" />
+            <End Role="companyProduct" EntitySet="companyProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_money_company" Association="teethLabModel.FK_money_company">
+            <End Role="company" EntitySet="companies" />
+            <End Role="money" EntitySet="moneys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_companyProducts_product" Association="teethLabModel.FK_companyProducts_product">
+            <End Role="product" EntitySet="products" />
+            <End Role="companyProduct" EntitySet="companyProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_doctorPhones_doctor" Association="teethLabModel.FK_doctorPhones_doctor">
+            <End Role="doctor" EntitySet="doctors" />
+            <End Role="doctorPhone" EntitySet="doctorPhones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_money_doctor" Association="teethLabModel.FK_money_doctor">
+            <End Role="doctor" EntitySet="doctors" />
+            <End Role="money" EntitySet="moneys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeeMoney_employee" Association="teethLabModel.FK_employeeMoney_employee">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="employeeMoney" EntitySet="employeeMoneys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_money_employee" Association="teethLabModel.FK_money_employee">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="money" EntitySet="moneys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductUnits_product" Association="teethLabModel.FK_ProductUnits_product">
+            <End Role="product" EntitySet="products" />
+            <End Role="ProductUnit" EntitySet="ProductUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductUnits_Units" Association="teethLabModel.FK_ProductUnits_Units">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="ProductUnit" EntitySet="ProductUnits" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="caseDoctorPrice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doctorId" Type="Int32" />
+          <Property Name="caseId" Type="Int32" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CurrentCas" Relationship="teethLabModel.FK_caseDoctorPrices_case" FromRole="caseDoctorPrice" ToRole="CurrentCas" />
+          <NavigationProperty Name="doctor" Relationship="teethLabModel.FK_caseDoctorPrices_doctor" FromRole="caseDoctorPrice" ToRole="doctor" />
+        </EntityType>
+        <EntityType Name="CaseTransaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="caseNumber" Type="Int32" Nullable="false" />
+          <Property Name="caseColor1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="caseColor2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="caseColor3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="patientName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="recieveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deliverDate" Type="DateTime" Precision="3" />
+          <Property Name="notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="isOut" Type="Boolean" />
+          <Property Name="prova" Type="Boolean" />
+          <Property Name="caseId" Type="Int32" />
+          <Property Name="doctorId" Type="Int32" />
+          <Property Name="UL1" Type="Boolean" />
+          <Property Name="UL2" Type="Boolean" />
+          <Property Name="UL3" Type="Boolean" />
+          <Property Name="UL4" Type="Boolean" />
+          <Property Name="UL5" Type="Boolean" />
+          <Property Name="UL6" Type="Boolean" />
+          <Property Name="UL7" Type="Boolean" />
+          <Property Name="UL8" Type="Boolean" />
+          <Property Name="UR1" Type="Boolean" />
+          <Property Name="UR2" Type="Boolean" />
+          <Property Name="UR3" Type="Boolean" />
+          <Property Name="UR4" Type="Boolean" />
+          <Property Name="UR5" Type="Boolean" />
+          <Property Name="UR6" Type="Boolean" />
+          <Property Name="UR7" Type="Boolean" />
+          <Property Name="UR8" Type="Boolean" />
+          <Property Name="LL1" Type="Boolean" />
+          <Property Name="LL2" Type="Boolean" />
+          <Property Name="LL3" Type="Boolean" />
+          <Property Name="LL4" Type="Boolean" />
+          <Property Name="LL5" Type="Boolean" />
+          <Property Name="LL6" Type="Boolean" />
+          <Property Name="LL7" Type="Boolean" />
+          <Property Name="LL8" Type="Boolean" />
+          <Property Name="LR1" Type="Boolean" />
+          <Property Name="LR2" Type="Boolean" />
+          <Property Name="LR3" Type="Boolean" />
+          <Property Name="LR4" Type="Boolean" />
+          <Property Name="LR5" Type="Boolean" />
+          <Property Name="LR6" Type="Boolean" />
+          <Property Name="LR7" Type="Boolean" />
+          <Property Name="LR8" Type="Boolean" />
+          <NavigationProperty Name="CurrentCas" Relationship="teethLabModel.FK_transactions_case" FromRole="CaseTransaction" ToRole="CurrentCas" />
+          <NavigationProperty Name="doctor" Relationship="teethLabModel.FK_transactions_doctor" FromRole="CaseTransaction" ToRole="doctor" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="credit" Type="Int32" Nullable="false" />
+          <Property Name="enterDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="companyProducts" Relationship="teethLabModel.FK_companyProducts_company" FromRole="company" ToRole="companyProduct" />
+          <NavigationProperty Name="moneys" Relationship="teethLabModel.FK_money_company" FromRole="company" ToRole="money" />
+        </EntityType>
+        <EntityType Name="companyProduct">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="companyId" Type="Int32" Nullable="false" />
+          <Property Name="unit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="unitPrice" Type="Int32" Nullable="false" />
+          <Property Name="enterDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="company" Relationship="teethLabModel.FK_companyProducts_company" FromRole="companyProduct" ToRole="company" />
+          <NavigationProperty Name="product" Relationship="teethLabModel.FK_companyProducts_product" FromRole="companyProduct" ToRole="product" />
+        </EntityType>
+        <EntityType Name="CurrentCas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="defaultPrice" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="caseDoctorPrices" Relationship="teethLabModel.FK_caseDoctorPrices_case" FromRole="CurrentCas" ToRole="caseDoctorPrice" />
+          <NavigationProperty Name="CaseTransactions" Relationship="teethLabModel.FK_transactions_case" FromRole="CurrentCas" ToRole="CaseTransaction" />
+        </EntityType>
+        <EntityType Name="doctor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Credit" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="caseDoctorPrices" Relationship="teethLabModel.FK_caseDoctorPrices_doctor" FromRole="doctor" ToRole="caseDoctorPrice" />
+          <NavigationProperty Name="CaseTransactions" Relationship="teethLabModel.FK_transactions_doctor" FromRole="doctor" ToRole="CaseTransaction" />
+          <NavigationProperty Name="doctorPhones" Relationship="teethLabModel.FK_doctorPhones_doctor" FromRole="doctor" ToRole="doctorPhone" />
+          <NavigationProperty Name="moneys" Relationship="teethLabModel.FK_money_doctor" FromRole="doctor" ToRole="money" />
+        </EntityType>
+        <EntityType Name="doctorPhone">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="doctorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="doctor" Relationship="teethLabModel.FK_doctorPhones_doctor" FromRole="doctorPhone" ToRole="doctor" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="credit" Type="Int32" Nullable="false" />
+          <Property Name="defaultSalary" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="employeeMoneys" Relationship="teethLabModel.FK_employeeMoney_employee" FromRole="employee" ToRole="employeeMoney" />
+          <NavigationProperty Name="moneys" Relationship="teethLabModel.FK_money_employee" FromRole="employee" ToRole="money" />
+        </EntityType>
+        <EntityType Name="employeeMoney">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="val" Type="Int32" />
+          <Property Name="isOff" Type="Boolean" Nullable="false" />
+          <Property Name="employeeId" Type="Int32" />
+          <NavigationProperty Name="employee" Relationship="teethLabModel.FK_employeeMoney_employee" FromRole="employeeMoney" ToRole="employee" />
+        </EntityType>
+        <EntityType Name="money">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="import" Type="Boolean" Nullable="false" />
+          <Property Name="value" Type="Int32" Nullable="false" />
+          <Property Name="recieveDate" Type="DateTime" Precision="0" />
+          <Property Name="other" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="currentCredit" Type="Int32" />
+          <Property Name="doctorId" Type="Int32" />
+          <Property Name="employeeId" Type="Int32" />
+          <Property Name="companyId" Type="Int32" />
+          <NavigationProperty Name="company" Relationship="teethLabModel.FK_money_company" FromRole="money" ToRole="company" />
+          <NavigationProperty Name="doctor" Relationship="teethLabModel.FK_money_doctor" FromRole="money" ToRole="doctor" />
+          <NavigationProperty Name="employee" Relationship="teethLabModel.FK_money_employee" FromRole="money" ToRole="employee" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="enterDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="companyProducts" Relationship="teethLabModel.FK_companyProducts_product" FromRole="product" ToRole="companyProduct" />
+          <NavigationProperty Name="ProductUnits" Relationship="teethLabModel.FK_ProductUnits_product" FromRole="product" ToRole="ProductUnit" />
+        </EntityType>
+        <EntityType Name="ProductUnit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productId" Type="Int32" />
+          <Property Name="unitId" Type="Int32" />
+          <NavigationProperty Name="product" Relationship="teethLabModel.FK_ProductUnits_product" FromRole="ProductUnit" ToRole="product" />
+          <NavigationProperty Name="Unit" Relationship="teethLabModel.FK_ProductUnits_Units" FromRole="ProductUnit" ToRole="Unit" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="unit1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductUnits" Relationship="teethLabModel.FK_ProductUnits_Units" FromRole="Unit" ToRole="ProductUnit" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_caseDoctorPrices_case">
+          <End Type="teethLabModel.CurrentCas" Role="CurrentCas" Multiplicity="0..1" />
+          <End Type="teethLabModel.caseDoctorPrice" Role="caseDoctorPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrentCas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="caseDoctorPrice">
+              <PropertyRef Name="caseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_caseDoctorPrices_doctor">
+          <End Type="teethLabModel.doctor" Role="doctor" Multiplicity="0..1" />
+          <End Type="teethLabModel.caseDoctorPrice" Role="caseDoctorPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="caseDoctorPrice">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactions_case">
+          <End Type="teethLabModel.CurrentCas" Role="CurrentCas" Multiplicity="0..1" />
+          <End Type="teethLabModel.CaseTransaction" Role="CaseTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrentCas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CaseTransaction">
+              <PropertyRef Name="caseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactions_doctor">
+          <End Type="teethLabModel.doctor" Role="doctor" Multiplicity="0..1" />
+          <End Type="teethLabModel.CaseTransaction" Role="CaseTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CaseTransaction">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_companyProducts_company">
+          <End Type="teethLabModel.company" Role="company" Multiplicity="1" />
+          <End Type="teethLabModel.companyProduct" Role="companyProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="companyProduct">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_money_company">
+          <End Type="teethLabModel.company" Role="company" Multiplicity="0..1" />
+          <End Type="teethLabModel.money" Role="money" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="money">
+              <PropertyRef Name="companyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_companyProducts_product">
+          <End Type="teethLabModel.product" Role="product" Multiplicity="1" />
+          <End Type="teethLabModel.companyProduct" Role="companyProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="companyProduct">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_doctorPhones_doctor">
+          <End Type="teethLabModel.doctor" Role="doctor" Multiplicity="1" />
+          <End Type="teethLabModel.doctorPhone" Role="doctorPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="doctorPhone">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_money_doctor">
+          <End Type="teethLabModel.doctor" Role="doctor" Multiplicity="0..1" />
+          <End Type="teethLabModel.money" Role="money" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="money">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeeMoney_employee">
+          <End Type="teethLabModel.employee" Role="employee" Multiplicity="0..1" />
+          <End Type="teethLabModel.employeeMoney" Role="employeeMoney" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employeeMoney">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_money_employee">
+          <End Type="teethLabModel.employee" Role="employee" Multiplicity="0..1" />
+          <End Type="teethLabModel.money" Role="money" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="money">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductUnits_product">
+          <End Type="teethLabModel.product" Role="product" Multiplicity="0..1" />
+          <End Type="teethLabModel.ProductUnit" Role="ProductUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductUnit">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductUnits_Units">
+          <End Type="teethLabModel.Unit" Role="Unit" Multiplicity="0..1" />
+          <End Type="teethLabModel.ProductUnit" Role="ProductUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProductUnit">
+              <PropertyRef Name="unitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="teethLabModelStoreContainer" CdmEntityContainer="teethLabEntities">
+          <EntitySetMapping Name="caseDoctorPrices">
+            <EntityTypeMapping TypeName="teethLabModel.caseDoctorPrice">
+              <MappingFragment StoreEntitySet="caseDoctorPrices">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="caseId" ColumnName="caseId" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseTransactions">
+            <EntityTypeMapping TypeName="teethLabModel.CaseTransaction">
+              <MappingFragment StoreEntitySet="CaseTransactions">
+                <ScalarProperty Name="LR8" ColumnName="LR8" />
+                <ScalarProperty Name="LR7" ColumnName="LR7" />
+                <ScalarProperty Name="LR6" ColumnName="LR6" />
+                <ScalarProperty Name="LR5" ColumnName="LR5" />
+                <ScalarProperty Name="LR4" ColumnName="LR4" />
+                <ScalarProperty Name="LR3" ColumnName="LR3" />
+                <ScalarProperty Name="LR2" ColumnName="LR2" />
+                <ScalarProperty Name="LR1" ColumnName="LR1" />
+                <ScalarProperty Name="LL8" ColumnName="LL8" />
+                <ScalarProperty Name="LL7" ColumnName="LL7" />
+                <ScalarProperty Name="LL6" ColumnName="LL6" />
+                <ScalarProperty Name="LL5" ColumnName="LL5" />
+                <ScalarProperty Name="LL4" ColumnName="LL4" />
+                <ScalarProperty Name="LL3" ColumnName="LL3" />
+                <ScalarProperty Name="LL2" ColumnName="LL2" />
+                <ScalarProperty Name="LL1" ColumnName="LL1" />
+                <ScalarProperty Name="UR8" ColumnName="UR8" />
+                <ScalarProperty Name="UR7" ColumnName="UR7" />
+                <ScalarProperty Name="UR6" ColumnName="UR6" />
+                <ScalarProperty Name="UR5" ColumnName="UR5" />
+                <ScalarProperty Name="UR4" ColumnName="UR4" />
+                <ScalarProperty Name="UR3" ColumnName="UR3" />
+                <ScalarProperty Name="UR2" ColumnName="UR2" />
+                <ScalarProperty Name="UR1" ColumnName="UR1" />
+                <ScalarProperty Name="UL8" ColumnName="UL8" />
+                <ScalarProperty Name="UL7" ColumnName="UL7" />
+                <ScalarProperty Name="UL6" ColumnName="UL6" />
+                <ScalarProperty Name="UL5" ColumnName="UL5" />
+                <ScalarProperty Name="UL4" ColumnName="UL4" />
+                <ScalarProperty Name="UL3" ColumnName="UL3" />
+                <ScalarProperty Name="UL2" ColumnName="UL2" />
+                <ScalarProperty Name="UL1" ColumnName="UL1" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="caseId" ColumnName="caseId" />
+                <ScalarProperty Name="prova" ColumnName="prova" />
+                <ScalarProperty Name="isOut" ColumnName="isOut" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="deliverDate" ColumnName="deliverDate" />
+                <ScalarProperty Name="recieveDate" ColumnName="recieveDate" />
+                <ScalarProperty Name="patientName" ColumnName="patientName" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="caseColor3" ColumnName="caseColor3" />
+                <ScalarProperty Name="caseColor2" ColumnName="caseColor2" />
+                <ScalarProperty Name="caseColor1" ColumnName="caseColor1" />
+                <ScalarProperty Name="caseNumber" ColumnName="caseNumber" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="companies">
+            <EntityTypeMapping TypeName="teethLabModel.company">
+              <MappingFragment StoreEntitySet="company">
+                <ScalarProperty Name="enterDate" ColumnName="enterDate" />
+                <ScalarProperty Name="credit" ColumnName="credit" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="companyProducts">
+            <EntityTypeMapping TypeName="teethLabModel.companyProduct">
+              <MappingFragment StoreEntitySet="companyProducts">
+                <ScalarProperty Name="enterDate" ColumnName="enterDate" />
+                <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrentCases">
+            <EntityTypeMapping TypeName="teethLabModel.CurrentCas">
+              <MappingFragment StoreEntitySet="CurrentCases">
+                <ScalarProperty Name="defaultPrice" ColumnName="defaultPrice" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="doctors">
+            <EntityTypeMapping TypeName="teethLabModel.doctor">
+              <MappingFragment StoreEntitySet="doctor">
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="doctorPhones">
+            <EntityTypeMapping TypeName="teethLabModel.doctorPhone">
+              <MappingFragment StoreEntitySet="doctorPhones">
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="teethLabModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="defaultSalary" ColumnName="defaultSalary" />
+                <ScalarProperty Name="credit" ColumnName="credit" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeeMoneys">
+            <EntityTypeMapping TypeName="teethLabModel.employeeMoney">
+              <MappingFragment StoreEntitySet="employeeMoney">
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="isOff" ColumnName="isOff" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="moneys">
+            <EntityTypeMapping TypeName="teethLabModel.money">
+              <MappingFragment StoreEntitySet="money">
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="currentCredit" ColumnName="currentCredit" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="other" ColumnName="other" />
+                <ScalarProperty Name="recieveDate" ColumnName="recieveDate" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="import" ColumnName="import" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="teethLabModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="enterDate" ColumnName="enterDate" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductUnits">
+            <EntityTypeMapping TypeName="teethLabModel.ProductUnit">
+              <MappingFragment StoreEntitySet="ProductUnits">
+                <ScalarProperty Name="unitId" ColumnName="unitId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="teethLabModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="teethLabModel.Unit">
+              <MappingFragment StoreEntitySet="Units">
+                <ScalarProperty Name="unit1" ColumnName="unit" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="teethLabModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

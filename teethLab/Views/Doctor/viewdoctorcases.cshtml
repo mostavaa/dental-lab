@@ -1,0 +1,328 @@
+﻿@helper renderTable(List<teethLab.transaction> transactions)
+{
+    foreach (teethLab.transaction transaction in transactions)
+    {
+        <tr>
+
+            <td>@transaction.notes</td>
+            @{
+
+        DateTime toRecDay = (DateTime)transaction.toRecieveDate;
+        string date = toRecDay.ToString("yyyy-MM-dd");
+            }
+            <td>@date</td>
+            <td>@transaction.patientName</td>
+            <td>@transaction.caseColor</td>
+            @{
+        string caseName = transaction.CurrentCas.name;
+            }
+            <td>
+                CurrentCasName
+                @{
+        string caseTeeth = transaction.caseTeeth;
+        string[] casess = caseTeeth.Split('#');
+        string ul = casess[0].Split('$')[0];
+        string ur = casess[1].Split('$')[0];
+        string ll = casess[2].Split('$')[0];
+        string lr = casess[3].Split('$')[0];
+        List<string> ulList = ul.Split(',').ToList();
+        ulList.Remove("");
+        List<string> urList = ur.Split(',').ToList();
+        urList.Remove("");
+        List<string> llList = ll.Split(',').ToList();
+        llList.Remove("");
+        List<string> lrList = lr.Split(',').ToList();
+        lrList.Remove("");
+                }
+                <div style="position:relative">
+                    <div id="" class="colShadeFollow ul" style="">
+                        &nbsp;&nbsp;
+                        @{
+        int noOfUnits = 0;
+        for (int i = ulList.Count - 1; i >= 0; i--)
+        {
+            noOfUnits++;
+            <a href="#" class="img-circle crossNumberFollow upper" data-on="1" style="float:right">@ulList[i]</a>
+        }
+                        }
+                    </div>
+
+                    <div class="" style="
+    position:absolute;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    ">
+                        <img style="width:5px;height:68px;" src="~/Content/images/controls/VrLineWhite.png" />
+                    </div>
+
+                    <div id="" class="colShadeFollow ur" style="">
+                        @{
+
+        for (int i = 0; i < urList.Count; i++)
+        {
+            noOfUnits++;
+            <a href="#" class="img-circle crossNumberFollow upper" data-on="1" style="float:left">@urList[i]</a>
+        }
+                        }
+
+                    </div>
+
+                    <div style="width:100%;">
+                        <img style="width:100%;height:15px;" src="~/Content/images/controls/HorizontalLinewhite.png" />
+                    </div>
+
+                    <div id="" class="colShadeFollow ll" style="">
+                        &nbsp;&nbsp;
+                        @{
+        for (int i = llList.Count - 1; i >= 0; i--)
+        {
+            noOfUnits++;
+            <a href="#" class="img-circle crossNumberFollow upper" data-on="1" style="float:right">@llList[i]</a>
+        }
+                        }
+
+                    </div>
+                    <div id="" class="colShadeFollow lr" style="">
+
+                        @{
+        for (int i = 0; i < lrList.Count; i++)
+        {
+            noOfUnits++;
+
+            <a href="#" class="img-circle crossNumberFollow upper" data-on="1" style="float:left">@lrList[i]</a>
+        }
+                        }
+                    </div>
+
+                </div>
+
+            </td>
+            @{
+        teethLab.teethLabEntities db = new teethLab.teethLabEntities();
+        int caseId = transaction.CurrentCas.id;
+        int docId = transaction.doctor.id;
+
+        int casePrice = db.caseDoctorPrices.Where(o => o.doctorId == docId && o.caseId == caseId).First().price;
+            }
+            <td>@transaction.doctor.name</td>
+            <td>@transaction.actualCaseNumber</td>
+            <td>@transaction.recieveDate.ToString("yyyy-MM-dd")</td>
+            <td>CurrentCasPrice</td>
+            <td>@noOfUnits</td>
+            <td>@transaction.price</td>
+            <td>
+                <form method="post" action="@Url.Action("Print", "Transaction")">
+                    <input type="hidden" name="transId" value="@transaction.id" />
+                    <input type="submit" value="Print" class="btn btn-primary" />
+                </form>
+            </td>
+        </tr>
+    }
+
+}
+
+@{
+    ViewBag.Title = "Client Cases";
+    int docid = (int)ViewData["docid"];
+
+
+
+
+    teethLab.teethLabEntities db = new teethLab.teethLabEntities();
+    List<teethLab.transaction> inputCases = new List<teethLab.transaction>();
+    if (db.transactions.Where(t => t.doctorId == docid).Count() > 0)
+    {
+        inputCases = db.transactions.Where(t => t.doctorId == docid).OrderByDescending(o=>o.recieveDate).ToList();
+    }
+
+    
+}
+
+<style>
+    .tabsFollow {
+        background-color: #99c2e1;
+        color: #012b43;
+        height: 40px;
+        text-align: center;
+        font-size: x-large;
+    }
+
+    .buttonsFollow {
+        position: relative;
+        float: left;
+        background-color: white;
+        color: #012b43;
+        text-align: center;
+        height: 25px;
+        border-radius: 5px;
+        width: 10%;
+    }
+
+    .colShadeFollow {
+        position: relative;
+        float: left;
+        width: 45%;
+        margin: 0 7px;
+    }
+
+        .colShadeFollow a {
+            position: relative;
+            float: left;
+            background-color: #012b43;
+            color: white;
+            width: 11%;
+            height: 23px;
+        }
+
+    .crossNumberFollow[data-on='0'] {
+        position: relative;
+        float: left;
+        background-color: #012b43;
+        color: white;
+    }
+
+    .crossNumberFollow[data-on='1'] {
+        position: relative;
+        float: left;
+        background-color: red;
+        color: white;
+    }
+
+    .mytable {
+        background-color: #99c2e1;
+        color: #012b43;
+        text-align: center;
+    }
+
+    .mytable, th, td {
+        border: 3px solid #012b43;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+
+<div class="">
+    <div class="container">
+
+        <div style="text-align:center;">
+            <h1 style="text-transform:capitalize;color:#99c2e1">Follow Up Cases</h1>
+        </div>
+
+
+        <br />
+        @{
+            teethLab.Controllers.doctormodel dm = new teethLab.Controllers.doctormodel();
+            int depit = dm.toDocSum(docid);
+            int credit = dm.FrmoDocSum(docid);
+            
+            int currentDepit = dm.getCurrentDoctorCredit(docid);
+        }
+        <label>Total Depit : @depit</label>
+        <label>Total Credit : @credit</label>
+        <label>Current Depit : @currentDepit</label>
+        <div id="inFollow">
+            @{
+                if (inputCases != null)
+                {
+
+                    <div id="newCasesInFollow">
+                        <div class="col-md-11" style="">
+                            <table class="mytable ">
+                                <thead>
+                                    <tr>
+
+                                        <th width="10%">Notes</th>
+                                        <th width="10%">Deliv. Date</th>
+                                        <th width="5%">Patient</th>
+                                        <th width="5%">Shade</th>
+                                        <th width="30%">Case</th>
+                                        <th width="5%">Doctor</th>
+                                        <th width="5%">Case No</th>
+
+                                        <th width="10%">Enter Date</th>
+
+
+                                        <th width="5%">Unit Price</th>
+                                        <th width="5%">No of Units</th>
+                                        <th width="5%">Total Prices</th>
+                                        <th width="5%">Print</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @renderTable(inputCases)
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="col-md-1">
+                            <img src="~/Content/images/controls/newCasesCaseIn.png" />
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+
+                }
+            }
+ 
+        </div>
+        <div class="row">
+            <h1>Money From Doctor</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Receipt No.</th>
+                        <th>Cash</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        db = new teethLab.teethLabEntities();
+                        foreach(teethLab.money m in  db.moneys.Where(d=>d.doctorId == docid).OrderByDescending(o=>o.moneyDay.day)){
+                            <tr>
+                                <td>@m.receiptno</td>
+                                <td>@m.value</td>
+                                <td>@m.moneyDay.day.ToString("yyyy-MM-dd")</td>
+                            </tr>
+                        }
+                        
+                    }
+                </tbody>
+            </table>
+        </div>
+            <form class="form-inline" method="post" action="@Url.Action("Report","Doctor")">
+                <input type="hidden" value="@docid" name="docid" />
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>From Date</label>
+                        </div>
+                        <div class="col-md-8 ">
+                            <input type="date" required class="form-control" name="fromDate" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label>To Date</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="date" required class="form-control" name="toDate" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="submit" class="btn btn-default" value="Report" />
+                </div>
+            </form>
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script></script>
+}

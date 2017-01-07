@@ -1,12 +1,14 @@
 ﻿@model teethLab.product
 
 @{
+    var units = (List<teethLab.@ProductUnit>)ViewBag.units;
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -30,16 +32,32 @@
             @Html.EditorFor(model => model.notes)
             @Html.ValidationMessageFor(model => model.notes)
         </div>
-
+        <div id="units">
+            <h3>Units</h3>
+            @{
+    teethLab.teethLabEntities db = new teethLab.teethLabEntities();
+    foreach (var item in db.Units)
+    {
         <div class="editor-label">
+            <label>@item.unit1</label>  
+        </div>
+        string check = units.Where(u => u.unitId == item.id).Count() > 0 ? "checked" : "";
+                <div class="editor-field">
+                    <input type="checkbox" name="units[]" value="@item.id" @check/>
+                </div>
+    }
+            }
+        </div>
+
+        @*<div class="editor-label">
             @Html.LabelFor(model => model.enterDate)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.enterDate)
             @Html.ValidationMessageFor(model => model.enterDate)
-        </div>
+        </div>*@
 
-     
+
 
         <p>
             <input type="submit" value="Save" />

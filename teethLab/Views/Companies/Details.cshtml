@@ -1,0 +1,36 @@
+﻿@model teethLab.company
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>company</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.credit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.credit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.enterDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.enterDate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

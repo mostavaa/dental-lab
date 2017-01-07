@@ -217,7 +217,7 @@ namespace teethLab.Controllers
                     return;
                 }
                 //tran.caseTeeth = caseTeeth;
-                tran.caseColor = caseColor;
+                tran.caseColor1 = caseColor;
                 tran.price = price;
                 tran.patientName = patientName;
                 tran.deliverDate = recieveDate;

@@ -47,6 +47,13 @@
                 </div>
     }
             }
+            <div class="editor-label">
+                <label>New Unit</label>
+            </div>
+            <div class="editor-field">
+                <input type="text" name="newUnit" id="newUnit" />
+                <input type="button" value="Add New Unit" id="add" />
+            </div>
         </div>
 
         @*<div class="editor-label">
@@ -71,4 +78,24 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+        $("#add").click(function () {
+            newUnit = $("#newUnit").val();
+            if (newUnit != null && newUnit != "") {
+                $.post("@Url.Action("addNewUnit","Products")", "newUnit=" + newUnit, function (res) {
+                    if (res.split(',')[0] == "success") {
+                        output = "<div class=\"editor-label\">"
+        + "<label>" + newUnit + "</label>"
+    + "</div>"
+     + "<div class=\"editor-field\">"
+          + "<input type=\"checkbox\" name=\"units[]\" checked=\"checked\" value=\"" + res.split(',')[1] + "\" />"
+       + "</div>";
+                        $("#units").append(output);
+                    }
+                });
+            }
+        });
+    });
+</script>
 }

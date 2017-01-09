@@ -151,6 +151,7 @@
     <Compile Include="Controllers\MoneyController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
+    <Compile Include="Controllers\UnitsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CurrentCas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -511,11 +512,15 @@
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Views\CompanyProducts\Index.cshtml" />
-    <Content Include="Views\CompanyProducts\Details.cshtml" />
     <Content Include="Views\CompanyProducts\Create.cshtml" />
     <Content Include="Views\CompanyProducts\Edit.cshtml" />
     <Content Include="Views\CompanyProducts\Delete.cshtml" />
     <Content Include="Views\CompanyProducts\ProductUnits.cshtml" />
+    <Content Include="Views\Units\Index.cshtml" />
+    <Content Include="Views\Units\Details.cshtml" />
+    <Content Include="Views\Units\Create.cshtml" />
+    <Content Include="Views\Units\Edit.cshtml" />
+    <Content Include="Views\Units\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

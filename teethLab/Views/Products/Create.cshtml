@@ -71,12 +71,12 @@
                 newUnit = $("#newUnit").val();
                 if (newUnit != null && newUnit != "") {
                     $.post("@Url.Action("addNewUnit","Products")", "newUnit=" + newUnit, function (res) {
-                        if (res == "success") {
+                        if (res.split(',')[0] == "success") {
                             output = "<div class=\"editor-label\">"
             + "<label>" + newUnit + "</label>"
         + "</div>"
          + "<div class=\"editor-field\">"
-          + "<input type=\"checkbox\" name=\"units[]\" checked=\"checked\" value=\"" + newUnit + "\" />"
+          + "<input type=\"checkbox\" name=\"units[]\" checked=\"checked\" value=\"" + res.split(',')[1] + "\" />"
            + "</div>";
                             $("#units").append(output);
                         }

@@ -14,25 +14,12 @@
         <legend>companyProduct</legend>
 
         @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.productId)
+        @Html.HiddenFor(model => model.companyId)
+        @Html.HiddenFor(model => model.enterDate)
+        @Html.HiddenFor(model => model.unit)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.productId, "product")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("productId", String.Empty)
-            @Html.ValidationMessageFor(model => model.productId)
-        </div>
-        <div id="ProductUnits" >
-            @{ Html.RenderPartial("ProductUnits", new ViewDataDictionary { { "units", ViewBag.unit } });}
-        </div>
-      
-        @*<div class="editor-label">
-            @Html.LabelFor(model => model.unit)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.unit)
-            @Html.ValidationMessageFor(model => model.unit)
-        </div>*@
+
 
         <div class="editor-label">
             @Html.LabelFor(model => model.quantity)
@@ -49,20 +36,8 @@
             @Html.EditorFor(model => model.unitPrice)
             @Html.ValidationMessageFor(model => model.unitPrice)
         </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.companyId, "company")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("companyId", String.Empty)
-            @Html.ValidationMessageFor(model => model.companyId)
-        </div>
-        @*<div class="editor-label">
-            @Html.LabelFor(model => model.enterDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.enterDate)
-            @Html.ValidationMessageFor(model => model.enterDate)
-        </div>*@
+
+  
 
         <p>
             <input type="submit" value="Save" />

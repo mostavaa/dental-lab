@@ -18,34 +18,26 @@
             @Html.LabelFor(model => model.productId, "product")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("productId", String.Empty)
+            <select id="productId" name="productId">
+                <option></option>
+                @{
+    teethLab.teethLabEntities db = new teethLab.teethLabEntities();
+    foreach (var item in db.products)
+    {
+        if (Request.QueryString["productid"] == ""+item.id)
+        {
+            <option selected value="@item.id">@item.name</option>
+
+        }
+        else
+        {
+            <option value="@item.id">@item.name</option>
+        }
+    }
+}
+            </select>
+        
             @Html.ValidationMessageFor(model => model.productId)
-        </div>
-        <div id="ProductUnits" class="hide">
-            @{ Html.RenderPartial("ProductUnits", new ViewDataDictionary { { "units", ViewBag.unit } });}
-        </div>
-        @*<div class="editor-label">
-            @Html.LabelFor(model => model.unit)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.unit)
-            @Html.ValidationMessageFor(model => model.unit)
-        </div>*@
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.quantity)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.quantity)
-            @Html.ValidationMessageFor(model => model.quantity)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.unitPrice)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.unitPrice)
-            @Html.ValidationMessageFor(model => model.unitPrice)
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.companyId, "company")
@@ -54,13 +46,45 @@
             @Html.DropDownList("companyId", String.Empty)
             @Html.ValidationMessageFor(model => model.companyId)
         </div>
-        @*<div class="editor-label">
-            @Html.LabelFor(model => model.enterDate)
+
+        <div id="ProductUnits">
+
+            @{
+               List<teethLab.ProductUnit> ProductUnits = (List<teethLab.ProductUnit>)ViewBag.ProductUnits;
+               if (ProductUnits != null)
+               {
+                <div class="row companyProducts">
+                    @foreach (var item in ProductUnits)
+                    {
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>@item.Unit.unit1</label>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Unit Price</label>
+                                @{
+                        string unitName = "unit" + item.Unit.unit1;
+                                }
+                                <input type="number" name="@unitName" />
+                            </div>
+                            <div class="col-md-4">
+                                @{
+                        string quanName = "quan" + item.Unit.unit1;
+                                }
+                                <label>Quantity</label>
+                                <input type="number" name="@quanName" />
+                            </div>
+
+                        </div>
+
+                    }
+                </div>
+
+               }
+
+            }
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.enterDate)
-            @Html.ValidationMessageFor(model => model.enterDate)
-        </div>*@
+      
 
         <p>
             <input type="submit" value="Create" />
@@ -79,11 +103,8 @@
         $(document).ready(function () {
 
             $("#productId").on('change', function () {
-                debugger;
                 if ($(this).val != '') {
-
-                    $('#ProductUnits').removeClass('hide');
-                    $.post("@Url.Action("GetProductUnits", "CompanyProducts")", "productId=" + $(this).val());
+                    document.location.href = "/CompanyProducts/Create?productId=" + $(this).val();
                 }
             });
 

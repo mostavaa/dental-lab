@@ -28,7 +28,7 @@ namespace teethLab.Controllers
         {
             product product = db.products.Find(id);
             ViewBag.units = product.ProductUnits.ToList();
-            
+
             if (product == null)
             {
                 return HttpNotFound();
@@ -102,11 +102,10 @@ namespace teethLab.Controllers
             List<ProductUnit> produnits = editproduct.ProductUnits.ToList();
             string[] units = Request.Form["units[]"].Split(',');
 
-            foreach (var item in produnits)
+            foreach (var item in db.ProductUnits.Where(o => o.productId == product.id))
             {
-                db.ProductUnits.Remove(item);
+                db.Entry(item).State = EntityState.Deleted;
             }
-            
             foreach (var item in units)
             {
                 ProductUnit pu = new ProductUnit();
@@ -118,7 +117,7 @@ namespace teethLab.Controllers
             db.products.AddOrUpdate(product);
             if (ModelState.IsValid)
             {
-               // db.Entry(product).State = EntityState.Modified;
+                // db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -162,7 +161,7 @@ namespace teethLab.Controllers
                     Unit unit = new Unit { unit1 = newUnit };
                     db.Units.Add(unit);
                     db.SaveChanges();
-                    Response.Write("success");
+                    Response.Write("success,"+unit.id);
                 }
             }
         }

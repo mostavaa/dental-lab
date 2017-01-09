@@ -95,12 +95,21 @@
         height:50px;
     }
 </style>
+@{
+    DateTime myDay = (DateTime)ViewData["day"];
+}
+<form action="@Url.Action("inputCase", "Transaction")" method="post" onsubmit="return validate();">
+    <input type="hidden" class="" value="@myDay.ToString("yyyy-MM-dd")" name="day" id="day" />
+
 <div class="alert-box ss-dialog hideit" style="text-align:center">
     <div class="row">
         <a id="heading"><img class="" src="~/Content/images/controls/Case-InTxt.png" /></a>
         <h1 style="display:inline" id="caseNo2ndPage">CaseNo</h1> - <h2 style="display:inline" id="statu2ndPage">New</h2>
+        <input type="hidden" name="caseId" />
+        <input type="hidden" name="caseNumber" />
+        <input type="hidden" name="status" />
     </div>
-    <br />
+    
     <div class="row">
         @{
 
@@ -108,7 +117,7 @@
         }
 
 
-        <select id="doctor" class="select" style="width:70%">
+        <select id="doctor" name="doctor" class="select" style="width:70%;margin-bottom:5px!important">
             <option value="">Doctor</option>
             @{
                 foreach (teethLab.doctor doc in doctors)
@@ -118,11 +127,13 @@
             }
         </select>
     </div>
-    <br />
+    
     <div class="row">
         <div class="col" style="margin-left: 15%">
-            <div class="select" style="width:100%">
-                <a href="#" class="picker" id="pickColor">Pick/Change</a><p id="shadeColor" style="">Shade</p>
+            <div class="select " style="width:100%">
+                <input type="hidden" name="shadeColor1" />
+
+                <a href="#" class="picker pickColor" id="">Pick/Change</a><p class="shadeColor" style="">Shade</p>
                 <div id="popup" style="display:none;position:fixed;width:100%;height:100%;top:0;left:0;z-index:999;">
                     <div id="popupback" style="position:absolute;width:100%;height:100%;background-color:grey;opacity:0.5;z-index:1;"></div>
                     <div id="popupcontent" style="position:relative; width:80%;height:80%;background-color:#002a42;border:1px solid blue;border-radius:5px;margin:100px auto;z-index:2;">
@@ -246,16 +257,29 @@
 
                 </div>
 
-
             </div>
         </div>
-        <div class="col" style="margin-left:1%;">
+
+        <div class="col " style="margin-left:1%;">
+            <div class="select " style="width:100%">
+                <input type="hidden" name="shadeColor2" />
+
+                <a href="#" class="picker pickColor" id="">Pick/Change</a><p class="shadeColor" style="">Shade</p>
+                </div>
+            </div>
+        <div class="col " style="margin-left:15%;">
+            <div class="select " style="width:100%">
+                <input type="hidden" name="shadeColor3" />
+                <a href="#" class="picker pickColor" id="">Pick/Change</a><p class="shadeColor" style="">Shade</p>
+                </div>
+            </div>
+        <div class="col " style="margin-left:1%;">
             @{
 
                 var cases = (List<teethLab.CurrentCas>)ViewData["cases"];
             }
 
-            <select id="case" class="select" style="width:100%">
+            <select id="case" name="selectedCase" class="select" style="width:100%">
                 <option value="">Case</option>
                 @{
                     foreach (teethLab.CurrentCas casee in cases)
@@ -270,28 +294,28 @@
         <br />
         <div id="ul" class="colShade" style="margin-left:17%;">
 
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style=" ">8</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">7</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">6</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">5</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">4</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">3</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">2</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">1</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">8<input type="hidden" name="UL8"value="0"/></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">7<input type="hidden" name="UL7"value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">6<input type="hidden" name="UL6"value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">5<input type="hidden" name="UL5"value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">4<input type="hidden" name="UL4"value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">3<input type="hidden" name="UL3"value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">2<input type="hidden" name="UL2"value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">1<input type="hidden" name="UL1"value="0" /></a>
         </div>
         <div class="colLine" style="">
             <img style="width:100%;height:70px;" src="~/Content/images/controls/HrLine.png" />
         </div>
         <div id="ur" class="colShade" style="margin-left:6.5%;">
 
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">1</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">2</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">3</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">4</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">5</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">6</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">7</a>
-            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">8</a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">1<input type="hidden" name="UR1" value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">2<input type="hidden" name="UR2" value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">3<input type="hidden" name="UR3" value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">4<input type="hidden" name="UR4" value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">5<input type="hidden" name="UR5" value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">6<input type="hidden" name="UR6" value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">7<input type="hidden" name="UR7" value="0" /></a>
+            <a href="#" class="img-circle crossNumber upperCase" data-on="0" style="">8<input type="hidden" name="UR8" value="0" /></a>
         </div>
         <div class="full">
             <img id="fullUpper" src="~/Content/images/controls/Full.png" />
@@ -302,59 +326,143 @@
         </div>
         <div id="ll" class="colShade" style="margin-left:17%;">
 
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">8</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">7</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">6</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">5</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">4</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">3</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">2</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">1</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">8<input type="hidden" name="LL8" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">7<input type="hidden" name="LL7" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">6<input type="hidden" name="LL6" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">5<input type="hidden" name="LL5" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">4<input type="hidden" name="LL4" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">3<input type="hidden" name="LL3" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">2<input type="hidden" name="LL2" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">1<input type="hidden" name="LL1" value="0" /></a>
         </div>
         <div id="lr" class="colShade" style="margin-left:6.5%;">
 
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style=" ">1</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">2</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">3</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">4</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">5</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">6</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">7</a>
-            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">8</a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">1<input type="hidden" name="LR1" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">2<input type="hidden" name="LR2" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">3<input type="hidden" name="LR3" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">4<input type="hidden" name="LR4" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">5<input type="hidden" name="LR5" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">6<input type="hidden" name="LR6" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">7<input type="hidden" name="LR7" value="0" /></a>
+            <a href="#" class="img-circle crossNumber lowerCase" data-on="0" style="">8<input type="hidden" name="LR8" value="0" /></a>
         </div>
         <div class="full">
             <img id="fullLower" src="~/Content/images/controls/Full.png" />
         </div>
-        <br />
+        
     </div>
-    <br />
+    
     <div class="row">
         <div class="col" style="margin-left: 15%">
             <div class="" style="width:100%">
-                <input id="recieveDate" class="select" style="" placeholder="Deliver Date" type="date" />
+                <input id="recieveDate" required name="recieveDate" class="select" style="" placeholder="Deliver Date" type="date" />
             </div>
         </div>
         <div class="col" style="margin-left:1%;">
-            <input type="text" class="select" id="patientName" placeholder="Patient Name" />
+            <input type="text" class="select" name="patientName" id="patientName" placeholder="Patient Name" />
         </div>
     </div>
-    <br />
     <div class="row">
         
-        <input type="text" class="select" style="width:70%;margin:0 auto!important; " id="notes" placeholder="Notes" />
+        <input type="text" class="select" style="width:70%;margin:0 auto!important; " id="notes" name="Notes" placeholder="Notes" />
         
     </div>
     <br />
     <div class="row">
 
-        <div class="" style="margin-left: 15%">
-            <a href="#" id="backToCaseIn" data-statu="" style="width:10%;" class="picker">Back</a>
+        <div class="" style="margin-left: 9%">
+            <a href="#" id="backToCaseIn" data-statu="" style="width:10%;" class="picker"><input type="submit" value="Back" /></a>
 
             <a href="#" id="outPrint" style="display:none; margin-left:16%; width:30%;" data-statu="outCase" class="picker">Out + Print Bill</a>
 
-            <a href="#" id="inputBtn" style="margin-left:62%; width:10%;" data-statu="" class="picker">Done</a>
+            <a href="#" id="inputBtn" style="margin-left:62%; width:10%;" data-statu="" class="picker"><input type="submit" value="Done"/></a>
 
 
         </div>
     </div>
 </div>
+</form>
+<script>
+    function validate() {
+        id = $("#caseNo2ndPage").html();
+        action = $(this).attr("data-statu");
+        doctorId = $("#doctor").val();
+        if (doctorId == "" || doctorId == null || isNaN(doctorId)) {
+            alert("You Should Select Doctor !");
+
+            return false;
+
+        }
+        doctorName = $("#doctor option:selected").text();
+
+        caseId = $("#case").val();
+        if (caseId == "" || caseId == null || isNaN(caseId)) {
+            alert("You Should Select Case !");
+            return false;
+        }
+        caseName = $("#case option:selected").text();
+        caseColor = $("input[name=shadeColor1]").val();
+        if (caseColor == "" || caseColor == null || caseColor == "Shade") {
+            alert("You Should Pick Color1 !");
+            return false;
+        }
+
+        caseColor = $("input[name=shadeColor2]").val();
+        if (caseColor == "" || caseColor == null || caseColor == "Shade") {
+            alert("You Should Pick Color2 !");
+            return false;
+        }
+
+        caseColor = $("input[name=shadeColor3]").val();
+        if (caseColor == "" || caseColor == null || caseColor == "Shade") {
+            alert("You Should Pick Color3 !");
+            return false;
+        }
+        patientName = $("#patientName").val();
+        recieveDate = $("#recieveDate").val();
+
+
+        notes = $("#notes").val();
+        day = $("#day").val();
+
+        numCases = 0;
+        ul = "";
+        $("#ul .crossNumber[data-on='1']").each(function () {
+            ul += $(this).html() + ",";
+            numCases++;
+        });
+        ul = ul.substring(0, ul.length - 1);
+        ul += "$ul";
+
+        ur = "";
+        $("#ur .crossNumber[data-on='1']").each(function () {
+            ur += $(this).html() + ",";
+            numCases++;
+        });
+        ur = ur.substring(0, ur.length - 1);
+        ur += "$ur";
+
+        ll = "";
+        $("#ll .crossNumber[data-on='1']").each(function () {
+            ll += $(this).html() + ",";
+            numCases++;
+        });
+        ll = ll.substring(0, ll.length - 1);
+        ll += "$ll";
+
+        lr = "";
+        $("#lr .crossNumber[data-on='1']").each(function () {
+            lr += $(this).html() + ",";
+            numCases++;
+        });
+        lr = lr.substring(0, lr.length - 1);
+        lr += "$lr";
+        if (numCases == 0) {
+            alert("يجب اختيار ارقام");
+            return false;
+        }
+
+        return true;
+
+    }
+</script>

@@ -20,7 +20,7 @@ namespace teethLab
         public string unit { get; set; }
         public int quantity { get; set; }
         public int unitPrice { get; set; }
-        public System.DateTime enterDate { get; set; }
+        public Nullable<System.DateTime> enterDate { get; set; }
     
         public virtual company company { get; set; }
         public virtual product product { get; set; }

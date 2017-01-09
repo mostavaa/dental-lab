@@ -25,7 +25,7 @@
           <Property Name="caseColor3" Type="nvarchar" MaxLength="50" />
           <Property Name="price" Type="int" Nullable="false" />
           <Property Name="patientName" Type="nvarchar" MaxLength="100" />
-          <Property Name="recieveDate" Type="datetime" Nullable="false" />
+          <Property Name="recieveDate" Type="datetime" />
           <Property Name="deliverDate" Type="datetime" />
           <Property Name="notes" Type="nvarchar" MaxLength="250" />
           <Property Name="isOut" Type="bit" />
@@ -84,7 +84,7 @@
           <Property Name="unit" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="quantity" Type="int" Nullable="false" />
           <Property Name="unitPrice" Type="int" Nullable="false" />
-          <Property Name="enterDate" Type="datetime" Nullable="false" />
+          <Property Name="enterDate" Type="datetime" />
         </EntityType>
         <EntityType Name="CurrentCases">
           <Key>
@@ -128,6 +128,8 @@
           <Property Name="val" Type="int" />
           <Property Name="isOff" Type="bit" Nullable="false" />
           <Property Name="employeeId" Type="int" />
+          <Property Name="payed" Type="bit" Nullable="false" />
+          <Property Name="recieveDate" Type="datetime" />
         </EntityType>
         <EntityType Name="money">
           <Key>
@@ -136,13 +138,14 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="import" Type="bit" Nullable="false" />
           <Property Name="value" Type="int" Nullable="false" />
-          <Property Name="recieveDate" Type="date" />
+          <Property Name="recieveDate" Type="datetime" />
           <Property Name="other" Type="nvarchar" MaxLength="50" />
           <Property Name="notes" Type="text" />
           <Property Name="currentCredit" Type="int" />
           <Property Name="doctorId" Type="int" />
           <Property Name="employeeId" Type="int" />
           <Property Name="companyId" Type="int" />
+          <Property Name="payed" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -506,7 +509,7 @@
           <Property Name="caseColor3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="price" Type="Int32" Nullable="false" />
           <Property Name="patientName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="recieveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="recieveDate" Type="DateTime" Precision="3" />
           <Property Name="deliverDate" Type="DateTime" Precision="3" />
           <Property Name="notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="isOut" Type="Boolean" />
@@ -569,7 +572,7 @@
           <Property Name="unit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
           <Property Name="unitPrice" Type="Int32" Nullable="false" />
-          <Property Name="enterDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="enterDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="company" Relationship="teethLabModel.FK_companyProducts_company" FromRole="companyProduct" ToRole="company" />
           <NavigationProperty Name="product" Relationship="teethLabModel.FK_companyProducts_product" FromRole="companyProduct" ToRole="product" />
         </EntityType>
@@ -624,6 +627,8 @@
           <Property Name="val" Type="Int32" />
           <Property Name="isOff" Type="Boolean" Nullable="false" />
           <Property Name="employeeId" Type="Int32" />
+          <Property Name="payed" Type="Boolean" Nullable="false" />
+          <Property Name="recieveDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="employee" Relationship="teethLabModel.FK_employeeMoney_employee" FromRole="employeeMoney" ToRole="employee" />
         </EntityType>
         <EntityType Name="money">
@@ -633,13 +638,14 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="import" Type="Boolean" Nullable="false" />
           <Property Name="value" Type="Int32" Nullable="false" />
-          <Property Name="recieveDate" Type="DateTime" Precision="0" />
+          <Property Name="recieveDate" Type="DateTime" Precision="3" />
           <Property Name="other" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="currentCredit" Type="Int32" />
           <Property Name="doctorId" Type="Int32" />
           <Property Name="employeeId" Type="Int32" />
           <Property Name="companyId" Type="Int32" />
+          <Property Name="payed" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="company" Relationship="teethLabModel.FK_money_company" FromRole="money" ToRole="company" />
           <NavigationProperty Name="doctor" Relationship="teethLabModel.FK_money_doctor" FromRole="money" ToRole="doctor" />
           <NavigationProperty Name="employee" Relationship="teethLabModel.FK_money_employee" FromRole="money" ToRole="employee" />
@@ -979,6 +985,8 @@
           <EntitySetMapping Name="employeeMoneys">
             <EntityTypeMapping TypeName="teethLabModel.employeeMoney">
               <MappingFragment StoreEntitySet="employeeMoney">
+                <ScalarProperty Name="recieveDate" ColumnName="recieveDate" />
+                <ScalarProperty Name="payed" ColumnName="payed" />
                 <ScalarProperty Name="employeeId" ColumnName="employeeId" />
                 <ScalarProperty Name="isOff" ColumnName="isOff" />
                 <ScalarProperty Name="val" ColumnName="val" />
@@ -989,6 +997,7 @@
           <EntitySetMapping Name="moneys">
             <EntityTypeMapping TypeName="teethLabModel.money">
               <MappingFragment StoreEntitySet="money">
+                <ScalarProperty Name="payed" ColumnName="payed" />
                 <ScalarProperty Name="companyId" ColumnName="companyId" />
                 <ScalarProperty Name="employeeId" ColumnName="employeeId" />
                 <ScalarProperty Name="doctorId" ColumnName="doctorId" />

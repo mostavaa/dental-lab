@@ -24,6 +24,7 @@ namespace teethLab
         public Nullable<int> doctorId { get; set; }
         public Nullable<int> employeeId { get; set; }
         public Nullable<int> companyId { get; set; }
+        public bool payed { get; set; }
     
         public virtual company company { get; set; }
         public virtual doctor doctor { get; set; }

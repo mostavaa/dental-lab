@@ -12,60 +12,43 @@
             }
             <td>@date</td>
             <td>@transaction.patientName</td>
-            <td>@transaction.caseColor</td>
+            <td>@transaction.caseColor1 - @transaction.caseColor2 -@transaction.caseColor3</td>
             @{
         string caseName = transaction.CurrentCas.name;
             }
             <td>
-                CurrentCasName
-                @{
-        string caseTeeth = "";
-        string[] casess = caseTeeth.Split('#');
-        string ul = casess[0].Split('$')[0];
-        string ur = casess[1].Split('$')[0];
-        string ll = casess[2].Split('$')[0];
-        string lr = casess[3].Split('$')[0];
-        List<string> ulList = ul.Split(',').ToList();
-        ulList.Remove("");
-        List<string> urList = ur.Split(',').ToList();
-        urList.Remove("");
-        List<string> llList = ll.Split(',').ToList();
-        llList.Remove("");
-        List<string> lrList = lr.Split(',').ToList();
-        lrList.Remove("");
-                }
+                @caseName
                 <div style="position:relative">
-                    <div id="" class="colShadeFollow ul" style="">
-                        &nbsp;&nbsp;
-                        @{
-        int noOfUnits = 0;
-        for (int i = ulList.Count - 1; i >= 0; i--)
-        {
-            noOfUnits++;
-            <a href="#" class="img-circle crossNumberFollow upper" data-on="1" style="float:right">@ulList[i]</a>
-        }
-                        }
+                    <div id="" class="colShadeFollow ul" style="float:left">
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UL8" style="float:right">8</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UL7" style="float:right">7</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UL6" style="float:right">6</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UL5" style="float:right">5</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UL4" style="float:right">4</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UL3" style="float:right">3</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UL2" style="float:right">2</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UL1" style="float:right">1</a>
+
                     </div>
 
                     <div class="" style="
     position:absolute;
-    left:0;
-    right:0;
-    margin-left:auto;
-    margin-right:auto;
+
     ">
-                        <img style="width:5px;height:68px;" src="~/Content/images/controls/VrLineWhite.png" />
+                        <img style="width:5px;height:68px;margin:1px 130px" src="~/Content/images/controls/VrLineWhite.png" />
                     </div>
 
-                    <div id="" class="colShadeFollow ur" style="">
-                        @{
+                    <div id="" class="colShadeFollow ur" style="float:right">
 
-        for (int i = 0; i < urList.Count; i++)
-        {
-            noOfUnits++;
-            <a href="#" class="img-circle crossNumberFollow upper" data-on="1" style="float:left">@urList[i]</a>
-        }
-                        }
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UR1" style="float:left">1</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UR2" style="float:left">2</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UR3" style="float:left">3</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UR4" style="float:left">4</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UR5" style="float:left">5</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UR6" style="float:left">6</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UR7" style="float:left">7</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.UR8" style="float:left">8</a>
+
 
                     </div>
 
@@ -73,27 +56,28 @@
                         <img style="width:100%;height:15px;" src="~/Content/images/controls/HorizontalLinewhite.png" />
                     </div>
 
-                    <div id="" class="colShadeFollow ll" style="">
-                        &nbsp;&nbsp;
-                        @{
-        for (int i = llList.Count - 1; i >= 0; i--)
-        {
-            noOfUnits++;
-            <a href="#" class="img-circle crossNumberFollow upper" data-on="1" style="float:right">@llList[i]</a>
-        }
-                        }
+                    <div id="" class="colShadeFollow ll" style="float:left">
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LL8" style="float:right">8</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LL7" style="float:right">7</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LL6" style="float:right">6</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LL5" style="float:right">5</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LL4" style="float:right">4</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LL3" style="float:right">3</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LL2" style="float:right">2</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LL1" style="float:right">1</a>
+
 
                     </div>
-                    <div id="" class="colShadeFollow lr" style="">
+                    <div id="" class="colShadeFollow lr" style="float:right">
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LR1" style="float:left">1</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LR2" style="float:left">2</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LR3" style="float:left">3</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LR4" style="float:left">4</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LR5" style="float:left">5</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LR6" style="float:left">6</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LR7" style="float:left">7</a>
+                        <a href="#" class="img-circle crossNumberFollow upper" data-on="@transaction.LR8" style="float:left">8</a>
 
-                        @{
-        for (int i = 0; i < lrList.Count; i++)
-        {
-            noOfUnits++;
-
-            <a href="#" class="img-circle crossNumberFollow upper" data-on="1" style="float:left">@lrList[i]</a>
-        }
-                        }
                     </div>
 
                 </div>
@@ -104,12 +88,20 @@
         int caseId = transaction.CurrentCas.id;
         int docId = transaction.doctor.id;
 
-        int casePrice = db.caseDoctorPrices.Where(o => o.doctorId == docId && o.caseId == caseId).First().price;
+        teethLab.caseDoctorPrice casePrice = db.caseDoctorPrices.FirstOrDefault(o => o.doctorId == docId && o.caseId == caseId);
+        int price = 0;
+        if (casePrice != null)
+        {
+            price = casePrice.price;
+        }
+        else
+        {
+            price = transaction.CurrentCas.defaultPrice;
+        }
             }
             <td>@transaction.doctor.name</td>
             <td>@transaction.caseNumber</td>
-            <td>CurrentCasPrice</td>
-            <td>@noOfUnits</td>
+            <td>@price</td>
             <td>@transaction.price</td>
             <td>
                 <form method="post" action="@Url.Action("Print", "Transaction")">
@@ -123,17 +115,20 @@
 }
 @{
     ViewBag.Title = "followUpCases";
-    
-    DateTime day ;
+
+    DateTime day;
     if (ViewData["day"] == null)
     {
         day = DateTime.Now;
-    }else{
+        ViewData["day"] = day;
+    }
+    else
+    {
         day = (DateTime)ViewData["day"];
-        
+
     }
     /*
-    
+
     DateTime day;
     FileStream fs = new FileStream(Server.MapPath("~") + "/Content/files/startdate.txt", FileMode.Open);
 
@@ -151,32 +146,32 @@
 
     teethLab.teethLabEntities db = new teethLab.teethLabEntities();
     List<teethLab.CaseTransaction> inputCases = new List<teethLab.CaseTransaction>();
-    if (db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == false && t.prova == false).Count() > 0)
+    if (db.CaseTransactions.Where(t => t.recieveDate.Value.Year == day.Year && t.recieveDate.Value.Month == day.Month && t.recieveDate.Value.Day == day.Day && t.isOut == false && t.prova == false).Count() > 0)
     {
-        inputCases = db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
+        inputCases = db.CaseTransactions.Where(t => t.recieveDate.Value.Year == day.Year && t.recieveDate.Value.Month == day.Month && t.recieveDate.Value.Day == day.Day
             && t.isOut == false
             && t.prova == false).ToList();
     }
     List<teethLab.CaseTransaction> inProva = new List<teethLab.CaseTransaction>();
-    if (db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == false && t.prova == true).Count() > 0)
+    if (db.CaseTransactions.Where(t => t.recieveDate.Value.Year == day.Year && t.recieveDate.Value.Month == day.Month && t.recieveDate.Value.Day == day.Day && t.isOut == false && t.prova == true).Count() > 0)
     {
-        inProva = db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
+        inProva = db.CaseTransactions.Where(t => t.recieveDate.Value.Year == day.Year && t.recieveDate.Value.Month == day.Month && t.recieveDate.Value.Day == day.Day
             && t.isOut == false
             && t.prova == true).ToList();
     }
 
 
     List<teethLab.CaseTransaction> outCases = new List<teethLab.CaseTransaction>();
-    if (db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == true && t.prova == false).Count() > 0)
+    if (db.CaseTransactions.Where(t => t.recieveDate.Value.Year == day.Year && t.recieveDate.Value.Month == day.Month && t.recieveDate.Value.Day == day.Day && t.isOut == true && t.prova == false).Count() > 0)
     {
-        outCases = db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
+        outCases = db.CaseTransactions.Where(t => t.recieveDate.Value.Year == day.Year && t.recieveDate.Value.Month == day.Month && t.recieveDate.Value.Day == day.Day
             && t.isOut == true
             && t.prova == false).ToList();
     }
     List<teethLab.CaseTransaction> outProva = new List<teethLab.CaseTransaction>();
-    if (db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day && t.isOut == true && t.prova == true).Count() > 0)
+    if (db.CaseTransactions.Where(t => t.recieveDate.Value.Year == day.Year && t.recieveDate.Value.Month == day.Month && t.recieveDate.Value.Day == day.Day && t.isOut == true && t.prova == true).Count() > 0)
     {
-        outProva = db.CaseTransactions.Where(t => t.recieveDate.Year == day.Year && t.recieveDate.Month == day.Month && t.recieveDate.Day == day.Day
+        outProva = db.CaseTransactions.Where(t => t.recieveDate.Value.Year == day.Year && t.recieveDate.Value.Month == day.Month && t.recieveDate.Value.Day == day.Day
             && t.isOut == true
             && t.prova == true).ToList();
     }
@@ -196,17 +191,25 @@
         .colShadeFollow a {
         }
 
-    .crossNumberFollow[data-on='0'] {
+    .crossNumberFollow[data-on='false'], .crossNumberFollow[data-on=False], #newMonth[data-on='false'], #newMonth[data-on='False'] {
+        margin: 1px;
+        position: relative;
+        float: left;
+        background-color: #012b43;
+        color: white;
+        height: 23px;
     }
 
-    .crossNumberFollow[data-on='1'] {
+    .crossNumberFollow[data-on='true'], .crossNumberFollow[data-on=True], #newMonth[data-on='true'], #newMonth[data-on='True'] {
+        margin: 1px;
+        position: relative;
+        float: left;
+        background-color: red;
+        color: white;
+        height: 23px;
     }
 
-    .mytable {
-    }
-
-    .mytable, th, td {
-    }
+   
 </style>
 
 
@@ -240,17 +243,16 @@
                                 <table class="mytable ">
                                     <thead>
                                         <tr>
-                                            <th width="10%">Notes</th>
-                                            <th width="10%">Deliv. Date</th>
-                                            <th width="10%">Patient</th>
-                                            <th width="5%">Shade</th>
-                                            <th width="30%">Case</th>
-                                            <th width="10%">Doctor</th>
-                                            <th width="5%">Case No</th>
-                                            <th width="5%">Unit Price</th>
-                                            <th width="5%">No of Units</th>
-                                            <th width="5%">Total Prices</th>
-                                            <th width="5%">Print</th>
+                                            <th>Notes</th>
+                                            <th>Deliv. Date</th>
+                                            <th>Patient</th>
+                                            <th>Shade</th>
+                                            <th>Case</th>
+                                            <th>Doctor</th>
+                                            <th>Case No</th>
+                                            <th>Unit Price</th>
+                                            <th>Total Prices</th>
+                                            <th>Print</th>
 
                                         </tr>
                                     </thead>
@@ -282,17 +284,16 @@
                                 <table class="mytable ">
                                     <thead>
                                         <tr>
-                                            <th width="10%">Notes</th>
-                                            <th width="10%">Deliv. Date</th>
-                                            <th width="10%">Patient</th>
-                                            <th width="5%">Shade</th>
-                                            <th width="30%">Case</th>
-                                            <th width="10%">Doctor</th>
-                                            <th width="5%">Case No</th>
-                                            <th width="5%">Unit Price</th>
-                                            <th width="5%">No of Units</th>
-                                            <th width="5%">Total Prices</th>
-                                            <th width="5%">Print</th>
+                                            <th>Notes</th>
+                                            <th>Deliv. Date</th>
+                                            <th>Patient</th>
+                                            <th>Shade</th>
+                                            <th>Case</th>
+                                            <th>Doctor</th>
+                                            <th>Case No</th>
+                                            <th>Unit Price</th>
+                                            <th>Total Prices</th>
+                                            <th>Print</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -328,17 +329,16 @@
                                 <table class="mytable ">
                                     <thead>
                                         <tr>
-                                            <th width="10%">Notes</th>
-                                            <th width="10%">Deliv. Date</th>
-                                            <th width="10%">Patient</th>
-                                            <th width="5%">Shade</th>
-                                            <th width="30%">Case</th>
-                                            <th width="10%">Doctor</th>
-                                            <th width="5%">Case No</th>
-                                            <th width="5%">Unit Price</th>
-                                            <th width="5%">No of Units</th>
-                                            <th width="5%">Total Prices</th>
-                                            <th width="5%">Print</th>
+                                            <th >Notes</th>
+                                            <th >Deliv. Date</th>
+                                            <th >Patient</th>
+                                            <th >Shade</th>
+                                            <th >Case</th>
+                                            <th >Doctor</th>
+                                            <th >Case No</th>
+                                            <th >Unit Price</th>
+                                            <th >Total Prices</th>
+                                            <th >Print</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -368,17 +368,16 @@
                                 <table class="mytable ">
                                     <thead>
                                         <tr>
-                                            <th width="10%">Notes</th>
-                                            <th width="10%">Deliv. Date</th>
-                                            <th width="10%">Patient</th>
-                                            <th width="5%">Shade</th>
-                                            <th width="30%">Case</th>
-                                            <th width="10%">Doctor</th>
-                                            <th width="5%">Case No</th>
-                                            <th width="5%">Unit Price</th>
-                                            <th width="5%">No of Units</th>
-                                            <th width="5%">Total Prices</th>
-                                            <th width="5%">Print</th>
+                                            <th >Notes</th>
+                                            <th >Deliv. Date</th>
+                                            <th >Patient</th>
+                                            <th >Shade</th>
+                                            <th >Case</th>
+                                            <th >Doctor</th>
+                                            <th >Case No</th>
+                                            <th >Unit Price</th>
+                                            <th >Total Prices</th>
+                                            <th >Print</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -423,7 +422,7 @@
     <script>
 
         $(document).ready(function () {
-            $("#outCaseFollow").click(function () {
+            $("#outCaseFollow").click(function (e) {
                 $("#AddCaseBtn").hide();
                 $("#AddCaseBtn").css("margin-left", "68%");
                 $("#OutCaseBtn").show();
@@ -451,12 +450,14 @@
 
             $("#inputBtn , #outPrint").click(function () {
 
-                id = $("#caseNo2ndPage").html();
+                @*id = $("#caseNo2ndPage").html();
                 action = $(this).attr("data-statu");
                 doctorId = $("#doctor").val();
                 if (doctorId == "" || doctorId == null || isNaN(doctorId)) {
                     alert("You Should Select Doctor !");
+                    e.preventDefault();
                     return;
+
                 }
                 doctorName = $("#doctor option:selected").text();
 
@@ -473,7 +474,7 @@
                 }
                 patientName = $("#patientName").val();
                 recieveDate = $("#recieveDate").val();
-             
+
 
                 notes = $("#notes").val();
                 day = $("#day").val();
@@ -542,7 +543,7 @@
                                             $(button).parents("#popupCaseIn").fadeOut();
                                         }
                                     }
-                                    );
+                                    );*@
 
 
             });
@@ -550,7 +551,7 @@
             $("#nextCaseInProva , #nextCaseOutProva , #nextCaseOut").click(function () {
                 $("#doctor").val("");
                 $("#case").val("");
-                $("#shadeColor").html("Shade");
+                $(".shadeColor").html("Shade");
                 $(".crossNumber").attr("data-on", "0");
                 $("#recieveDate").val("");
                 $("#patientNumber").val("");
@@ -564,7 +565,9 @@
 
                             var trans = JSON.parse(res.split("^")[1])
                             $("#generatedNo").val(trans.id);
-                            $("#caseNo2ndPage").html(trans.id);
+                            $("#caseNo2ndPage").html(trans.caseNumber);
+                            $("input[name=caseNumber]").val(trans.caseNumber);
+                            $("input[name=caseId]").val(trans.id);
                             $("#popupCaseOut").fadeOut();
                             $("#popupCaseIn").fadeIn();
                             $("#caseIn2").fadeIn();
@@ -576,12 +579,13 @@
                                 $("#statu2ndPage").html("Prova");
 
                                 $("#outPrint").hide();
-
+                                $("input[name=status]").val("inputProva");
                                 $("#inputBtn").show();
                                 $("#inputBtn").css("margin-left", "62%");
                             } else if (statu == "outCase") {
                                 $("#heading").html("Case-Out");
                                 $("#statu2ndPage").html("Out");
+                                $("input[name=status]").val("outCase");
 
                                 $("#outPrint").show();
                                 $("#outPrint").css("margin-left", "16%");
@@ -592,14 +596,18 @@
                             } else if (statu == "outProva") {
                                 $("#heading").html("Case-Out");
                                 $("#statu2ndPage").html("Prova");
+                                $("input[name=status]").val("outProva");
 
                                 $("#outPrint").hide();
 
                                 $("#inputBtn").show();
                                 $("#inputBtn").css("margin-left", "62%");
                             } else {
+                                $("#heading").html("Case-In");
+                                $("#statu2ndPage").html("New");
 
                                 $("#outPrint").hide();
+                                $("input[name=status]").val("inputCase");
 
                                 $("#inputBtn").show();
                                 $("#inputBtn").css("margin-left", "62%");
@@ -609,58 +617,58 @@
 
                             $("#doctor").val(trans.doctorId);
                             $("#case").val(trans.caseId);
-                            $("#shadeColor").html(trans.caseColor);
+                            $("input[name=shadeColor1]").val(trans.caseColor1);
+                            $("input[name=shadeColor2]").val(trans.caseColor2);
+                            $("input[name=shadeColor3]").val(trans.caseColor3);
+
+                            $("input[name=shadeColor1]").parent().find(".shadeColor").html(trans.caseColor1);
+                            $("input[name=shadeColor2]").parent().find(".shadeColor").html(trans.caseColor2);
+                            $("input[name=shadeColor3]").parent().find(".shadeColor").html(trans.caseColor3);
+                            $("input[name=patientName]").val(trans.patientName);
                             $("#patientName").val(trans.patientName);
                             $("#notes").val(trans.notes);
-                            date = new Date(trans.toRecieveDate);
+                            date = new Date(trans.deliverDate);
 
                             var day = ("0" + date.getDate()).slice(-2);
                             var month = ("0" + (date.getMonth() + 1)).slice(-2);
 
                             var today = date.getFullYear() + "-" + (month) + "-" + (day);
                             $("#recieveDate").val(today);
+                            $("input[name=recieveDate]").val(today);
 
-                            caseTeeth = trans.caseTeeth;
-                            casess = caseTeeth.split('#');
-                            ul = casess[0].split('$')[0];
-                            teeth = ul.split(",");
-                            for (var i = 0; i < teeth.length; i++) {
-                                $("#ul .crossNumber").each(function () {
-                                    if ($(this).html() == teeth[i]) {
-                                        $(this).attr("data-on", "1")
-                                    }
-                                });
-                            }
-                            ur = casess[1].split('$')[0];
-                            teeth = ur.split(",");
-                            for (var i = 0; i < teeth.length; i++) {
-
-                                $("#ur .crossNumber").each(function () {
-                                    if ($(this).html() == teeth[i]) {
-                                        $(this).attr("data-on", "1")
-                                    }
-                                });
-                            }
-                            ll = casess[2].split('$')[0];
-                            teeth = ll.split(",");
-                            for (var i = 0; i < teeth.length; i++) {
-
-                                $("#ll .crossNumber").each(function () {
-                                    if ($(this).html() == teeth[i]) {
-                                        $(this).attr("data-on", "1")
-                                    }
-                                });
-                            }
-                            lr = casess[3].split('$')[0];
-                            teeth = lr.split(",");
-                            for (var i = 0; i < teeth.length; i++) {
-
-                                $("#lr .crossNumber").each(function () {
-                                    if ($(this).html() == teeth[i]) {
-                                        $(this).attr("data-on", "1")
-                                    }
-                                });
-                            }
+                            if (trans.LL1 == true) { $("input[name=LL1]").val("1"); $("input[name=LL1]").parent().attr("data-on", "1"); }
+                            if(trans.LL2==true){$("input[name=LL2]").val("1");$("input[name=LL2]").parent().attr("data-on","1");}
+                            if(trans.LL3==true){$("input[name=LL3]").val("1");$("input[name=LL3]").parent().attr("data-on","1");}
+                            if(trans.LL4==true){$("input[name=LL4]").val("1");$("input[name=LL4]").parent().attr("data-on","1");}
+                            if(trans.LL5==true){$("input[name=LL5]").val("1");$("input[name=LL5]").parent().attr("data-on","1");}
+                            if(trans.LL6==true){$("input[name=LL6]").val("1");$("input[name=LL6]").parent().attr("data-on","1");}
+                            if(trans.LL7==true){$("input[name=LL7]").val("1");$("input[name=LL7]").parent().attr("data-on","1");}
+                            if(trans.LL8==true){$("input[name=LL8]").val("1");$("input[name=LL8]").parent().attr("data-on","1");}
+                            if(trans.LR1==true){$("input[name=LR1]").val("1");$("input[name=LR1]").parent().attr("data-on","1");}
+                            if(trans.LR2==true){$("input[name=LR2]").val("1");$("input[name=LR2]").parent().attr("data-on","1");}
+                            if(trans.LR3==true){$("input[name=LR3]").val("1");$("input[name=LR3]").parent().attr("data-on","1");}
+                            if(trans.LR4==true){$("input[name=LR4]").val("1");$("input[name=LR4]").parent().attr("data-on","1");}
+                            if(trans.LR5==true){$("input[name=LR5]").val("1");$("input[name=LR5]").parent().attr("data-on","1");}
+                            if(trans.LR6==true){$("input[name=LR6]").val("1");$("input[name=LR6]").parent().attr("data-on","1");}
+                            if(trans.LR7==true){$("input[name=LR7]").val("1");$("input[name=LR7]").parent().attr("data-on","1");}
+                            if(trans.LR8==true){$("input[name=LR8]").val("1");$("input[name=LR8]").parent().attr("data-on","1");}
+                            if(trans.UR1==true){$("input[name=UR1]").val("1");$("input[name=UR1]").parent().attr("data-on","1");}
+                            if(trans.UR2==true){$("input[name=UR2]").val("1");$("input[name=UR2]").parent().attr("data-on","1");}
+                            if(trans.UR3==true){$("input[name=UR3]").val("1");$("input[name=UR3]").parent().attr("data-on","1");}
+                            if(trans.UR4==true){$("input[name=UR4]").val("1");$("input[name=UR4]").parent().attr("data-on","1");}
+                            if(trans.UR5==true){$("input[name=UR5]").val("1");$("input[name=UR5]").parent().attr("data-on","1");}
+                            if(trans.UR6==true){$("input[name=UR6]").val("1");$("input[name=UR6]").parent().attr("data-on","1");}
+                            if(trans.UR7==true){$("input[name=UR7]").val("1");$("input[name=UR7]").parent().attr("data-on","1");}
+                            if(trans.UR8==true){$("input[name=UR8]").val("1");$("input[name=UR8]").parent().attr("data-on","1");}
+                            if(trans.UL1==true){$("input[name=UL1]").val("1");$("input[name=UL1]").parent().attr("data-on","1");}
+                            if(trans.UL2==true){$("input[name=UL2]").val("1");$("input[name=UL2]").parent().attr("data-on","1");}
+                            if(trans.UL3==true){$("input[name=UL3]").val("1");$("input[name=UL3]").parent().attr("data-on","1");}
+                            if(trans.UL4==true){$("input[name=UL4]").val("1");$("input[name=UL4]").parent().attr("data-on","1");}
+                            if(trans.UL5==true){$("input[name=UL5]").val("1");$("input[name=UL5]").parent().attr("data-on","1");}
+                            if(trans.UL6==true){$("input[name=UL6]").val("1");$("input[name=UL6]").parent().attr("data-on","1");}
+                            if(trans.UL7==true){$("input[name=UL7]").val("1");$("input[name=UL7]").parent().attr("data-on","1");}
+                            if (trans.UL8 == true) { $("input[name=UL8]").val("1");$("input[name=UL8]").parent().attr("data-on","1");}
+                         
                             $("#inputBtn").attr("data-statu", statu);
                             $("#backToCaseIn").attr("data-statu", statu);
 
@@ -688,20 +696,24 @@
 
             $("#generateBtn").click(function () {
                 button = this;
-                $.post("@Url.Action("getNewCaseNumber" , "Transaction")", "", function (res) {
+                day = $("#day").val();
+                $.post("@Url.Action("getNewCaseNumber" , "Transaction")", "day="+day, function (res) {
 
                     $(button).after("<span id='spanGenrated'>Case Number : " + res + "</span>");
                     $(button).hide();
                     $("#generatedNo").val(res);
                     $("#caseNo2ndPage").html(res);
+                    $("input[name=caseNumber]").val(res);
                 });
             });
             $("#nextCaseIn").click(function () {
                 if ($("#generateBtn").css("display") == "none") {
                     $("#doctor").val("");
                     $("#case").val("");
-                    $("#shadeColor").html("Shade");
+                    $(".shadeColor").html("Shade");
                     $(".crossNumber").attr("data-on", "0");
+                    $(".crossNumber input").val("0");
+
                     $("#recieveDate").val("");
                     $("#patientNumber").val("");
                     $("#notes").val("");
@@ -713,20 +725,26 @@
                     $("#caseIn2").fadeIn();
                     $("#caseIn1").fadeOut();
                     $("#statu2ndPage").html("New");
+                    $("input[name=status]").val("inputCase");
                 }
 
             });
             $("#backToCaseIn").click(function () {
 
-                $("#popupCaseIn").fadeIn();
-
+                $("#spanGenrated").remove();
+                $("#generateBtn").show();
                 $("#caseIn2").fadeOut();
                 statu = $(this).attr("data-statu");
                 if (statu == "inputCase" || statu == "inputProva") {
+                    $("#popupCaseIn").fadeIn();
                     $("#caseIn1").fadeIn();
+                    $("#popupCaseOut").fadeOut();
+
                 } else if (statu == "outCase" || statu == "outProva") {
                     $("#popupCaseOut").fadeIn();
                     $("#popupCaseIn").fadeOut();
+                    $("#caseIn1").fadeOut();
+
                 }
             });
             $("#OutCaseBtn").click(function () {
@@ -736,22 +754,33 @@
             $("#fullLower").click(function () {
                 if ($(".lowerCase").attr("data-on") == '0') {
                     $(".lowerCase").attr("data-on", '1');
+                    $(".lowerCase").find("input").val("1");
+
                 } else {
                     $(".lowerCase").attr("data-on", '0');
+                    $(".lowerCase").find("input").val("0");
+
                 }
             });
             $("#fullUpper").click(function () {
                 if ($(".upperCase").attr("data-on") == '0') {
                     $(".upperCase").attr("data-on", '1');
+                    $(".upperCase").find("input").val("1");
+
                 } else {
                     $(".upperCase").attr("data-on", '0');
+                    $(".upperCase").find("input").val("0");
+
                 }
             });
             $(".caseNumber , #newMonth , .crossNumber").click(function () {
                 if ($(this).attr("data-on") == '0') {
                     $(this).attr("data-on", '1');
+                    $(this).find("input").val("1");
                 } else if ($(this).attr("data-on") == '1') {
                     $(this).attr("data-on", '0');
+                    $(this).find("input").val("0");
+
                 }
             });
 
@@ -762,17 +791,22 @@
             });
 
             $(".colorImages").click(function () {
-                $("#color").val($(this).attr("data-val"));
-                $("#shadeColor").html($(this).attr("data-val"));
+                $(".pickColor[data-active]").parent().find(".shadeColor").html($(this).attr("data-val"));
+                $(".pickColor[data-active]").parent().find("input").val($(this).attr("data-val"));
                 $("#popup").fadeOut();
+
+                //                $("#color").val($(this).attr("data-val"));
+
             });
 
-            $("#pick , #pickColor").click(function () {
+            $("#pick , .pickColor").click(function () {
+                $(".pickColor").removeAttr("data-active");
+                $(this).attr("data-active", "active");
                 $("#popup").fadeIn();
             });
 
             $("#day").change(function () {
-                window.location.href = "/Transaction/followUpCases?day="+$("#day").val();
+                window.location.href = "/Transaction/followUpCases?day=" + $("#day").val();
             });
 
 

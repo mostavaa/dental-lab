@@ -3,7 +3,7 @@
     string day = (string)ViewData["day"];
 }
 
-<h2>Index</h2>
+@*<h2>Index</h2>
 
 <div>
     <div class="row">
@@ -16,17 +16,154 @@
                     <input type="date" value="@day" class="form-control" name="date" id="date" />
                 </div>
                 <div class="col-md-3">
-                    <input type="submit" name="submit" value="submit" id="submit" class="form-control"/>
+                    <input type="submit" name="submit" value="submit" id="submit" class="form-control" />
                 </div>
             </div>
         </form>
     </div>
-</div>
+</div>*@
 
-@section scripts{
-    <script>
-        $(document).ready(function () {
+<section id="bricks">
 
-        });
-    </script>
-}
+    <div class="row masonry">
+
+        <!-- brick-wrapper -->
+        <div class="bricks-wrapper">
+
+            <div class="grid-sizer"></div>
+            <article class="brick entry format-standard animate-this">
+
+                <div class="entry-text">
+                    <div class="entry-header">
+
+                        <div class="entry-meta">
+                            <span class="cat-links">
+                                <a href="#">Input Case</a>
+                                <a href="#">Output Case</a>
+                            </span>
+                        </div>
+
+                        <h1 class="entry-title"><a href="@Url.Action("followUpCases", "Transaction")">Cases</a></h1>
+
+                    </div>
+                    <div class="entry-excerpt">
+                        this is the most important page , any inputs and outputs for cases goes here
+                    </div>
+                </div>
+
+            </article>
+            <article class="brick entry format-standard animate-this">
+
+                <div class="entry-text">
+                    <div class="entry-header">
+
+                        <div class="entry-meta">
+                            <span class="cat-links">
+                                <a href="#">Imports</a>
+                                <a href="#">Exports</a>
+                            </span>
+                        </div>
+
+                        <h1 class="entry-title"><a href="@Url.Action("viewMoneyDays", "Money")">Financies</a></h1>
+
+                    </div>
+                    <div class="entry-excerpt">
+                        all money transactions goes here
+                    </div>
+                </div>
+
+            </article>
+
+
+            <article class="brick entry format-standard animate-this">
+
+                <div class="entry-text">
+                    <div class="entry-header">
+
+                        <div class="entry-meta">
+                            <span class="cat-links">
+                                <a href="#">cases</a>
+                            </span>
+                        </div>
+
+                        <h1 class="entry-title"><a href="@Url.Action("Index", "Cases")">Current Cases</a></h1>
+
+                    </div>
+                    <div class="entry-excerpt">
+all cases that our lab treat with , goes here !                    </div>
+                </div>
+
+            </article>
+            <article class="brick entry format-standard animate-this">
+
+                <div class="entry-text">
+                    <div class="entry-header">
+
+                        <div class="entry-meta">
+                            <span class="cat-links">
+                                <a href="#">employees</a>
+                                <a href="#">small payroll</a>
+                            </span>
+                        </div>
+
+                        <h1 class="entry-title"><a href="@Url.Action("Index", "Employee")">Employees</a></h1>
+
+                    </div>
+                    <div class="entry-excerpt">
+salaries and any data about employees goes here !                    </div>
+                </div>
+
+            </article>
+            <article class="brick entry format-standard animate-this">
+
+                <div class="entry-text">
+                    <div class="entry-header">
+
+                        <div class="entry-meta">
+                            <span class="cat-links">
+                                <a href="#">supplier</a>
+                            </span>
+                        </div>
+
+                        <h1 class="entry-title"><a href="@Url.Action("Index", "Companies")">Suppliers</a></h1>
+
+                    </div>
+                    <div class="entry-excerpt">
+suppliers and there materials goes here                    </div>
+                </div>
+
+            </article>
+            <article class="brick entry format-standard animate-this">
+
+                <div class="entry-text">
+                    <div class="entry-header">
+
+                        <div class="entry-meta">
+                            <span class="cat-links">
+                                <a href="#">doctors</a>
+                            </span>
+                        </div>
+
+                        <h1 class="entry-title"><a href="@Url.Action("clientsdatabase", "Doctor")">Doctors</a></h1>
+
+                    </div>
+                    <div class="entry-excerpt">
+                        cases and money for all doctors goes here
+                    </div>
+                </div>
+
+            </article>
+
+        </div>
+    </div>
+
+</section>
+
+@*<li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li><a href="@Url.Action("Index", "User")">Users</a></li>
+*@

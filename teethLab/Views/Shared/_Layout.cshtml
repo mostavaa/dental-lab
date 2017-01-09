@@ -44,12 +44,13 @@
                     <li class="current"><a href="@Url.Action("Index" ,"Home")" title="">Home</a></li>
                     
                     @*<li><a href="@Url.Action("viewMoneyDays", "Money")">Financies</a></li>
-                    <li><a href="@Url.Action("followUpCases", "Transaction")">Cases</a></li>
-                    <li><a href="@Url.Action("clientsdatabase", "Doctor")">Clients' Database</a></li>
-                    <li><a href="@Url.Action("Index", "Cases")">Current Cases</a></li>
-                    <li><a href="@Url.Action("Index", "Employee")">Employees</a></li>
-                    <li><a href="@Url.Action("Index", "Companies")">Companies</a></li>
-                    <li><a href="@Url.Action("Index", "User")">Users</a></li>
+    <li><a href="@Url.Action("followUpCases", "Transaction")">Cases</a></li>
+    <li><a href="@Url.Action("clientsdatabase", "Doctor")">Clients' Database</a></li>
+    <li><a href="@Url.Action("Index", "Cases")">Current Cases</a></li>
+    <li><a href="@Url.Action("Index", "Employee")">Employees</a></li>
+    <li><a href="@Url.Action("Index", "Companies")">Companies</a></li>
+    <li><a href="@Url.Action("Index", "User")">Users</a></li>
+                    *@
                     @{
                         if (teethLab.tools.isUserLogged())
                         {
@@ -63,7 +64,7 @@
                             }
                             <li><a href="@Url.Action("logOut" , "User")"><span class="glyphicon glyphicon-user"></span>LogOut</a></li>
                         }
-                    }*@
+                    }
 
                     @*<li class="has-children">
                             <a href="category.html" title="">Categories</a>

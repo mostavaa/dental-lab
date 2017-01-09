@@ -18,6 +18,8 @@ namespace teethLab
         public Nullable<int> val { get; set; }
         public bool isOff { get; set; }
         public Nullable<int> employeeId { get; set; }
+        public bool payed { get; set; }
+        public Nullable<System.DateTime> recieveDate { get; set; }
     
         public virtual employee employee { get; set; }
     }

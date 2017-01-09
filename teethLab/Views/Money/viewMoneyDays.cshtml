@@ -1,477 +1,313 @@
 ﻿@{
-    ViewBag.Title = "حركة الايام";
+    ViewBag.Title = "Money";
 
 
-
-    var moneyDay = (teethLab.moneyDay)ViewData["moneyDay"];
-
-    teethLab.teethLabEntities db = new teethLab.teethLabEntities();
-    int lastId = db.moneyDays.Max(o => o.id);
-    int startCredit = 0;
-    if (lastId != 0)
+    DateTime day;
+    if (ViewData["day"] == null)
     {
-        startCredit = db.moneyDays.Find(lastId).credit;
+        day = DateTime.Now;
+    }
+    else
+    {
+        day = (DateTime)ViewData["day"];
+
     }
 
-    int credit = (int)ViewData["credit"];
+    //var moneyDay = (teethLab.moneyDay)ViewData["moneyDay"];
 
-    var companies = (List<teethLab.company>)ViewData["companies"];
+    teethLab.teethLabEntities db = new teethLab.teethLabEntities();
+    //int lastId = db.moneyDays.Max(o => o.id);
+    //int startCredit = 0;
+    //if (lastId != 0)
+    //{
+    //    startCredit = db.moneyDays.Find(lastId).credit;
+    //}
 
-    var emps = (List<teethLab.employee>)ViewData["emps"];
+    //int credit = (int)ViewData["credit"];
 
-    var doctors = (List<teethLab.doctor>)ViewData["doctors"];
+    //var companies = (List<teethLab.company>)ViewData["companies"];
 
-    List<teethLab.money> moneyImport = moneyDay.moneys.Where(o => o.type == "import").ToList();
-    List<teethLab.money> moneyExport = moneyDay.moneys.Where(o => o.type == "export").ToList();
+    //var emps = (List<teethLab.employee>)ViewData["emps"];
+
+    //var doctors = (List<teethLab.doctor>)ViewData["doctors"];
+
+    List<teethLab.money> moneyImport = db.moneys.Where(o => o.import == true && o.recieveDate.Value.Day == day.Day && o.recieveDate.Value.Month == day.Month && o.recieveDate.Value.Year == day.Year).ToList();
+    List<teethLab.money> moneyExport = db.moneys.Where(o => o.import == false && o.recieveDate.Value.Day == day.Day && o.recieveDate.Value.Month == day.Month && o.recieveDate.Value.Year == day.Year).ToList();
 
 }
 <style>
-    .headings {
-        text-align: center;
-    }
 
-        .headings h1 {
-            color: #99c2e1;
-        }
-
-    .dateAndBalance {
-        width: 27%;
-        margin: 0 auto;
-        background-color: #99c2e1;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    .tables {
-        display: block;
-    }
-
-    .mytable {
-        text-align: center;
-        background-color: #99c2e1;
-        color: #012b43;
-        width: 100%;
-    }
-
-    .mytable, th, td {
-        border: 3px solid #012b43;
-        border-radius: 10px;
-        text-align: center;
-    }
-
-    .sum {
-        background-color: #99c2e1;
-        border-radius: 10px;
-        text-align: center;
-    }
-
-    .EndBalance {
-        width: 27%;
-        margin: 0 auto;
-        background-color: #99c2e1;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    .nextDay {
-        position: relative;
-        background-color: #fcfdfd;
-        width: 20%;
-        border-radius: 5px;
-        text-align: center;
-        cursor:pointer;
-    }
-
-    #toRes , #fromRes {
-        display: none;
-        top: 67px;
-        left: 0;
-        right: 0;
-        z-index: 10;
-        border-width: 1px;
-        border-style: solid;
-        border-color: #cbcfe2 #c8cee7 #c4c7d7;
-        border-radius: 3px;
-        background-color: #fdfdfd;
-    }
-
-    .nextDay h2 {
-        color: #012b43;
-    }
 </style>
 <div>
     <div class="container">
         <div class="row headings">
-            <h1>INCOME & EXPENSES</h1>
         </div>
         <div class="row ">
             <div class="dateAndBalance">
-                <h2 class="currentDay">@moneyDay.day.ToString("yyyy-MM-dd")</h2>
-                <h2>Starting Balance : <span id="startCredit">@startCredit</span></h2>
+                <input style="margin:10px auto !important" type="date" class="" value="@day.ToString("yyyy-MM-dd")" id="day" />
+                <h2 style="margin:10px auto !important;width:20%">Starting Balance : <span id="startCredit">0</span></h2>
             </div>
         </div>
-        <div class="row ">
-            <div class="col-md-6 tables">
-                <div style="max-height: 500px;overflow-y: auto;">
-                    <table class="mytable exporttable">
-                        <thead>
-                            <tr>
-                                <th width="80%">To</th>
-                                <th width="20%">Cash</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{
+        <div class="row">
+            <input type="button" id="toBtnToggle" value="to" style="width:100%" />
+        </div>
+        <div class="row" id="toDivToggle">
+            <div class="alert-box ss-info hideit">
+                <form class="alert-box ss-error hideit" method="post" action="@Url.Action("Export","Money")">
 
-                                int exportsum=0;
-                                foreach (teethLab.money money in moneyExport)
-                                {
-                                    exportsum +=money.value;
-                                    <tr>
-                                        <td>@money.fromTo</td>
-                                        <td>@money.value</td>
-                                    </tr>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select id="companySelect" name="companySelect" style="float:left" disabled>
+                                <option>Companies</option>
+                                @{
+                                    foreach (var item in db.companies)
+                                    {
+                                        <option value="@item.id">@item.name</option>
+                                    }
                                 }
-                            }
-                            <tr>
-                                <td>
-                                    <input class="form-control" type="text" id="to" />
-                                    <input type="hidden" id="toId" data-type="" data-name="" />
-                                </td>
-                                <td> <input class="form-control" type="number" id="valueTo" /></td>
-                            </tr>
+                            </select>
+                            <input type="checkbox" name="companyCheckBox" style="float:left" id="companyCheckBox" />
+                        </div>
+                        <div class="col-md-4">
+                            <label style="float:left"></label>
+
+                            <select style="float:left" id="employeeSelect" name="employeeSelect" disabled>
+                                <option>Employees</option>
+                                @{
+                                    foreach (var item in db.employees)
+                                    {
+                                        <option value="@item.id">@item.name</option>
+                                    }
+                                }
+                            </select>
+                            <input type="checkbox" style="float:left" name="employeeCheckBox" id="employeeCheckBox" />
+
+                        </div>
+                        <div class="col-md-4">
+
+
+                            <input class="form-control" style="float:left" type="text" name="otherTo" id="otherTo" disabled placeholder="other" />
+                            <input type="checkbox" style="float:left" id="otherCheckBox" name="otherCheckBox" />
+                            <input type="hidden" class="" value="@day.ToString("yyyy-MM-dd")" name="day" />
+
+                        </div>
 
 
 
-                        </tbody>
-                    </table>
-                    <textarea class="form-control" placeholder="ملاحظات" id="toNotes"></textarea>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input class="form-control" type="number" id="valueTo" name="valueTo" placeholder="value" />
+
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" id="toNotes" name="toNotes" placeholder="notes" />
+
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-control" type="submit" id="toBtn" name="toBtn" value="Add" />
+
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-md-3">To</div>
+                    <div class="col-md-3">Value</div>
+                    <div class="col-md-3">Notes</div>
+                    <div class="col-md-3">
+                    </div>
                 </div>
-                <div id="toRes">
-                </div>
+
+                @{
+
+                    int exportsum = 0;
+                    foreach (teethLab.money money in moneyExport)
+                    {
+                        exportsum += money.value;
+                        <div class="row">
+                            @{
+                        if (money.company != null)
+                        {
+                            <div class="col-md-3">@money.company.name</div>
+                        }                       
+                        else if (money.employee != null)
+                        {
+                            <div class="col-md-3">@money.employee.name</div>
+                        }
+                        else
+                        {
+                            <div class="col-md-3">@money.other</div>
+
+                        }
+}
+                            <div class="col-md-3">@money.value</div>
+                            <div class="col-md-3">@money.notes</div>
+                            <div class="col-md-3">
+                                <form method="post" action="@Url.Action("delete", "Money")">
+                                    <input type="hidden" name="moneyId" value="@money.id" />
+                                    <input type="hidden" class="" value="@day.ToString("yyyy-MM-dd")" name="day" />
+                                    <input class="form-control" type="submit" id="deleteToBtn" value="Delete" />
+                                </form>
+                            </div>
+                        </div>
+                    }
+                }
+<div class="row">
+    <h1>Sum : <span id="exportsum">@exportsum</span></h1>
+</div>
             </div>
 
-            <div class="col-md-6 tables">
-                <div style="max-height: 500px;overflow-y: auto;">
+        </div>
+        <div class="row">
+            <input type="button" id="fromBtnToggle" value="from" style="width:100%" />
+        </div>
+        <div class="row" id="fromDivToggle">
+            <div class="tables">
+                <div class="alert-box ss-info hideit">
+                    <form class="alert-box ss-error hideit" method="post" action="@Url.Action("Import","Money")">
 
-                    <table class="mytable importtable">
-                        <thead>
-                            <tr>
-                                <th width="20%">Receipt No.</th>
-                                <th width="60%">From</th>
-                                <th width="20%">Cash</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{
-                                int importsum = 0;
-                                foreach (teethLab.money money in moneyImport)
-                                {
-                                    importsum += money.value;
-                                    <tr>
-                                        <td>@money.receiptno</td>
-                                        <td>@money.fromTo</td>
-                                        <td>@money.value</td>
-                                    </tr>
-                                }
-                                <tr>
-                                    <td>
-                                        <input class="form-control" type="number" id="receiptno" />
-                                    </td>
-                                    <td>
-                                        <input class="form-control" type="text" id="from" />
-                                        <input type="hidden" id="fromId" data-type="" data-name="" />
-                                    </td>
-                                    <td> <input class="form-control" type="number" id="valueFrom" /></td>
-                                </tr>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <select id="doctorSelect" style="float:left">
+                                    <option>Doctors</option>
+                                    @{
+                                        foreach (var item in db.doctors)
+                                        {
+                                            <option value="@item.id">@item.name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <input class="form-control" type="number" id="valueFrom" placeholder="value" />
+
+
+                            </div>
+                            <div class="col-md-3">
+                                <input class="form-control" type="text" id="fromNotes" placeholder="notes" />
+
+                            </div>
+                            <input type="hidden" class="" value="@day.ToString("yyyy-MM-dd")" name="day" />
+
+                            <div class="col-md-3">
+                                <input class="form-control" type="submit" id="fromBtn" value="Add" />
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="row">
+                        <div class="col-md-3">To</div>
+                        <div class="col-md-3">Value</div>
+                        <div class="col-md-3">Notes</div>
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+
+                    @{
+
+                        int importsum = 0;
+                        foreach (teethLab.money money in moneyImport)
+                        {
+                            importsum += money.value;
+                            <div class="row">
+                                @{
+                          if (money.doctor != null)
+                            {
+                                <div class="col-md-3">@money.doctor.name</div>
                             }
-
-                        </tbody>
-                    </table>
-                    <textarea class="form-control" placeholder="ملاحظات" id="fromNotes"></textarea>
-                    <div id="fromRes">
-
+                     
+                                }
+                                <div class="col-md-3">@money.value</div>
+                                <div class="col-md-3">@money.notes</div>
+                                <div class="col-md-3">
+                                    <form method="post" action="@Url.Action("delete", "Money")">
+                                        <input type="hidden" class="" value="@day.ToString("yyyy-MM-dd")" name="day" />
+                                        <input type="hidden" name="moneyId" value="@money.id" />
+                                        <input class="form-control" type="submit" id="deleteFromBtn" value="Delete" />
+                                     </form>
+                                </div>
+                            </div>
+                        }
+                    }
+                    <div class="row">
+                        <h1>Sum : <span id="exportsum">@importsum</span></h1>
                     </div>
                 </div>
 
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-offset-1 col-md-4 sum">
-                <h1>Sum : <span id="exportsum">@exportsum</span></h1>
-            </div>
-            <div class="col-md-offset-2 col-md-4 sum">
-                <h1>Sum : <span id="importsum">@importsum</span></h1>
-            </div>
-        </div>
         <div class="row">
             <div class="EndBalance">
-                <h2>Ending Balance : <span id="currentCredit">@credit</span></h2>
+                <h2>Ending Balance : <span id="currentCredit">0</span></h2>
             </div>
-            <div class="nextDay">
-                <h2>To Next Day</h2>
-            </div>
+
         </div>
     </div>
 
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @section scripts{
     <script>
-    $(document).ready(function () {
-        $("#to").keypress(function () {
-            val = $(this).val();
+        $(document).ready(function () {
 
-            if (val.length > 3) {
-                $.post("@Url.Action("getTo" , "Money")", "q=" + val, function (res) {
-                    rows = res.split("&");
-                    $("#toRes").html("");
-                    for (var i = 0; i < rows.length - 1; i++) {
-                        row = rows[i].split(",");
 
-                        name = row[0];
-                        id = row[1];
-                        type = row[2];
-
-                        $("#toRes").css("display", "block");
-                        $("#toRes").append("<div class='searchRes' data-id='" + id + "'><strong><span class='searchText'>" + name + "</span> </strong><span class='searchType'>" + type + "</span></div>");
-                    }
-                    $(".searchRes").click(function () {
-                        id = $(this).attr("data-id");
-                        name = $(this).find(".searchText").html();
-                        type = $(this).find(".searchType").html();
-                        $("#toId").val(id);
-                        $("#toId").attr("data-type", type);
-                        $("#toId").attr("data-name", name);
-                        $("#to").val(name);
-                        $("#toRes").hide();
-                    });
-                });
-            }
-        });
-
-        $("#from").keypress(function () {
-            val = $(this).val();
-
-            if (val.length > 3) {
-                $.post("@Url.Action("getFrom" , "Money")", "q=" + val, function (res) {
-                        rows = res.split("&");
-                        $("#fromRes").html("");
-                        for (var i = 0; i < rows.length - 1; i++) {
-                            row = rows[i].split(",");
-
-                            name = row[0];
-                            id = row[1];
-                            type = row[2];
-
-                            $("#fromRes").css("display", "block");
-                            $("#fromRes").append("<div class='searchResFrom' data-id='" + id + "'><strong><span class='searchTextFrom'>" + name + "</span> </strong><span class='searchTypeFrom'>" + type + "</span></div>");
-                        }
-                        $(".searchResFrom").click(function () {
-                            id = $(this).attr("data-id");
-                            name = $(this).find(".searchTextFrom").html();
-                            type = $(this).find(".searchTypeFrom").html();
-                            $("#fromId").val(id);
-                            $("#fromId").attr("data-type", type);
-                            $("#fromId").attr("data-name", name);
-                            $("#from").val(name);
-                            $("#fromRes").hide();
-                        });
-                    });
-                }
+            $("#toBtnToggle").click(function () {
+                $("#toDivToggle").slideToggle();
             });
-            $("#valueFrom").keypress(function (e) {
-                if (e.which == 13) {
-                    day = $(".currentDay").html();
-                    name = $("#from").val();
-                    costEx = $("#valueFrom").val();
-                    
-                    id = "";
-                    if ($("#from").val() == $("#fromId").attr("data-name")) {
-                        id = $("#fromId").val();
-                        type = $("#fromId").attr("data-type");
-                    } else {
-                        type = "new";
-                    }
 
+            $("#fromBtnToggle").click(function () {
+                $("#fromDivToggle").slideToggle();
+            });
+            $("#companyCheckBox").change(function () {
+                if ($(this).is(":checked")) {
+                    $("#companySelect").removeAttr("disabled");
+                    $("#employeeSelect").attr("disabled", "")
+                    $("#otherTo").attr("disabled", "")
+                    $("#employeeCheckBox").removeAttr("checked")
+                    $("#otherCheckBox").removeAttr("checked")
 
-                    if (day == 0 || day == null || day == "") {
-                        alert("يجب اختيار يوم");
-                        return;
-                    }
-
-                    if (costEx == "" || costEx == null || isNaN(costEx)) {
-                        alert("يجب اضافة مبلغ");
-                        return;
-                    }
-                    receiptno = $("#receiptno").val();
-                    if (receiptno == null || receiptno == "" || receiptno == 0 || isNaN(receiptno)) {
-                        alert("يجب ادخال رقم فاتوره");
-                        return;
-                    }
-
-                    if ((name == null || name == "" || name == 0)) {
-                        alert("يجب كتابة مصدر");
-                        return;
-                    }
-
-                    notes = $("#fromNotes").val();
-                    $.post('@Url.Action("import" , "Money")', "&cost=" + costEx
-        + "&id=" + id
-        + "&type=" + type
-        + "&name=" + name
-        + "&day=" + day
-        + "&receiptno=" + receiptno
-        + "&notes=" + notes
-        , function (res) {
-            if (res == "success") {
-
-                $('.importtable tr:last').before("<tr>" + receiptno + "<td></td><td>" + name + "</td><td>" + costEx + "</td></tr>");
-                credit = $("#currentCredit").html();
-                credit = parseInt(credit);
-                credit += parseInt(costEx);
-                $("#currentCredit").html(credit);
-
-                importsum = $("#importsum").html();
-                importsum = parseInt(importsum);
-                importsum += parseInt(costEx);
-                $("#importsum").html(importsum);
-
-            } else {
-                alert(res);
-            }
-        }
-        );
+                } else {
+                    $("#companySelect").attr("disabled", "")
                 }
             });
 
-            $("#valueTo").keypress(function (e) {
-                if (e.which == 13) {
-                    day = $(".currentDay").html();
-                    name = $("#to").val();
-                    costEx = $("#valueTo").val();
-                    id = "";
-                    if ($("#to").val() == $("#toId").attr("data-name")) {
-                        id = $("#toId").val();
-                        type = $("#toId").attr("data-type");
-                    } else {
-                        type = "new";
-                    }
+            $("#employeeCheckBox").change(function () {
+                if ($(this).is(":checked")) {
+                    $("#employeeSelect").removeAttr("disabled");
+                    $("#companySelect").attr("disabled", "")
+                    $("#otherTo").attr("disabled", "")
+                    $("#companyCheckBox").removeAttr("checked")
+                    $("#otherCheckBox").removeAttr("checked")
 
-
-                    if (day == 0 || day == null || day == "") {
-                        alert("يجب اختيار يوم");
-                        return;
-                    }
-
-                    if (costEx == "" || costEx == null || isNaN(costEx)) {
-                        alert("يجب اضافة مبلغ");
-                        return;
-                    }
-
-
-                    if ((name == null || name == "" || name == 0)) {
-                        alert("يجب كتابة مصدر");
-                        return;
-                    }
-
-                    credit = $("#currentCredit").html();
-                    credit = parseInt(credit);
-
-                    if (credit - parseInt(costEx) < 0) {
-                        alert("لا يمكن تصدير رصيد اكبر مما لديك");
-                        return;
-                    }
-                    notes = $("#toNotes").val();
-                    $.post('@Url.Action("export" , "Money")', "&cost=" + costEx
-    + "&id=" + id
-    + "&type=" + type
-    + "&name=" + name
-    + "&day=" + day
-    + "&notes=" + notes
-    , function (res) {
-        if (res == "success") {
-
-            $('.exporttable tr:last').before("<tr><td>" + name + "</td><td>" + costEx + "</td></tr>");
-            credit = $("#currentCredit").html();
-            credit = parseInt(credit);
-            credit -= parseInt(costEx);
-            $("#currentCredit").html(credit);
-
-            exportsum = $("#exportsum").html();
-            exportsum = parseInt(exportsum);
-            exportsum += parseInt(costEx);
-            $("#exportsum").html(exportsum);
-        }
-    }
-    );
-            }
-        });
-
-        //old
-        $("#import").click(function () {
-            cost = $("#cost").val();
-            doctorId = $("#doctor").val();
-            source = $("#source").val();
-            day = $(".currentDay").html();
-
-            if (day == 0 || day == null || day == "") {
-                alert("يجب اختيار يوم");
-                return;
-            }
-            if (cost == "" || cost == null || isNaN(cost)) {
-                alert("يجب اضافة مبلغ");
-                return;
-            }
-
-            if ((source == "" || source == null) && (doctorId == null || doctorId == "")) {
-                alert("يجب اختيار دكتور او كتابة مصدر");
-                return;
-            }
-
-            $.post('@Url.Action("import" , "Money")', "&cost=" + cost
-                + "&doctorId=" + doctorId
-                + "&source=" + source
-                + "&day=" + day
-                , function (res) {
-                    if (res == "success") {
-                        alert("تمت الاضافة");
-                        window.location.href = "@Url.Action("viewMoneyDays", "Money")";
-                    }
+                } else {
+                    $("#employeeSelect").attr("disabled", "")
                 }
-                );
+            });
+
+
+            $("#otherCheckBox").change(function () {
+                if ($(this).is(":checked")) {
+                    $("#otherTo").removeAttr("disabled");
+                    $("#employeeSelect").attr("disabled", "")
+                    $("#companySelect").attr("disabled", "")
+                    $("#companyCheckBox").removeAttr("checked")
+                    $("#employeeCheckBox").removeAttr("checked")
+                } else {
+                    $("#otherTo").attr("disabled", "")
+                }
+            });
+
+            $("#day").change(function () {
+                window.location.href = "/Money/viewMoneyDays?day=" + $("#day").val();
+            });
+
         });
-
-        $(".nextDay").click(function () {
-            res = confirm("Are You Sure You Will Go To Next Day ???");
-            if (res == true) {
-                $.post("@Url.Action("startNextDay" , "Money")", "", function (res) {
-                    if (res == "success") {
-                        window.location.href = "@Url.Action("viewMoneyDays", "Money")";
-                    }
-                })
-            }
-        });
-
-
-    });
 
     </script>
 }

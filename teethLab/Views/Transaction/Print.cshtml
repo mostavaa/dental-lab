@@ -4,7 +4,7 @@
         int transId = (int)ViewData["transId"];
         
         teethLab.teethLabEntities db  = new teethLab.teethLabEntities();
-        teethLab.transaction trans = db.transactions.Find(transId);
+        teethLab.CaseTransaction trans = db.CaseTransactions.Find(transId);
 }
 
 <h1>@trans.doctor.name</h1>

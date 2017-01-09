@@ -21,7 +21,7 @@ namespace teethLab
         public string caseColor3 { get; set; }
         public int price { get; set; }
         public string patientName { get; set; }
-        public System.DateTime recieveDate { get; set; }
+        public Nullable<System.DateTime> recieveDate { get; set; }
         public Nullable<System.DateTime> deliverDate { get; set; }
         public string notes { get; set; }
         public Nullable<bool> isOut { get; set; }

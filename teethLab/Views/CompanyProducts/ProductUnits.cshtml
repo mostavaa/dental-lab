@@ -1,0 +1,10 @@
+﻿@model teethLab.companyProduct
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.unit, "Unit")
+</div>
+<div class="editor-field">
+    @*@Html.DropDownList("productUnits", String.Empty)*@
+    @Html.DropDownList("unit", (SelectList)ViewData["units"])
+    @Html.ValidationMessageFor(model => model.unit)
+</div>

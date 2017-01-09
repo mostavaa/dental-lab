@@ -144,6 +144,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\CompanyProductsController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -509,6 +510,12 @@
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Views\CompanyProducts\Index.cshtml" />
+    <Content Include="Views\CompanyProducts\Details.cshtml" />
+    <Content Include="Views\CompanyProducts\Create.cshtml" />
+    <Content Include="Views\CompanyProducts\Edit.cshtml" />
+    <Content Include="Views\CompanyProducts\Delete.cshtml" />
+    <Content Include="Views\CompanyProducts\ProductUnits.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

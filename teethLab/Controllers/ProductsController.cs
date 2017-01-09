@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,6 +27,8 @@ namespace teethLab.Controllers
         public ActionResult Details(int id = 0)
         {
             product product = db.products.Find(id);
+            ViewBag.units = product.ProductUnits.ToList();
+            
             if (product == null)
             {
                 return HttpNotFound();
@@ -46,19 +49,28 @@ namespace teethLab.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public void Create(product product)
+        public ActionResult Create(product product)
         {
             product.enterDate = DateTime.Now;
-            
-            /*if (ModelState.IsValid)
+
+            //   product.ProductUnits.Add()
+            string[] units = Request.Form["units[]"].Split(',');
+
+            foreach (var item in units)
+            {
+                ProductUnit pu = new ProductUnit();
+                pu.unitId = int.Parse(item);
+                product.ProductUnits.Add(pu);
+            }
+
+
+            if (ModelState.IsValid)
             {
                 db.products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-             */
-
-            //return View(product);
+            return View(product);
         }
 
         //
@@ -67,6 +79,9 @@ namespace teethLab.Controllers
         public ActionResult Edit(int id = 0)
         {
             product product = db.products.Find(id);
+
+            ViewBag.units = product.ProductUnits.ToList();
+
             if (product == null)
             {
                 return HttpNotFound();
@@ -81,9 +96,29 @@ namespace teethLab.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(product product)
         {
+            product.enterDate = DateTime.Now;
+            product editproduct = db.products.Find(product.id);
+
+            List<ProductUnit> produnits = editproduct.ProductUnits.ToList();
+            string[] units = Request.Form["units[]"].Split(',');
+
+            foreach (var item in produnits)
+            {
+                db.ProductUnits.Remove(item);
+            }
+            
+            foreach (var item in units)
+            {
+                ProductUnit pu = new ProductUnit();
+                pu.unitId = int.Parse(item);
+                pu.productId = editproduct.id;
+                editproduct.ProductUnits.Add(pu);
+            }
+
+            db.products.AddOrUpdate(product);
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
+               // db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

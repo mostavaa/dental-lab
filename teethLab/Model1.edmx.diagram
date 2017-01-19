@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="teethLabModel.companyProduct" PointX="14" PointY="6.5" Width="1.5" />
         <EntityTypeShape EntityType="teethLabModel.CurrentCas" PointX="6.75" PointY="7.625" Width="1.5" />
         <EntityTypeShape EntityType="teethLabModel.doctor" PointX="0.75" PointY="11.375" Width="1.5" />
-        <EntityTypeShape EntityType="teethLabModel.doctorPhone" PointX="3" PointY="30.125" Width="1.5" />
         <EntityTypeShape EntityType="teethLabModel.employee" PointX="3.75" PointY="15" Width="1.5" />
         <EntityTypeShape EntityType="teethLabModel.employeeMoney" PointX="6" PointY="15.875" Width="1.5" />
         <EntityTypeShape EntityType="teethLabModel.money" PointX="6" PointY="10.75" Width="1.5" />
@@ -27,12 +26,12 @@
         <AssociationConnector Association="teethLabModel.FK_companyProducts_company" />
         <AssociationConnector Association="teethLabModel.FK_money_company" />
         <AssociationConnector Association="teethLabModel.FK_companyProducts_product" />
-        <AssociationConnector Association="teethLabModel.FK_doctorPhones_doctor" />
         <AssociationConnector Association="teethLabModel.FK_money_doctor" />
         <AssociationConnector Association="teethLabModel.FK_employeeMoney_employee" />
         <AssociationConnector Association="teethLabModel.FK_money_employee" />
         <AssociationConnector Association="teethLabModel.FK_ProductUnits_product" />
         <AssociationConnector Association="teethLabModel.FK_ProductUnits_Units" />
+        <EntityTypeShape EntityType="teethLabModel.balance" Width="1.5" PointX="0.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

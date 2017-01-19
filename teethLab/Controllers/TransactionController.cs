@@ -315,6 +315,10 @@ namespace teethLab.Controllers
                                 recieveDate = enterdate
                             };
                             db.CaseTransactions.Add(tran);
+                            money mon = new money { currentCredit=doc.Credit, doctorId = doctorId, import = false, notes = "", payed = false, recieveDate = DateTime.Now, value = price };
+                            doc.Credit++;
+                            db.Entry(doc).State = System.Data.EntityState.Modified;
+                            db.moneys.Add(mon);
                             db.SaveChanges();
                         }
                         else if (action == "inputProva")
@@ -423,7 +427,6 @@ namespace teethLab.Controllers
                                 tran.UL6 = UL6;
                                 tran.UL7 = UL7;
                                 tran.UL8 = UL8;
-                                db.Entry(tran).State = System.Data.EntityState.Modified;
                                 db.SaveChanges();
                             } 
                         }
@@ -495,6 +498,33 @@ namespace teethLab.Controllers
             }
 
             return RedirectToAction("followUpCases");
+        }
+        public ActionResult EditBalance() {
+            CultureInfo enUS = new CultureInfo("en-US");
+            DateTime enterdate;
+            enUS = new CultureInfo("en-US");
+            DateTime.TryParseExact(Request.Form["day"], "yyyy-MM-dd", enUS,
+                        DateTimeStyles.None, out enterdate);
+
+            string _balance = Request.Form["startBalance"];
+            int startBalance = int.Parse(_balance);
+            teethLabEntities db = new teethLabEntities();
+            balance bal =db.balances.FirstOrDefault(o => o.day == enterdate);
+            if (bal != null)
+            {
+                bal.balance1 = startBalance;
+                db.Entry(bal).State = System.Data.EntityState.Modified;
+            }
+            else
+            {
+                bal = new balance { balance1 = startBalance, day = enterdate };
+                db.balances.Add(bal);
+            }
+            db.SaveChanges();
+            TempData["balance"] = startBalance;
+            return RedirectToAction("followUpCases", new { day = enterdate.ToString("yyyy-MM-dd") });
+
+
         }
         //reference from #inputBtn , #outPrint in follow up cases, 
         public void addCase()

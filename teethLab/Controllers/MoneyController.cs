@@ -137,7 +137,7 @@ namespace teethLab.Controllers
                             {
                                 doc.Credit--;
                                 db.Entry(doc).State = System.Data.EntityState.Modified;
-                                money money = new money { doctor = doc, currentCredit = doc.Credit, import = true, notes = fromNotes, value = valueFrom, recieveDate = date };
+                                money money = new money { doctor = doc, currentCredit = doc.Credit, import = true, notes = fromNotes, value = valueFrom, recieveDate = date ,payed=true};
                                 db.moneys.Add(money);
                                 db.SaveChanges();
                             }

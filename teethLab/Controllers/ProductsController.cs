@@ -21,6 +21,15 @@ namespace teethLab.Controllers
             return View(db.products.ToList());
         }
 
+        public ActionResult ProductProfile(int id)
+        {
+            product pro = db.products.FirstOrDefault(o => o.id == id);
+            if (pro != null)
+            {
+                return View(pro);
+            }
+            return HttpNotFound();
+        }
         //
         // GET: /Products/Details/5
 

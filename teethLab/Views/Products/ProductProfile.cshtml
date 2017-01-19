@@ -1,0 +1,39 @@
+﻿@model teethLab.product
+@{
+    ViewBag.Title = "ProductProfile";
+    
+    }
+
+<h2>@Model.name</h2>
+<div class="row">
+
+    <div class="col-md-12">
+        <h2>Exports - Materials</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Material</th>
+                    <th>Unit</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model.companyProducts)
+                    {
+                        <tr>
+                            <td>@item.company.name</td>
+                            <td>@item.unit</td>
+                            <td>@item.unitPrice</td>
+                            <td>@item.quantity</td>
+                            <td>@item.enterDate</td>
+                        </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

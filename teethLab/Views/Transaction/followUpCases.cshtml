@@ -218,7 +218,24 @@
         <div class="row" style="text-align:center;">
             <h1 style="text-transform:capitalize;color:#99c2e1">Daily Cases</h1>
 
-            <input style="margin:10px auto !important" type="date" class="" value="@day.ToString("yyyy-MM-dd")" id="day" />
+            <form method="post" action="@Url.Action("EditBalance", "Transaction")">
+                <input style="margin:10px auto !important" type="date"name="day" class="" value="@day.ToString("yyyy-MM-dd")" id="day" />
+                @{
+                    teethLab.balance bal = db.balances.FirstOrDefault(o => o.day.Value.Year == day.Year && o.day.Value.Month == day.Month && o.day.Value.Day == day.Day);
+
+                    if (bal != null)
+                    {
+                        <input style="margin:10px auto !important" type="number" value="@bal.balance1" name="startBalance" placeholder="Start Balace" /><input type="submit" name="startBtn" value="Edit" />
+
+                    }
+                    else
+                    {
+                        <input style="margin:10px auto !important" type="number" value="0" name="startBalance" placeholder="Start Balace" /><input type="submit" name="startBtn" value="Edit" />
+
+                    }
+}
+
+            </form>
         </div>
         <div class="row">
             <input type="button" class="col-md-5 tabsFollow" id="outCaseFollow" style="margin-left:5%;" value="Output" />

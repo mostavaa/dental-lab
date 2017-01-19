@@ -64,8 +64,13 @@ namespace teethLab.Controllers
                     ViewBag.ProductUnits = model;
 
                     companyproduct.enterDate = DateTime.Now;
+                    company comp = db.companies.Find(companyproduct.companyId);
+
                     foreach (var item in model)
                     {
+                    string notes = "";
+                    int price = 0;
+
                         if (Request.Form["unit" + item.Unit.unit1] != null && Request.Form["unit" + item.Unit.unit1] != string.Empty
                             && Request.Form["quan" + item.Unit.unit1] != null && Request.Form["quan" + item.Unit.unit1] != string.Empty
                             )
@@ -74,10 +79,16 @@ namespace teethLab.Controllers
                             int quantity = int.Parse(Request.Form["quan" + item.Unit.unit1]);
                             companyProduct cp = new companyProduct { companyId = companyproduct.companyId, enterDate = DateTime.Now, productId = companyproduct.productId, quantity = quantity, unitPrice = unitprice  , unit = item.Unit.unit1};
                             db.companyProducts.Add(cp);
+                            notes+="Product="+item.product.name+" ; Unit="+item.Unit.unit1+" ; Quantity="+quantity+" ; unitPrice="+unitprice+" ; ";
+                            price += (quantity * unitprice);
+                            money newMoney = new money { companyId = companyproduct.companyId, import = true, recieveDate = DateTime.Now, value = price, notes = notes, payed = false, currentCredit = comp.credit };
+                            db.moneys.Add(newMoney);
 
                         }
-
                     }
+                    
+                    comp.credit++;
+                    db.Entry(comp).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");                    
                 }
@@ -147,6 +158,15 @@ namespace teethLab.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            companyProduct cp = db.companyProducts.Find(id);
+
+            
+            money newMoney = new money { companyId = cp.companyId, import = false, recieveDate = DateTime.Now, value = cp.unitPrice*cp.quantity , notes = "back", payed = false, currentCredit = cp.company.credit };
+            company comp = db.companies.Find(cp.companyId);
+            comp.credit--;
+            db.Entry(comp).State = EntityState.Modified;
+            db.moneys.Add(newMoney);
+
             companyProduct companyproduct = db.companyProducts.Find(id);
             db.companyProducts.Remove(companyproduct);
             db.SaveChanges();

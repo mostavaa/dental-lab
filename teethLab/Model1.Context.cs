@@ -31,7 +31,6 @@ namespace teethLab
         public DbSet<companyProduct> companyProducts { get; set; }
         public DbSet<CurrentCas> CurrentCases { get; set; }
         public DbSet<doctor> doctors { get; set; }
-        public DbSet<doctorPhone> doctorPhones { get; set; }
         public DbSet<employee> employees { get; set; }
         public DbSet<employeeMoney> employeeMoneys { get; set; }
         public DbSet<money> moneys { get; set; }
@@ -40,5 +39,6 @@ namespace teethLab
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<Unit> Units { get; set; }
         public DbSet<user> users { get; set; }
+        public DbSet<balance> balances { get; set; }
     }
 }

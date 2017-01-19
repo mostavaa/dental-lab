@@ -19,7 +19,14 @@ namespace teethLab.Controllers
         {
             return View(db.companies.ToList());
         }
-
+        public ActionResult CompanyProfile(int id) {
+            company com = db.companies.FirstOrDefault(o => o.id == id);
+            if (com != null)
+            {
+                return View(com);
+            }
+            return HttpNotFound();
+        }
         //
         // GET: /Companies/Create
 

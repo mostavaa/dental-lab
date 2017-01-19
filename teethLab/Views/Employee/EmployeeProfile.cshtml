@@ -1,0 +1,95 @@
+﻿@model teethLab.employee
+@{
+    ViewBag.Title = "Profile";
+    
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>@Model.name</h2>
+    </div>
+    <div class="col-md-6">
+        <a href="@Url.Action("paySalary", new { id=Model.id})" id="paySalary"><input type="button" value="Pay Salary"/></a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h2>Money</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Value</th>
+                    <th>Credit</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model.moneys)
+                    {
+                        <tr>
+                            <td>@item.value</td>
+                            <td>@item.currentCredit</td>
+                            <td>@item.recieveDate</td>
+                            <td>@item.notes</td>
+                        </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h2>Off and Rewards</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Material</th>
+                    <th>Off or Reward</th>
+                    <th>Payed</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model.employeeMoneys)
+                    {
+                        <tr>
+                            <td>@item.val</td>
+                            @{
+                        if (item.isOff)
+                        {
+                            <td>Off</td>
+                        }
+                        else
+                        {
+                            <td>Reward</td>
+
+                        }
+}
+                            <td>@item.payed</td>
+                            <td>@item.recieveDate</td>
+                            
+                        </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts{
+<script>
+    $(document).ready(function () {
+        $("#paySalary").click(function (e) {
+            res = confirm("Are You Sure You Want to Pay Salary for That Employee !!!!!");
+            if (res != true) {
+                e.preventDefault();
+            } else {
+                window.location.href = $(this).attr("href");
+            }
+        });
+    });
+    </script>
+}

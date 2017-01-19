@@ -1,76 +1,53 @@
-﻿@{
-    ViewBag.Title = "أطباء";
+﻿@model IEnumerable<teethLab.doctor>
+
+@{
+    ViewBag.Title = "Index";
 }
 
-<h2>أطباء</h2>
-<br />
-<a href="@Url.Action("viewAddDoc" , "Doctor")" class="btn btn-default">اضافة طبيب</a>
-<table class="table">
-    <thead>
-        <tr>
-            <th>الاسم</th>
-            <th>العنوان</th>
-            <th>الرصيد</th>
-            <th>عميل حالى</th>
-            <th>تعديل</th>
-            <th>مسح</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            var doctors = (List<teethLab.doctor>)ViewData["doctors"];
-            foreach (teethLab.doctor doctor in doctors)
-            {
-                <tr>
-                    <td>@doctor.name</td>
-                    <td>@doctor.address</td>
-                    <td>@doctor.depit</td>
-                    <td><span>@{
-                Write(doctor.isActive ? "حالى" : "سوق");
-                    }</span>
+<h2>Index</h2>
 
-                        <button class="btn btn-default activate" data-id="@doctor.id">تحويل</button>
-                    </td>
-                    <td ><a href="@Url.Action("viewEditDoc", "Doctor", new { id = doctor.id })" class="btn btn-default editDoc">تعديل</a></td>
-                    <td ><button data-id="@doctor.id" class="btn btn-default deleteDoc">مسح</button></td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
-@section scripts{
-<script>
-    $(document).ready(function () {
-        $(".deleteDoc").click(function () {
-            res = confirm("هل انت متأكد من مسح الطيب من النظام ؟");
-            doc = this;
-            if (res == true) {
-                id = $(this).attr("data-id");
-                $.post('@Url.Action("deleteDoc" , "Doctor")', "id="+id, function (response) {
-                    if (response=="success"){
-                        alert("تم مسح الطبيب");
-                        $(doc).parent().parent().remove();
-                    }
-                });
-                
-            }
-        });
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Credit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phones)
+        </th>
+        <th></th>
+    </tr>
 
-        $(".activate").click(function () {
-            docid = $(this).attr("data-id");
-            doctor = this;
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("DoctorProfile", new { id = item.id })">@Html.DisplayFor(modelItem => item.name)</a>
+
             
-            $.post("@Url.Action("activateDoc" , "Doctor")", "id="+docid, function (res) {
-                if (res == "success") {
-                    doccase = $(doctor).parent().find("span").html();
-                    if (doccase == "حالى") {
-                        $(doctor).parent().find("span").html("سوق");
-                    } else {
-                        $(doctor).parent().find("span").html("حالى");
-                    }
-                }
-            });
-        });
-    });
-    </script>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Credit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phones)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
 }
+
+</table>

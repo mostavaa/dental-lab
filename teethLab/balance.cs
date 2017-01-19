@@ -12,12 +12,10 @@ namespace teethLab
     using System;
     using System.Collections.Generic;
     
-    public partial class doctorPhone
+    public partial class balance
     {
         public int id { get; set; }
-        public string phone { get; set; }
-        public int doctorId { get; set; }
-    
-        public virtual doctor doctor { get; set; }
+        public int balance1 { get; set; }
+        public Nullable<System.DateTime> day { get; set; }
     }
 }

@@ -9,6 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<a href="@Url.Action("offAndRewards")"><input type="button" value=" Off and Rewards" /></a>
 <table>
     <tr>
         <th>
@@ -17,16 +18,23 @@
         <th>
             @Html.DisplayNameFor(model => model.credit)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.defaultSalary)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.name)
+            <a href="@Url.Action("EmployeeProfile", new { id = item.id })">@Html.DisplayFor(modelItem => item.name)</a>
+
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.credit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.defaultSalary)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

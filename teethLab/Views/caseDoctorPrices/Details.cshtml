@@ -1,0 +1,36 @@
+﻿@model teethLab.caseDoctorPrice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>caseDoctorPrice</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.doctor.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.doctor.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CurrentCas.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CurrentCas.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.price)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

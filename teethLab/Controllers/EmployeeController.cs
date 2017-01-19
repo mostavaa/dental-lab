@@ -20,6 +20,59 @@ namespace teethLab.Controllers
             return View(db.employees.ToList());
         }
 
+        public ActionResult paySalary(int id)
+        {
+            employee emp = db.employees.FirstOrDefault(o => o.id == id);
+            if (emp != null)
+            {
+                money money;
+                int dept = emp.defaultSalary;
+                foreach (var item in emp.employeeMoneys.Where(o=>o.payed==false))
+                {
+
+                    if (item.isOff)
+                    {
+                        dept -= (int)item.val;
+                        money = new money { employee = emp, currentCredit = emp.credit, import = true, notes = "Off", value = (int)item.val, recieveDate = DateTime.Now };
+
+                    }
+                    else
+                    {
+                        dept += (int)item.val;
+                        money = new money { employee = emp, currentCredit = emp.credit, import = false, notes = "Reward", value = (int)item.val, recieveDate = DateTime.Now };
+
+                    }
+                    item.payed = true;
+                    db.Entry(item).State = EntityState.Modified;
+                    db.moneys.Add(money);
+                }
+                foreach (var item in emp.moneys.Where(o=>o.payed==false))
+                {
+                    dept -= item.value;
+                    item.payed = true;
+                    db.Entry(item).State = EntityState.Modified;
+                }
+                 money = new money { employee = emp, currentCredit = emp.credit, import = false, notes = "Salary", value = dept, recieveDate = DateTime.Now };
+                 db.moneys.Add(money);
+                db.SaveChanges();
+                return RedirectToAction("EmployeeProfile", emp);
+                }
+            return HttpNotFound();
+
+            }
+
+        
+        public ActionResult EmployeeProfile(int id)
+        {
+            employee emp = db.employees.FirstOrDefault(o => o.id == id);
+            if (emp != null)
+            {
+                return View(emp);
+            }
+            return HttpNotFound();
+        }
+
+        
         
         //
         // GET: /Employee/Create
@@ -100,7 +153,43 @@ namespace teethLab.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        public ActionResult offAndRewards()
+        {
+            return View();
+        }
+        public ActionResult offAndRewardsAction()
+        {
+            string _EMP_ID = Request.Form["employee"];
+            string _VALUE = Request.Form["value"];
+            string _OFF = Request.Form["off"];
+            string _REWARD = Request.Form["reward"];
+            bool off = false;
+            if (_OFF == "on")
+            {
+                off = true;
+                
+            }
+            else if (_REWARD == "on")
+            {
+                off = false;
+            }
+            if (_VALUE != null && _VALUE != string.Empty)
+            {
+                if (_EMP_ID != null && _EMP_ID != string.Empty)
+                {
+                    int empId = int.Parse(_EMP_ID);
+                    employee emp = db.employees.FirstOrDefault(o => o.id == empId);
+                    if (emp != null)
+                    {
+                        int value = int.Parse(_VALUE);
+                        employeeMoney em = new employeeMoney() { employeeId = empId, isOff = off, payed = false, val = value, recieveDate = DateTime.Now };
+                        db.employeeMoneys.Add(em);
+                        db.SaveChanges(); 
+                    }
+                }
+            }
+            return RedirectToAction("offAndRewards");
+        }
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

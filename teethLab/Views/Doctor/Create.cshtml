@@ -1,17 +1,17 @@
-﻿@model teethLab.employee
+﻿@model teethLab.doctor
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create Employee</h2>
+<h2>Create</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        
+        <legend>doctor</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.name)
@@ -20,13 +20,25 @@
             @Html.EditorFor(model => model.name)
             @Html.ValidationMessageFor(model => model.name)
         </div>
+
         <div class="editor-label">
-            @Html.LabelFor(model => model.defaultSalary)
+            @Html.LabelFor(model => model.address)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.defaultSalary)
-            @Html.ValidationMessageFor(model => model.defaultSalary)
+            @Html.EditorFor(model => model.address)
+            @Html.ValidationMessageFor(model => model.address)
         </div>
+
+     
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.phones)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.phones)
+            @Html.ValidationMessageFor(model => model.phones)
+        </div>
+
         <p>
             <input type="submit" value="Create" />
         </p>

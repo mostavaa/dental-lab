@@ -26,7 +26,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.name)
+            <a href="@Url.Action("CompanyProfile", new { id = item.id })">@Html.DisplayFor(modelItem => item.name)</a> 
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.credit)

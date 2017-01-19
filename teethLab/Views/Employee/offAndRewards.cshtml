@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "offAndRewards";
+    teethLab.teethLabEntities db = new teethLab.teethLabEntities();
+    
+    }
+
+<h2>off And Rewards</h2>
+<form action="@Url.Action("offAndRewardsAction")" method="post">
+    <select name="employee">
+        <option></option>
+        @{
+            foreach (var item in db.employees)
+            {
+                <option value="@item.id">@item.name</option>
+            }
+        }
+    </select>
+    <input type="number" name="value" />
+    <label>Off</label><input type="checkbox"name="off" value="off" />
+    <label>Reward</label><input type="checkbox" name="reward" value="reward" />
+    <input type="submit" value="submit"/>
+    
+</form>

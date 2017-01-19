@@ -1,0 +1,214 @@
+﻿@model teethLab.doctor
+@{
+    ViewBag.Title = "DoctorProfile";
+
+}
+<style>
+        .crossNumberFollow[data-on='false'], .crossNumberFollow[data-on=False], #newMonth[data-on='false'], #newMonth[data-on='False'] {
+        margin: 1px;
+        position: relative;
+        float: left;
+        background-color: #012b43;
+        color: white;
+        height: 23px;
+    }
+
+    .crossNumberFollow[data-on='true'], .crossNumberFollow[data-on=True], #newMonth[data-on='true'], #newMonth[data-on='True'] {
+        margin: 1px;
+        position: relative;
+        float: left;
+        background-color: red;
+        color: white;
+        height: 23px;
+    }
+</style>
+<h2>@Model.name</h2>
+<div class="row">
+    <div class="col-md-6">
+        <h2>Imports - Money</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Value</th>
+                    <th>Credit</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model.moneys)
+                    {
+                        <tr>
+                            <td>@item.value</td>
+                            <td>@item.currentCredit</td>
+                            <td>@item.recieveDate</td>
+                            <td>@item.notes</td>
+                        </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h2>Cases</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Case</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model.caseDoctorPrices)
+                    {
+                        <tr>
+                            <td>@item.CurrentCas.name</td>
+                            <td>@item.price</td>
+                        </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+        <a href="@Url.Action("Index", "caseDoctorPrices")"><input type="button" value="Prices"/> </a>
+    </div>
+</div>
+<div class="row">
+    <h2>Exports - Transactions</h2>
+    <table>
+        <thead>
+            <tr>
+            
+                <th>Notes</th>
+                <th>Deliv. Date</th>
+                <th>Patient</th>
+                <th>Shade</th>
+                <th>Case</th>
+                <th>Case No</th>
+                <th>Unit Price</th>
+                <th>Total Prices</th>
+                <th>Print</th>
+
+            
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model.CaseTransactions)
+                {
+                    <tr>
+
+                        <td>@item.notes</td>
+                        @{
+
+                    DateTime toRecDay = (DateTime)item.deliverDate;
+                    string date = toRecDay.ToString("yyyy-MM-dd");
+                        }
+                        <td>@date</td>
+                        <td>@item.patientName</td>
+                        <td>@item.caseColor1 - @item.caseColor2 -@item.caseColor3</td>
+                        @{
+                    string caseName = item.CurrentCas.name;
+                        }
+                        <td>
+                            @caseName
+                            <div style="position:relative">
+                                <div id="" class="colShadeFollow ul" style="float:left">
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UL8" style="float:right">8</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UL7" style="float:right">7</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UL6" style="float:right">6</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UL5" style="float:right">5</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UL4" style="float:right">4</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UL3" style="float:right">3</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UL2" style="float:right">2</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UL1" style="float:right">1</a>
+
+                                </div>
+
+                                <div class="" style="
+    position:absolute;
+
+    ">
+                                    <img style="width:5px;height:68px;margin:1px 130px" src="~/Content/images/controls/VrLineWhite.png" />
+                                </div>
+
+                                <div id="" class="colShadeFollow ur" style="float:right">
+
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UR1" style="float:left">1</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UR2" style="float:left">2</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UR3" style="float:left">3</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UR4" style="float:left">4</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UR5" style="float:left">5</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UR6" style="float:left">6</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UR7" style="float:left">7</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.UR8" style="float:left">8</a>
+
+
+                                </div>
+
+                                <div style="width:100%;">
+                                    <img style="width:100%;height:15px;" src="~/Content/images/controls/HorizontalLinewhite.png" />
+                                </div>
+
+                                <div id="" class="colShadeFollow ll" style="float:left">
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LL8" style="float:right">8</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LL7" style="float:right">7</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LL6" style="float:right">6</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LL5" style="float:right">5</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LL4" style="float:right">4</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LL3" style="float:right">3</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LL2" style="float:right">2</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LL1" style="float:right">1</a>
+
+
+                                </div>
+                                <div id="" class="colShadeFollow lr" style="float:right">
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LR1" style="float:left">1</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LR2" style="float:left">2</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LR3" style="float:left">3</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LR4" style="float:left">4</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LR5" style="float:left">5</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LR6" style="float:left">6</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LR7" style="float:left">7</a>
+                                    <a href="#" class="img-circle crossNumberFollow upper" data-on="@item.LR8" style="float:left">8</a>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+                        @{
+                    teethLab.teethLabEntities db = new teethLab.teethLabEntities();
+                    int caseId = item.CurrentCas.id;
+                    int docId = item.doctor.id;
+
+                    teethLab.caseDoctorPrice casePrice = db.caseDoctorPrices.FirstOrDefault(o => o.doctorId == docId && o.caseId == caseId);
+                    int price = 0;
+                    if (casePrice != null)
+                    {
+                        price = casePrice.price;
+                    }
+                    else
+                    {
+                        price = item.CurrentCas.defaultPrice;
+                    }
+                        }
+                        <td>@item.caseNumber</td>
+                        <td>@price</td>
+                        <td>@item.price</td>
+                        <td>
+                            <form method="post" action="@Url.Action("Print", "item")">
+                                <input type="hidden" name="transId" value="@item.id" />
+                                <input type="submit" value="Print" class="btn btn-primary" />
+                            </form>
+                        </td>
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+</div>

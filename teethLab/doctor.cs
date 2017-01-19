@@ -18,7 +18,6 @@ namespace teethLab
         {
             this.caseDoctorPrices = new HashSet<caseDoctorPrice>();
             this.CaseTransactions = new HashSet<CaseTransaction>();
-            this.doctorPhones = new HashSet<doctorPhone>();
             this.moneys = new HashSet<money>();
         }
     
@@ -26,10 +25,10 @@ namespace teethLab
         public string name { get; set; }
         public string address { get; set; }
         public int Credit { get; set; }
+        public string phones { get; set; }
     
         public virtual ICollection<caseDoctorPrice> caseDoctorPrices { get; set; }
         public virtual ICollection<CaseTransaction> CaseTransactions { get; set; }
-        public virtual ICollection<doctorPhone> doctorPhones { get; set; }
         public virtual ICollection<money> moneys { get; set; }
     }
 }

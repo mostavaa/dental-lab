@@ -17,7 +17,6 @@ namespace teethLab
         public product()
         {
             this.companyProducts = new HashSet<companyProduct>();
-            this.ProductUnits = new HashSet<ProductUnit>();
         }
     
         public int id { get; set; }
@@ -26,6 +25,5 @@ namespace teethLab
         public Nullable<System.DateTime> enterDate { get; set; }
     
         public virtual ICollection<companyProduct> companyProducts { get; set; }
-        public virtual ICollection<ProductUnit> ProductUnits { get; set; }
     }
 }

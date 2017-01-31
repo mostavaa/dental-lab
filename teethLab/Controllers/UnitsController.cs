@@ -19,98 +19,89 @@ namespace teethLab.Controllers
         {
             return View(db.Units.ToList());
         }
-
-        //
-        // GET: /Units/Details/5
-
-        public ActionResult Details(int id = 0)
+        public JsonResult all()
         {
-            Unit unit = db.Units.Find(id);
-            if (unit == null)
+            db.Configuration.ProxyCreationEnabled = false;
+
+            int totalRows, page = 1, size, offset, numOfPages;
+            if (Request.Params["page"] != null && Request.Params["page"] != "")
             {
-                return HttpNotFound();
+                page = int.Parse(Request.Params["page"]);
             }
-            return View(unit);
+            page--;
+            size = 5;
+            offset = page * size;
+            totalRows = db.Units.Count();
+            var units = db.Units.OrderBy(o => o.id).Skip(offset).Take(size).ToList();
+            numOfPages = totalRows / size;
+            if (totalRows % size != 0)
+            {
+                numOfPages++;
+            }
+            return Json(new { models = units, numOfPages = numOfPages }, JsonRequestBehavior.AllowGet);
         }
-
-        //
-        // GET: /Units/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Units/Create
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Unit unit)
+        public JsonResult Add(Unit model)
         {
             if (ModelState.IsValid)
             {
-                db.Units.Add(unit);
+                db.Units.Add(model);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { success = true, model = model });
             }
-
-            return View(unit);
-        }
-
-        //
-        // GET: /Units/Edit/5
-
-        public ActionResult Edit(int id = 0)
-        {
-            Unit unit = db.Units.Find(id);
-            if (unit == null)
+            else
             {
-                return HttpNotFound();
+                var errors = getErrors(ModelState);
+                var res = new { success = false, errors = errors };
+
+                return Json(res);
             }
-            return View(unit);
         }
 
-        //
-        // POST: /Units/Edit/5
+        private Dictionary<string, List<string>> getErrors(ModelStateDictionary ModelState)
+        {
+            Dictionary<string, List<string>> errors = new Dictionary<string, List<string>>();
+            foreach (var key in ModelState.Keys)
+            {
+                if (ModelState[key].Errors.Count > 0)
+                {
+                    List<string> keyErrors = new List<string>();
+                    foreach (var error in ModelState[key].Errors)
+                    {
+                        keyErrors.Add(error.ErrorMessage);
+                    }
+                    errors.Add(key, keyErrors);
+                }
+            }
+            return errors;
+        }
+
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Unit unit)
+        public JsonResult Edit(Unit model)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(unit).State = EntityState.Modified;
+                db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { success = true });
             }
-            return View(unit);
-        }
-
-        //
-        // GET: /Units/Delete/5
-
-        public ActionResult Delete(int id = 0)
-        {
-            Unit unit = db.Units.Find(id);
-            if (unit == null)
+            else
             {
-                return HttpNotFound();
+                var errors = getErrors(ModelState);
+                var res = new { success = false, errors = errors };
+
+                return Json(res);
             }
-            return View(unit);
         }
-
-        //
-        // POST: /Units/Delete/5
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public JsonResult Delete(Unit model)
         {
-            Unit unit = db.Units.Find(id);
+            Unit unit = db.Units.Find(model.id);
             db.Units.Remove(unit);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Json(new { success = true });
         }
 
         protected override void Dispose(bool disposing)

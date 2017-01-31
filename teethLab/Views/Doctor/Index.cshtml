@@ -4,50 +4,86 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Credit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phones)
-        </th>
-        <th></th>
-    </tr>
+<div data-ng-app="app" data-ng-controller="doctorController" class="row">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <a href="@Url.Action("DoctorProfile", new { id = item.id })">@Html.DisplayFor(modelItem => item.name)</a>
 
-            
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Credit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phones)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8" style="text-align:center">
+            <p>
+                <input type="button" data-ng-hide="addMode" ng-click="enableAddMode()" value="Create New" />
+            </p>
+            <div data-ng-show="addMode">
+                <input type="text" placeholder="Name" data-ng-model="NewModel.name" />
+                <input type="text" placeholder="Address" data-ng-model="NewModel.address" />
+                <input type="text" placeholder="Phones" data-ng-model="NewModel.phones" />
+                <p class="ss-error" ng-bind-html="errorMsg"></p>
+                <input type="button" ng-click="addNewModel(NewModel)" value="Add" />
+                <input type="button" ng-click="disableAddMode()" value="Cancel" />
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>
+                            Name
+                        </td>
+                        <td>
+                            Address
+                        </td>
+                        <td>
+                            Credit
+                        </td>
+                        <td>
+                            Phones
+                        </td>
+                        <td></td>
+                    </tr>
+                </thead>
 
-</table>
+                <tbody>
+                    <tr data-ng-repeat="model in models" ng-on-finish-render>
+                        <input type="hidden" data-ng-model="model.id" />
+                        <input data-ng-hide="true" data-ng-model="model.Credit" />
+                        <td>
+                            <p data-ng-hide="model.editMode"><a ng-href="@Url.Action("DoctorProfile")/{{model.id}}">{{model.name}}</a></p>
+                            <input type="text" data-ng-show="model.editMode" ng-model="model.name" />
+                        </td>
+                        <td>
+                            <p data-ng-hide="model.editMode">{{model.address}}</p>
+                            <input type="text" data-ng-show="model.editMode" ng-model="model.address" />
+                        </td>
+                        <td>
+                            <p data-ng-hide="model.editMode">{{model.Credit}}</p>
+                        </td>
+                        <td>
+                            <p data-ng-hide="model.editMode">{{model.phones}}</p>
+                            <input type="text" data-ng-show="model.editMode" ng-model="model.phones" />
+                        </td>
+                        <td>
+                            <p data-ng-hide="model.editMode"><input type="button" data-ng-click="toggleEdit(model)" value="Edit" /> | <input type="button" data-ng-click="delete(model)" confirmation-needed="Are You Sure You Want To Delete This ?" value="Delete" /></p>
+                            <p data-ng-show="model.editMode"><input type="button" data-ng-click="save(model)" value="Save" /> | <input type="button" data-ng-click="toggleEdit(model)" value="Cancel" /></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="row">
+        <nav class="pagination">
+            <span class="page-numbers prev" ng-click="getAllPrev()">Prev</span>
+            <a href="javascript:;" data-page="{{n}}" ng-repeat="n in range(minPage,maxPage)" ng-click="getAll(n)" onclick="" class="page-numbers">{{n}}</a>
+            <a href="javascript:;" class="page-numbers next" ng-click="getAllNext()">Next</a>
+        </nav>
+    </div>
+
+
+    <div data-ng-show="isLoading">
+        <img src="~/Content/images/ng-loader.gif" class="ajax-loader" />
+    </div>
+
+    @section scripts{
+        <script src="~/Scripts/angular.min.js"></script>
+        <script src="~/Scripts/AngularCtrs/doctorController.js"></script>
+    }
+</div>

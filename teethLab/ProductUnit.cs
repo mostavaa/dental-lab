@@ -17,8 +17,5 @@ namespace teethLab
         public int id { get; set; }
         public Nullable<int> productId { get; set; }
         public Nullable<int> unitId { get; set; }
-    
-        public virtual product product { get; set; }
-        public virtual Unit Unit { get; set; }
     }
 }

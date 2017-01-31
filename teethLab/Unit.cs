@@ -16,12 +16,12 @@ namespace teethLab
     {
         public Unit()
         {
-            this.ProductUnits = new HashSet<ProductUnit>();
+            this.companyProducts = new HashSet<companyProduct>();
         }
     
         public int id { get; set; }
         public string unit1 { get; set; }
     
-        public virtual ICollection<ProductUnit> ProductUnits { get; set; }
+        public virtual ICollection<companyProduct> companyProducts { get; set; }
     }
 }

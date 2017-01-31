@@ -17,12 +17,13 @@ namespace teethLab
         public int id { get; set; }
         public int productId { get; set; }
         public int companyId { get; set; }
-        public string unit { get; set; }
+        public int unitId { get; set; }
         public int quantity { get; set; }
         public int unitPrice { get; set; }
         public Nullable<System.DateTime> enterDate { get; set; }
     
         public virtual company company { get; set; }
         public virtual product product { get; set; }
+        public virtual Unit Unit { get; set; }
     }
 }

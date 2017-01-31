@@ -25,10 +25,10 @@ namespace teethLab
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<balance> balances { get; set; }
         public DbSet<caseDoctorPrice> caseDoctorPrices { get; set; }
         public DbSet<CaseTransaction> CaseTransactions { get; set; }
         public DbSet<company> companies { get; set; }
-        public DbSet<companyProduct> companyProducts { get; set; }
         public DbSet<CurrentCas> CurrentCases { get; set; }
         public DbSet<doctor> doctors { get; set; }
         public DbSet<employee> employees { get; set; }
@@ -39,6 +39,6 @@ namespace teethLab
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<Unit> Units { get; set; }
         public DbSet<user> users { get; set; }
-        public DbSet<balance> balances { get; set; }
+        public DbSet<companyProduct> companyProducts { get; set; }
     }
 }

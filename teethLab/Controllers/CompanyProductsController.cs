@@ -21,7 +21,123 @@ namespace teethLab.Controllers
             return View(companyproducts.ToList());
         }
 
-        
+
+        public JsonResult all()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            db.Configuration.ProxyCreationEnabled = false;
+
+            int totalRows, page = 1, size, offset, numOfPages;
+            if (Request.Params["page"] != null && Request.Params["page"] != "")
+            {
+                page = int.Parse(Request.Params["page"]);
+            }
+            page--;
+            size = 5;
+            offset = page * size;
+            totalRows = db.companyProducts.Count();
+            var models = db.companyProducts.OrderBy(o => o.id).Skip(offset).Take(size).ToList().Select(S => new
+            {
+                companyId = S.companyId,
+                enterDate = S.enterDate,
+                id = S.id,
+                productId = S.productId,
+                quantity = S.quantity,
+                unitId = S.unitId,
+                unitPrice = S.unitPrice
+            });;
+            numOfPages = totalRows / size;
+            if (totalRows % size != 0)
+            {
+                numOfPages++;
+            }
+            var companies = db.companies.ToList().Select(s => new
+            {
+                name = s.name,
+                id = s.id,
+                enterDate = s.enterDate,
+                credit = s.credit,
+            });
+
+            var products = db.products.Select(s => new
+            {
+                name = s.name,
+                id = s.id,
+                enterDate = s.enterDate,
+                notes = s.notes,
+            });
+            var units = db.Units.Select(s => new
+            {
+                unit1 = s.unit1,
+                id = s.id,
+            });
+            return Json(new { models = models, companies = companies, products = products, units = units, numOfPages = numOfPages }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Add(companyProduct model)
+        {
+            model.enterDate = DateTime.Now;
+            if (ModelState.IsValid)
+            {
+                db.companyProducts.Add(model);
+                db.SaveChanges();
+                return Json(new { success = true, model = model });
+            }
+            else
+            {
+                var errors = getErrors(ModelState);
+                var res = new { success = false, errors = errors };
+
+                return Json(res);
+            }
+        }
+
+        private Dictionary<string, List<string>> getErrors(ModelStateDictionary ModelState)
+        {
+            Dictionary<string, List<string>> errors = new Dictionary<string, List<string>>();
+            foreach (var key in ModelState.Keys)
+            {
+                if (ModelState[key].Errors.Count > 0)
+                {
+                    List<string> keyErrors = new List<string>();
+                    foreach (var error in ModelState[key].Errors)
+                    {
+                        keyErrors.Add(error.ErrorMessage);
+                    }
+                    errors.Add(key, keyErrors);
+                }
+            }
+            return errors;
+        }
+
+
+        [HttpPost]
+        public JsonResult Edit(companyProduct model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            else
+            {
+                var errors = getErrors(ModelState);
+                var res = new { success = false, errors = errors };
+
+                return Json(res);
+            }
+        }
+        [HttpPost]
+        public JsonResult Delete(companyProduct model)
+        {
+            companyProduct obj = db.companyProducts.Find(model.id);
+            db.companyProducts.Remove(obj);
+            db.SaveChanges();
+            return Json(new { success = true });
+        }
+         
 
         //
         // GET: /CompanyProducts/Create
@@ -54,6 +170,7 @@ namespace teethLab.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(companyProduct companyproduct)
         {
+            /*
             if (Request.QueryString["productid"] != null)
             {
                 string _productid = Request.QueryString["productid"];
@@ -94,11 +211,11 @@ namespace teethLab.Controllers
                 }
             }
            
-
+            */
 
             ViewBag.companyId = new SelectList(db.companies, "id", "name", companyproduct.companyId);
             ViewBag.productId = new SelectList(db.products, "id", "name", companyproduct.productId);
-            ViewBag.unit = new SelectList(db.Units, "unit1", "unit1",companyproduct.unit); 
+            //ViewBag.unit = new SelectList(db.Units, "unit1", "unit1",companyproduct.unit); 
             return View(companyproduct);
         }
 
@@ -114,7 +231,7 @@ namespace teethLab.Controllers
             }
             ViewBag.companyId = new SelectList(db.companies, "id", "name", companyproduct.companyId);
             ViewBag.productId = new SelectList(db.products, "id", "name", companyproduct.productId);
-            ViewBag.unit = new SelectList(db.Units, "unit1", "unit1", companyproduct.unit); 
+            //ViewBag.unit = new SelectList(db.Units, "unit1", "unit1", companyproduct.unit); 
 
             return View(companyproduct);
         }
@@ -124,6 +241,7 @@ namespace teethLab.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        /*
         public ActionResult Edit(companyProduct companyproduct)
         {
             if (ModelState.IsValid)
@@ -134,28 +252,26 @@ namespace teethLab.Controllers
             }
             ViewBag.companyId = new SelectList(db.companies, "id", "name", companyproduct.companyId);
             ViewBag.productId = new SelectList(db.products, "id", "name", companyproduct.productId);
-            ViewBag.unit = new SelectList(db.Units, "unit1", "unit1", companyproduct.unit); 
+            //ViewBag.unit = new SelectList(db.Units, "unit1", "unit1", companyproduct.unit); 
             return View(companyproduct);
-        }
+        }*/
 
         //
         // GET: /CompanyProducts/Delete/5
 
-        public ActionResult Delete(int id = 0)
-        {
-            companyProduct companyproduct = db.companyProducts.Find(id);
-            if (companyproduct == null)
-            {
-                return HttpNotFound();
-            }
-            return View(companyproduct);
-        }
+        //public ActionResult Delete(int id = 0)
+        //{
+        //    companyProduct companyproduct = db.companyProducts.Find(id);
+        //    if (companyproduct == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(companyproduct);
+        //}
 
         //
         // POST: /CompanyProducts/Delete/5
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             companyProduct cp = db.companyProducts.Find(id);

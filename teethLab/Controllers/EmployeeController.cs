@@ -20,6 +20,94 @@ namespace teethLab.Controllers
             return View(db.employees.ToList());
         }
 
+        public JsonResult all()
+        {
+            db.Configuration.LazyLoadingEnabled = false;
+            db.Configuration.ProxyCreationEnabled = false;
+
+            int totalRows, page = 1, size, offset, numOfPages;
+            if (Request.Params["page"] != null && Request.Params["page"] != "")
+            {
+                page = int.Parse(Request.Params["page"]);
+            }
+            page--;
+            size = 5;
+            offset = page * size;
+            totalRows = db.employees.Count();
+            var models = db.employees.OrderBy(o => o.id).Skip(offset).Take(size).ToList();
+            numOfPages = totalRows / size;
+            if (totalRows % size != 0)
+            {
+                numOfPages++;
+            }
+
+
+            return Json(new { models = models, numOfPages = numOfPages }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Add(employee model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.employees.Add(model);
+                db.SaveChanges();
+                return Json(new { success = true, model = model });
+            }
+            else
+            {
+                var errors = getErrors(ModelState);
+                var res = new { success = false, errors = errors };
+
+                return Json(res);
+            }
+        }
+
+        private Dictionary<string, List<string>> getErrors(ModelStateDictionary ModelState)
+        {
+            Dictionary<string, List<string>> errors = new Dictionary<string, List<string>>();
+            foreach (var key in ModelState.Keys)
+            {
+                if (ModelState[key].Errors.Count > 0)
+                {
+                    List<string> keyErrors = new List<string>();
+                    foreach (var error in ModelState[key].Errors)
+                    {
+                        keyErrors.Add(error.ErrorMessage);
+                    }
+                    errors.Add(key, keyErrors);
+                }
+            }
+            return errors;
+        }
+
+
+        [HttpPost]
+        public JsonResult Edit(employee model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            else
+            {
+                var errors = getErrors(ModelState);
+                var res = new { success = false, errors = errors };
+
+                return Json(res);
+            }
+        }
+        [HttpPost]
+        public JsonResult Delete(employee model)
+        {
+            employee obj = db.employees.Find(model.id);
+            db.employees.Remove(obj);
+            db.SaveChanges();
+            return Json(new { success = true });
+        }
+
         public ActionResult paySalary(int id)
         {
             employee emp = db.employees.FirstOrDefault(o => o.id == id);
@@ -74,85 +162,85 @@ namespace teethLab.Controllers
 
         
         
-        //
-        // GET: /Employee/Create
+        ////
+        //// GET: /Employee/Create
 
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
-        //
-        // POST: /Employee/Create
+        ////
+        //// POST: /Employee/Create
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(employee employee)
-        {
-            if (ModelState.IsValid)
-            {
-                db.employees.Add(employee);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(employee employee)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.employees.Add(employee);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(employee);
-        }
+        //    return View(employee);
+        //}
 
-        //
-        // GET: /Employee/Edit/5
+        ////
+        //// GET: /Employee/Edit/5
 
-        public ActionResult Edit(int id = 0)
-        {
-            employee employee = db.employees.Find(id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employee);
-        }
+        //public ActionResult Edit(int id = 0)
+        //{
+        //    employee employee = db.employees.Find(id);
+        //    if (employee == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(employee);
+        //}
 
-        //
-        // POST: /Employee/Edit/5
+        ////
+        //// POST: /Employee/Edit/5
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(employee employee)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(employee).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(employee);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(employee employee)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(employee).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(employee);
+        //}
 
-        //
-        // GET: /Employee/Delete/5
+        ////
+        //// GET: /Employee/Delete/5
 
-        public ActionResult Delete(int id = 0)
-        {
-            employee employee = db.employees.Find(id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employee);
-        }
+        //public ActionResult Delete(int id = 0)
+        //{
+        //    employee employee = db.employees.Find(id);
+        //    if (employee == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(employee);
+        //}
 
-        //
-        // POST: /Employee/Delete/5
+        ////
+        //// POST: /Employee/Delete/5
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            employee employee = db.employees.Find(id);
-            db.employees.Remove(employee);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    employee employee = db.employees.Find(id);
+        //    db.employees.Remove(employee);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
         public ActionResult offAndRewards()
         {
             return View();

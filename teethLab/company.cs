@@ -16,8 +16,8 @@ namespace teethLab
     {
         public company()
         {
-            this.companyProducts = new HashSet<companyProduct>();
             this.moneys = new HashSet<money>();
+            this.companyProducts = new HashSet<companyProduct>();
         }
     
         public int id { get; set; }
@@ -25,7 +25,7 @@ namespace teethLab
         public int credit { get; set; }
         public Nullable<System.DateTime> enterDate { get; set; }
     
-        public virtual ICollection<companyProduct> companyProducts { get; set; }
         public virtual ICollection<money> moneys { get; set; }
+        public virtual ICollection<companyProduct> companyProducts { get; set; }
     }
 }

@@ -4,41 +4,80 @@
     ViewBag.Title = "Companies";
 }
 
-<h2>Companies</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.credit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.enterDate)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <a href="@Url.Action("CompanyProfile", new { id = item.id })">@Html.DisplayFor(modelItem => item.name)</a> 
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.credit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.enterDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
 
-</table>
+<div data-ng-app="app" data-ng-controller="companyController" class="row">
+
+
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8" style="text-align:center">
+            <p>
+                <input type="button" data-ng-hide="addMode" ng-click="enableAddMode()" value="Create New" />
+            </p>
+            <div data-ng-show="addMode">
+                <input type="text" placeholder="Name" data-ng-model="NewModel.name" />
+                <p class="ss-error" ng-bind-html="errorMsg"></p>
+                <input type="button" ng-click="addNewModel(NewModel)" value="Add" />
+                <input type="button" ng-click="disableAddMode()" value="Cancel" />
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>
+                            Name
+                        </td>
+                        <td>
+                            Credit
+                        </td>
+                        <td>
+                            Enter Date
+                        </td>
+                        <td></td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr data-ng-repeat="model in models" ng-on-finish-render>
+                        <input type="hidden" data-ng-model="model.id" />
+                        <input data-ng-hide="true" data-ng-model="model.enterDate" />
+                        <input data-ng-hide="true" data-ng-model="model.credit" />
+                        <td>
+                            <p data-ng-hide="model.editMode"><a ng-href="@Url.Action("CompanyProfile")/{{model.id}}">{{model.name}}</a></p>
+
+                            <input type="text" data-ng-show="model.editMode" ng-model="model.name" />
+                        </td>
+                        <td>
+                            <p data-ng-hide="model.editMode">{{model.credit}}</p>
+                        </td>
+                        <td>
+                            <p data-ng-hide="model.editMode">{{model.enterDate | dateFilter | date:'yyyy-MM-dd'}}</p>
+                        </td>
+                        <td>
+                            <p data-ng-hide="model.editMode"><input type="button" data-ng-click="toggleEdit(model)" value="Edit" /> | <input type="button" data-ng-click="delete(model)" confirmation-needed="Are You Sure You Want To Delete This ?" value="Delete" /></p>
+                            <p data-ng-show="model.editMode"><input type="button" data-ng-click="save(model)" value="Save" /> | <input type="button" data-ng-click="toggleEdit(model)" value="Cancel" /></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="row">
+        <nav class="pagination">
+            <span class="page-numbers prev" ng-click="getAllPrev()">Prev</span>
+            <a href="javascript:;" data-page="{{n}}" ng-repeat="n in range(minPage,maxPage)" ng-click="getAll(n)" onclick="" class="page-numbers">{{n}}</a>
+            <a href="javascript:;" class="page-numbers next" ng-click="getAllNext()">Next</a>
+        </nav>
+    </div>
+
+
+    <div data-ng-show="isLoading">
+        <img src="~/Content/images/ng-loader.gif" class="ajax-loader" />
+    </div>
+
+    @section scripts{
+        <script src="~/Scripts/angular.min.js"></script>
+        <script src="~/Scripts/AngularCtrs/companyController.js"></script>
+    }
+</div>

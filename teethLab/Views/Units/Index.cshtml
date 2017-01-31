@@ -3,31 +3,64 @@
 @{
     ViewBag.Title = "Index";
 }
+<div data-ng-app="app" data-ng-controller="unitController" class="row">
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.unit1)
-        </th>
-        <th></th>
-    </tr>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8" style="text-align:center">
+            <p>
+                <input type="button" data-ng-hide="addMode" ng-click="enableAddMode()" value="Create New" />
+            </p>
+            <div data-ng-show="addMode">
+                <input type="text" placeholder="unit" data-ng-model="NewModel.unit1" />
+                <p class="ss-error" ng-bind-html="errorMsg"></p>
+                <input type="button" ng-click="addNewModel(NewModel)" value="Add" />
+                <input type="button" ng-click="disableAddMode()" value="Cancel" />
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="50%">
+                            @Html.DisplayNameFor(model => model.unit1)
+                        </th>
+                        <th width="50%"></th>
+                    </tr>
+                </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.unit1)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+                <tbody>
+                    <tr data-ng-repeat="model in models">
+                        <input type="hidden" data-ng-model="model.id" />
+                        <td>
+                            <p data-ng-hide="model.editMode">{{model.unit1}}</p>
+                            <input type="text" data-ng-show="model.editMode" data-ng-model="model.unit1" />
+                            <p class="ss-error" ng-bind-html="model.errorMsg"></p>
+                        </td>
+                        <td>
+                            <p data-ng-hide="model.editMode"><input type="button" data-ng-click="toggleEdit(model)" value="Edit" /> | <input type="button" data-ng-click="delete(model)" confirmation-needed="Are You Sure You Want To Delete This ?" value="Delete" /></p>
+                            <p data-ng-show="model.editMode"><input type="button" data-ng-click="save(model)" value="Save" /> | <input type="button" data-ng-click="toggleEdit(model)" value="Cancel" /></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-</table>
+    </div>
+    <div class="row">
+        <nav class="pagination">
+            <span class="page-numbers prev" ng-click="getAllPrev()">Prev</span>
+            <a href="javascript:;" data-page="{{n}}" ng-repeat="n in range(minPage,maxPage)" ng-click="getAll(n)" onclick="" class="page-numbers">{{n}}</a>
+            <a href="javascript:;" class="page-numbers next" ng-click="getAllNext()">Next</a>
+        </nav>
+    </div>
+
+    
+    <div data-ng-show="isLoading">
+        <img src="~/Content/images/ng-loader.gif" class="ajax-loader" />
+    </div>
+
+    @section scripts{
+        <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/AngularCtrs/angular-sanitize.js"></script>
+        <script src="~/Scripts/AngularCtrs/unitController.js"></script>
+    }
+</div>

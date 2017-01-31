@@ -4,58 +4,117 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.product.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.company.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.unit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.unitPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.enterDate)
-        </th>
-        <th></th>
-    </tr>
+<div data-ng-app="app" data-ng-controller="companyProductsController" class="row">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.product.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.company.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.unit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.unitPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.enterDate)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
 
-</table>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8" style="text-align:center">
+            <p>
+                <input type="button" data-ng-hide="addMode" ng-click="enableAddMode()" value="Create New" />
+            </p>
+            <div data-ng-show="addMode">
+
+                <select ng-options="obj.id as obj.name for obj in companies" ng-model="NewModel.companyId"></select>
+
+                <select ng-options="obj.id as obj.name for obj in products" ng-model="NewModel.productId"></select>
+
+                <select ng-options="obj.id as obj.unit1 for obj in units" ng-model="NewModel.unitId"></select>
+
+
+
+                <input type="number" placeholder="Quantity" data-ng-model="NewModel.quantity" />
+                <input type="number" placeholder="Unit Price" data-ng-model="NewModel.unitPrice" />
+                <p class="ss-error" ng-bind-html="errorMsg"></p>
+                <input type="button" ng-click="addNewModel(NewModel)" value="Add" />
+                <input type="button" ng-click="disableAddMode()" value="Cancel" />
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>
+                            Product
+                        </td>
+                        <td>
+                            Company
+                        </td>
+                        <td>
+                            Unit
+                        </td>
+                        <td>
+                            Quantity
+                        </td>
+                        <td>
+                            Unit Price
+                        </td>
+                        <td>
+                            Enter Date
+                        </td>
+                        <td></td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr data-ng-repeat="model in models" ng-on-finish-render>
+                        <input type="hidden" data-ng-model="model.id" />
+                        <input data-ng-hide="true" data-ng-model="model.enterDate" />
+                        <td>
+                            <p data-ng-hide="true">{{model.companyId}}</p>
+                            <p data-ng-hide="model.editMode" class="companyDisplay"></p>
+                            <select ng-options="obj.id as obj.name for obj in companies" data-ng-show="model.editMode" ng-model="model.companyId"></select>
+
+                            <p class="ss-error" ng-bind-html="model.errorMsg"></p>
+                        </td>
+                        <td>
+                            <p data-ng-hide="true">{{model.productId}}</p>
+                            <p data-ng-hide="model.editMode" class="productDisplay"></p>
+                            <select ng-options="pro.id as pro.name for pro in products" data-ng-show="model.editMode" ng-model="model.productId"></select>
+
+
+                        </td>
+                        <td>
+                            <p data-ng-hide="true">{{model.unitId}}</p>
+                            <p data-ng-hide="model.editMode" class="unitDisplay"></p>
+                            <select ng-options="obj.id as obj.unit1 for obj in units" data-ng-show="model.editMode" ng-model="model.unitId"></select>
+
+
+                        </td>
+                        <td>
+                            <p data-ng-hide="model.editMode">{{model.quantity}}</p>
+                            <input type="number" data-ng-show="model.editMode" ng-model="model.quantity" />
+                        </td>
+                        <td>
+                            <p data-ng-hide="model.editMode">{{model.unitPrice}}</p>
+                            <input type="number" data-ng-show="model.editMode" ng-model="model.unitPrice" />
+                        </td>
+                        <td>
+                            <p data-ng-hide="model.editMode">{{model.enterDate | dateFilter | date:'yyyy-MM-dd'}}</p>
+                        </td>
+                        <td>
+                            <p data-ng-hide="model.editMode"><input type="button" data-ng-click="toggleEdit(model)" value="Edit" /> | <input type="button" data-ng-click="delete(model)" confirmation-needed="Are You Sure You Want To Delete This ?" value="Delete" /></p>
+                            <p data-ng-show="model.editMode"><input type="button" data-ng-click="save(model)" value="Save" /> | <input type="button" data-ng-click="toggleEdit(model)" value="Cancel" /></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="row">
+        <nav class="pagination">
+            <span class="page-numbers prev" ng-click="getAllPrev()">Prev</span>
+            <a href="javascript:;" data-page="{{n}}" ng-repeat="n in range(minPage,maxPage)" ng-click="getAll(n)" onclick="" class="page-numbers">{{n}}</a>
+            <a href="javascript:;" class="page-numbers next" ng-click="getAllNext()">Next</a>
+        </nav>
+    </div>
+
+
+    <div data-ng-show="isLoading">
+        <img src="~/Content/images/ng-loader.gif" class="ajax-loader" />
+    </div>
+
+    @section scripts{
+        <script src="~/Scripts/angular.min.js"></script>
+        <script src="~/Scripts/AngularCtrs/companyProductsController.js"></script>
+    }
+</div>
